@@ -17,51 +17,63 @@ app.use(express.json());
 
 // Logger simple
 app.use(({ method, path }, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${method} ${path}`);
-    next();
+  console.log(`[${new Date().toISOString()}] ${method} ${path}`);
+  next();
 });
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("✅ DB Connected"))
-    .catch(err => console.error("❌ DB Error:", err.message));
+  .then(() => console.log("✅ DB Connected"))
+  .catch(err => console.error("❌ DB Error:", err.message));
 
 const Contact = mongoose.model('Contact', new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    message: { type: String, required: true },
-    date: { type: Date, default: Date.now }
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  message: { type: String, required: true },
+  date: { type: Date, default: Date.now }
 }));
 
 // Routes
 app.get('/', (req, res) => res.json({ status: 'API Live', time: new Date() }));
 
 app.post('/contact', async (req, res) => {
-    const { name, email, message } = req.body;
+  const { name, email, message } = req.body;
 
-    // Validation concise
-    if (!name || !email || !message) return res.status(400).json({ error: "Champs requis" });
+  // Validation concise
+  if (!name || !email || !message) return res.status(400).json({ error: "Champs requis" });
 
-    try {
-        // Sauvegarde & Préparation Email en parallèle
-        await new Contact({ name, email, message }).save();
-        
-        const msg = {
-            to: process.env.EMAIL_USER,
-            from: process.env.EMAIL_USER,
-            replyTo: email,
-            subject: `Portfolio - Message de ${name}`,
-            html: `<h3>Nouveau message</h3><p><strong>De:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong> ${message}</p>`
-        };
+  try {
+    // Sauvegarde & Préparation Email en parallèle
+    await new Contact({ name, email, message }).save();
 
-        await sgMail.send(msg);
-        res.status(200).json({ success: true });
-        console.log(`✅ Mail sent from ${email}`);
-        
-    } catch (error) {
-        console.error("❌ Error:", error.response?.body || error.message);
-        res.status(500).json({ error: "Serveur erreur", details: error.message });
-    }
+    const msg = {
+      to: process.env.EMAIL_USER,
+      from: process.env.EMAIL_USER,
+      replyTo: email,
+      subject: `Portfolio - Message de ${name}`,
+      html: `
+  <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee;">
+    <h2 style="color: #333;">Nouveau contact Portfolio</h2>
+    <p><strong>Nom:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <div style="margin-top: 20px; padding: 15px; background: #f4f4f4;">
+      ${message}
+    </div>
+    <p style="font-size: 10px; color: #999; margin-top: 20px;">
+      Envoyé depuis le formulaire de contact Portfolio Hani.
+    </p>
+  </div>
+`
+    };
+
+    await sgMail.send(msg);
+    res.status(200).json({ success: true });
+    console.log(`✅ Mail sent from ${email}`);
+
+  } catch (error) {
+    console.error("❌ Error:", error.response?.body || error.message);
+    res.status(500).json({ error: "Serveur erreur", details: error.message });
+  }
 });
 
 app.listen(port, () => console.log(`🚀 Server on port ${port}`));
