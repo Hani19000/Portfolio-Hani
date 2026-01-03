@@ -9,24 +9,33 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Configuration CORS améliorée
+// ========== CONFIGURATION CORS CRITIQUE ==========
+// Doit être AVANT toutes les routes
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://votre-domaine-vercel.app'], // Ajoutez votre URL Vercel
-  methods: ['GET', 'POST'],
+  origin: [
+    'https://portfolio-hani-nine.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:5174'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
+// Middleware pour parser JSON
 app.use(express.json());
 
-// Connexion à MongoDB avec gestion d'erreur
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log("✅ Connecté à MongoDB"))
-  .catch(err => {
-    console.error("❌ Erreur MongoDB:", err);
-    process.exit(1);
-  });
+// Log des requêtes
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  next();
+});
 
-// Schéma
+// ========== MONGODB ==========
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("✅ MongoDB connecté"))
+  .catch(err => console.error("❌ MongoDB erreur:", err));
+
 const contactSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
@@ -36,7 +45,7 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', contactSchema);
 
-// Configuration Nodemailer avec vérification
+// ========== NODEMAILER ==========
 const contactEmail = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -45,22 +54,32 @@ const contactEmail = nodemailer.createTransport({
   },
 });
 
-// Vérifier la configuration email au démarrage
 contactEmail.verify((error) => {
   if (error) {
-    console.error("❌ Erreur configuration email:", error);
+    console.error("❌ Email config erreur:", error);
   } else {
-    console.log("✅ Serveur email prêt");
+    console.log("✅ Email prêt");
   }
 });
 
+// ========== ROUTES ==========
+
 // Route de test
 app.get('/', (req, res) => {
-  res.json({ message: 'API fonctionne !' });
+  res.json({ 
+    message: 'API Portfolio fonctionne !',
+    timestamp: new Date().toISOString(),
+    cors: 'enabled'
+  });
 });
 
-// Route contact améliorée
-app.post("/contact", async (req, res) => {
+// Route OPTIONS pour le preflight CORS
+app.options('/contact', cors());
+
+// Route POST contact
+app.post('/contact', async (req, res) => {
+  console.log('📧 Contact reçu:', req.body);
+  
   const { name, email, message } = req.body;
 
   // Validation
@@ -76,12 +95,12 @@ app.post("/contact", async (req, res) => {
     await newContact.save();
     console.log("✅ Message sauvegardé en DB");
 
-    // 2. Préparation de l'email
+    // 2. Envoi de l'email
     const mail = {
-      from: process.env.EMAIL_USER, // Utilisez votre email comme expéditeur
-      replyTo: email, // L'email du visiteur pour la réponse
+      from: process.env.EMAIL_USER,
+      replyTo: email,
       to: process.env.EMAIL_USER,
-      subject: `Nouveau message de ${name}`,
+      subject: `Portfolio - Message de ${name}`,
       html: `
         <h3>Nouveau message depuis le portfolio</h3>
         <p><strong>Nom:</strong> ${name}</p>
@@ -91,13 +110,13 @@ app.post("/contact", async (req, res) => {
       `,
     };
 
-    // 3. Envoi de l'email
     await contactEmail.sendMail(mail);
     console.log("✅ Email envoyé");
 
-    res.json({ 
+    res.status(200).json({ 
       code: 200, 
-      status: "Message sauvegardé et envoyé avec succès" 
+      status: "Message envoyé avec succès",
+      success: true
     });
 
   } catch (error) {
@@ -109,6 +128,13 @@ app.post("/contact", async (req, res) => {
   }
 });
 
+// Gestion des routes non trouvées
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route non trouvée' });
+});
+
+// Démarrage du serveur
 app.listen(port, () => {
-  console.log(`🚀 Serveur lancé sur le port ${port}`);
+  console.log(`🚀 Serveur démarré sur port ${port}`);
+  console.log(`📍 URL: https://portfolio-hani-derrouiche.onrender.com`);
 });
