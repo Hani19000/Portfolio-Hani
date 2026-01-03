@@ -1,4 +1,4 @@
-import useEmail from "../components/ContactEmail";
+import useEmail from "./ContactEmail";
 
 function ContactForm() {
   const { form, sendEmail, isLoading } = useEmail();

@@ -1,4 +1,4 @@
-import contactData from "../components/ContactData";
+import contactData from "./ContactData";
 function contactExt() {
   return (
     <div className="contact__options">
