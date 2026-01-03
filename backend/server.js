@@ -50,10 +50,13 @@ const Contact = mongoose.model('Contact', contactSchema);
 // ========== NODEMAILER ==========
 const contactEmail = nodemailer.createTransport({
   service: 'gmail',
+  port: 465,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-  },
+  },  tls: {
+    rejectUnauthorized: false // Pour éviter les erreurs de certificat
+  }
 });
 
 contactEmail.verify((error) => {
