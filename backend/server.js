@@ -9,27 +9,23 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ========== CORS OUVERT (pour déboguer) ==========
+// ========== CORS ==========
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
   
-  // Gérer les requêtes OPTIONS (preflight)
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-  
   next();
 });
 
 app.use(cors());
 app.use(express.json());
 
-// Log des requêtes
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - Origin: ${req.headers.origin}`);
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
 });
 
@@ -47,23 +43,22 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', contactSchema);
 
-// ========== NODEMAILER ==========
+// ========== SENDGRID NODEMAILER ==========
 const contactEmail = nodemailer.createTransport({
-  service: 'gmail',
-  port: 465,
+  host: 'smtp.sendgrid.net',
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },  tls: {
-    rejectUnauthorized: false // Pour éviter les erreurs de certificat
-  }
+    user: 'apikey', // Toujours "apikey"
+    pass: process.env.SENDGRID_API_KEY, // Votre clé API
+  },
 });
 
 contactEmail.verify((error) => {
   if (error) {
-    console.error("❌ Email config erreur:", error);
+    console.error("❌ SendGrid config erreur:", error);
   } else {
-    console.log("✅ Email prêt");
+    console.log("✅ SendGrid prêt");
   }
 });
 
@@ -71,14 +66,12 @@ contactEmail.verify((error) => {
 app.get('/', (req, res) => {
   res.json({ 
     message: 'API Portfolio fonctionne !',
-    timestamp: new Date().toISOString(),
-    cors: 'enabled for all origins'
+    timestamp: new Date().toISOString()
   });
 });
 
 app.post('/contact', async (req, res) => {
-  console.log('📧 Contact reçu depuis:', req.headers.origin);
-  console.log('📦 Données:', req.body);
+  console.log('📧 Contact reçu:', req.body);
   
   const { name, email, message } = req.body;
 
@@ -94,9 +87,9 @@ app.post('/contact', async (req, res) => {
     await newContact.save();
     console.log("✅ Sauvegardé en DB");
 
-    // 2. Email
+    // 2. Email via SendGrid
     const mail = {
-      from: process.env.EMAIL_USER,
+      from: process.env.EMAIL_USER, // Doit être vérifié dans SendGrid
       replyTo: email,
       to: process.env.EMAIL_USER,
       subject: `Portfolio - Message de ${name}`,
@@ -106,13 +99,11 @@ app.post('/contact', async (req, res) => {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
-        <hr>
-        <p><small>Envoyé depuis: ${req.headers.origin || 'inconnu'}</small></p>
       `,
     };
 
     await contactEmail.sendMail(mail);
-    console.log("✅ Email envoyé");
+    console.log("✅ Email envoyé via SendGrid");
 
     res.status(200).json({ 
       success: true,
@@ -130,5 +121,4 @@ app.post('/contact', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`🚀 Serveur sur port ${port}`);
-  console.log(`📍 https://portfolio-hani-derrouiche.onrender.com`);
 });
