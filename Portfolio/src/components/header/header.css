@@ -1,0 +1,239 @@
+header {
+  height: 100vh;
+  padding-top: 7rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.header__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  gap: 1.5rem;
+}
+
+.header__container h5 {
+  font-weight: 400;
+  color: var(--color-light);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+.header__container h1 {
+  margin: 0.5rem 0;
+  font-weight: 600;
+  background: linear-gradient(45deg, var(--color-white), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/*============== CTA ==============*/
+.cta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/*============== HEADER SOCIALS ==============*/
+.header__socials {
+  position: absolute;
+  left: 2rem;
+  bottom: 50%;
+  transform: translateY(50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(77, 181, 255, 0.1);
+  border: 1px solid var(--color-primary-variant);
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  transition: var(--transition);
+  backdrop-filter: blur(5px);
+}
+
+.header__socials a:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(77, 181, 255, 0.5);
+}
+
+.header__socials::after {
+  content: '';
+  width: 2px;
+  height: 3rem;
+  background: linear-gradient(transparent, var(--color-primary), transparent);
+}
+
+/*============== ME ==============*/
+.me {
+  background: linear-gradient(135deg, var(--color-primary), transparent);
+  width: clamp(280px, 35%, 450px);
+  height: clamp(350px, 60vh, 500px);
+  border-radius: 20rem 20rem 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(77, 181, 255, 0.2);
+  border: 3px solid var(--color-primary-variant);
+}
+
+.me::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(31, 31, 56, 0.8));
+  z-index: 1;
+}
+
+.me img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: var(--transition);
+}
+
+.me:hover img {
+  transform: scale(1.05);
+}
+
+/*============== SCROLL DOWN ==============*/
+.scroll__down {
+  position: absolute;
+  right: 2rem;
+  bottom: 5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transform: rotate(90deg);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.scroll__down:hover {
+  transform: rotate(90deg) translateX(5px);
+}
+
+/* ======== MEDIA QUERIES (MEDIUM DEVICES - Tablettes) ======== */
+@media screen and (max-width: 1024px) {
+  header {
+    height: 90vh;
+    padding-top: 5rem;
+  }
+
+  .header__container {
+    gap: 1rem;
+  }
+
+  .me {
+    width: clamp(250px, 40%, 350px);
+    height: clamp(320px, 50vh, 420px);
+    margin-top: 1rem;
+  }
+
+  .header__socials {
+    left: 1rem;
+  }
+
+  .scroll__down {
+    right: 1rem;
+    bottom: 3rem;
+  }
+}
+
+/* ======== MEDIA QUERIES (SMALL DEVICES - Mobiles) ======== */
+@media screen and (max-width: 768px) {
+  header {
+    height: 100vh;
+    padding-top: 4rem;
+  }
+
+  .header__container {
+    gap: 0.8rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .cta {
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .cta .btn {
+    flex: 0 1 auto;
+    min-width: 120px;
+  }
+
+  .me {
+    width: clamp(220px, 60%, 280px);
+    height: clamp(280px, 45vh, 360px);
+    margin-top: 1rem;
+  }
+
+  .header__socials {
+    display: none;
+  }
+
+  .scroll__down {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    height: 100vh;
+    padding-top: 3rem;
+  }
+
+  .header__container h5 {
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .cta {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .cta .btn {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+  }
+
+  .me {
+    width: 200px;
+    height: 280px;
+  }
+}
