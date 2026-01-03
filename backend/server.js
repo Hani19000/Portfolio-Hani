@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
@@ -29,6 +29,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// ========== SENDGRID API ==========
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+console.log("✅ SendGrid API configurée");
+
 // ========== MONGODB ==========
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ MongoDB connecté"))
@@ -42,25 +47,6 @@ const contactSchema = new mongoose.Schema({
 });
 
 const Contact = mongoose.model('Contact', contactSchema);
-
-// ========== SENDGRID NODEMAILER ==========
-const contactEmail = nodemailer.createTransport({
-  host: 'smtp.sendgrid.net',
-  port: 587,
-  secure: false,
-  auth: {
-    user: 'apikey', // Toujours "apikey"
-    pass: process.env.SENDGRID_API_KEY, // Votre clé API
-  },
-});
-
-contactEmail.verify((error) => {
-  if (error) {
-    console.error("❌ SendGrid config erreur:", error);
-  } else {
-    console.log("✅ SendGrid prêt");
-  }
-});
 
 // ========== ROUTES ==========
 app.get('/', (req, res) => {
@@ -87,11 +73,11 @@ app.post('/contact', async (req, res) => {
     await newContact.save();
     console.log("✅ Sauvegardé en DB");
 
-    // 2. Email via SendGrid
-    const mail = {
+    // 2. Email via SendGrid API
+    const msg = {
+      to: process.env.EMAIL_USER, // Votre email
       from: process.env.EMAIL_USER, // Doit être vérifié dans SendGrid
-      replyTo: email,
-      to: process.env.EMAIL_USER,
+      replyTo: email, // L'email du visiteur
       subject: `Portfolio - Message de ${name}`,
       html: `
         <h3>Nouveau message depuis le portfolio</h3>
@@ -102,8 +88,8 @@ app.post('/contact', async (req, res) => {
       `,
     };
 
-    await contactEmail.sendMail(mail);
-    console.log("✅ Email envoyé via SendGrid");
+    await sgMail.send(msg);
+    console.log("✅ Email envoyé via SendGrid API");
 
     res.status(200).json({ 
       success: true,
@@ -112,6 +98,12 @@ app.post('/contact', async (req, res) => {
 
   } catch (error) {
     console.error("❌ Erreur:", error);
+    
+    // Erreur SendGrid détaillée
+    if (error.response) {
+      console.error("❌ SendGrid erreur:", error.response.body);
+    }
+    
     res.status(500).json({ 
       error: "Erreur lors de l'envoi",
       details: error.message 
@@ -121,4 +113,5 @@ app.post('/contact', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`🚀 Serveur sur port ${port}`);
+  console.log(`📍 https://portfolio-hani-derrouiche.onrender.com`);
 });
