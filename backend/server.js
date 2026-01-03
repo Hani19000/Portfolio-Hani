@@ -47,7 +47,7 @@ app.post('/contact', async (req, res) => {
     await new Contact({ name, email, message }).save();
 
     const msg = {
-      to: "d.hani24@yahoo.fr",
+      to: "hanider27@gmail.com",
       from: process.env.EMAIL_USER,
       replyTo: email,
       subject: `Portfolio - Message de ${name}`,
