@@ -16,8 +16,9 @@ function useEmail() {
     try {
       // 2. On envoie les données au back-end (ex: hébergé sur Render ou en local)
       // Remplace l'URL par celle de ton serveur une fois déployé
-      const response = await fetch('https://portfolio-hani-derrouiche.onrender.com/contact', {
-        method: 'POST',
+const response = await fetch('https://portfolio-hani-derrouiche.onrender.com/contact', { 
+  method: 'POST',
+  // ... reste du code
         headers: {
           'Content-Type': 'application/json',
         },
