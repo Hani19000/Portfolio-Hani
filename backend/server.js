@@ -5,113 +5,63 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ========== CORS ==========
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-  next();
-});
+// Configuration API
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
-  next();
+// Logger simple
+app.use(({ method, path }, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${method} ${path}`);
+    next();
 });
 
-// ========== SENDGRID API ==========
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-console.log("✅ SendGrid API configurée");
-
-// ========== MONGODB ==========
+// MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log("✅ MongoDB connecté"))
-  .catch(err => console.error("❌ MongoDB erreur:", err));
+    .then(() => console.log("✅ DB Connected"))
+    .catch(err => console.error("❌ DB Error:", err.message));
 
-const contactSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  message: { type: String, required: true },
-  date: { type: Date, default: Date.now }
-});
+const Contact = mongoose.model('Contact', new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+    date: { type: Date, default: Date.now }
+}));
 
-const Contact = mongoose.model('Contact', contactSchema);
-
-// ========== ROUTES ==========
-app.get('/', (req, res) => {
-  res.json({ 
-    message: 'API Portfolio fonctionne !',
-    timestamp: new Date().toISOString()
-  });
-});
+// Routes
+app.get('/', (req, res) => res.json({ status: 'API Live', time: new Date() }));
 
 app.post('/contact', async (req, res) => {
-  console.log('📧 Contact reçu:', req.body);
-  
-  const { name, email, message } = req.body;
+    const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ 
-      error: "Tous les champs sont requis" 
-    });
-  }
+    // Validation concise
+    if (!name || !email || !message) return res.status(400).json({ error: "Champs requis" });
 
-  try {
-    // 1. Sauvegarde DB
-    const newContact = new Contact({ name, email, message });
-    await newContact.save();
-    console.log("✅ Sauvegardé en DB");
+    try {
+        // Sauvegarde & Préparation Email en parallèle
+        await new Contact({ name, email, message }).save();
+        
+        const msg = {
+            to: process.env.EMAIL_USER,
+            from: process.env.EMAIL_USER,
+            replyTo: email,
+            subject: `Portfolio - Message de ${name}`,
+            html: `<h3>Nouveau message</h3><p><strong>De:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong> ${message}</p>`
+        };
 
-    // 2. Email via SendGrid API
-    const msg = {
-      to: process.env.EMAIL_USER, // Votre email
-      from: process.env.EMAIL_USER, // Doit être vérifié dans SendGrid
-      replyTo: email, // L'email du visiteur
-      subject: `Portfolio - Message de ${name}`,
-      html: `
-        <h3>Nouveau message depuis le portfolio</h3>
-        <p><strong>Nom:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    };
-
-    await sgMail.send(msg);
-    console.log("✅ Email envoyé via SendGrid API");
-
-    res.status(200).json({ 
-      success: true,
-      message: "Message envoyé avec succès"
-    });
-
-  } catch (error) {
-    console.error("❌ Erreur:", error);
-    
-    // Erreur SendGrid détaillée
-    if (error.response) {
-      console.error("❌ SendGrid erreur:", error.response.body);
+        await sgMail.send(msg);
+        res.status(200).json({ success: true });
+        console.log(`✅ Mail sent from ${email}`);
+        
+    } catch (error) {
+        console.error("❌ Error:", error.response?.body || error.message);
+        res.status(500).json({ error: "Serveur erreur", details: error.message });
     }
-    
-    res.status(500).json({ 
-      error: "Erreur lors de l'envoi",
-      details: error.message 
-    });
-  }
 });
 
-app.listen(port, () => {
-  console.log(`🚀 Serveur sur port ${port}`);
-  console.log(`📍 https://portfolio-hani-derrouiche.onrender.com`);
-});
+app.listen(port, () => console.log(`🚀 Server on port ${port}`));

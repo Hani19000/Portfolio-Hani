@@ -1,42 +1,39 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function useEmail() {
   const form = useRef();
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendEmail = async (e) => {
     e.preventDefault();
+    if (isLoading) return; // Empêche les clics multiples
 
-    const formData = {
-      name: form.current.name.value,
-      email: form.current.email.value,
-      message: form.current.message.value,
-    };
+    setIsLoading(true);
+    const fd = new FormData(e.target);
+    const formData = Object.fromEntries(fd.entries());
 
     try {
-      const response = await fetch('https://portfolio-hani-derrouiche.onrender.com/contact', { 
+      const response = await fetch('https://portfolio-hani-derrouiche.onrender.com/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
-        alert("✅ Message envoyé avec succès !");
         e.target.reset();
       } else {
-        alert(`❌ Erreur: ${data.error || 'Erreur lors de l\'envoi'}`);
-        console.error('Détails:', data);
+        const data = await response.json();
+        alert(`❌ Erreur: ${data.error || 'Problème technique'}`);
       }
     } catch (error) {
-      console.error("Erreur:", error);
-      alert("❌ Impossible de contacter le serveur. Vérifiez votre connexion.");
+      console.error("Fetch error:", error);
+      alert("❌ Serveur injoignable.");
+    } finally {
+      setIsLoading(false); // Réactive le bouton quoi qu'il arrive
     }
   };
 
-  return { form, sendEmail };
+  return { form, sendEmail, isLoading };
 }
 
 export default useEmail;
