@@ -9,25 +9,27 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ========== CONFIGURATION CORS CRITIQUE ==========
-// Doit être AVANT toutes les routes
-app.use(cors({
-  origin: [
-    'https://portfolio-hani-nine.vercel.app',
-    'http://localhost:5173',
-    'http://localhost:5174'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+// ========== CORS OUVERT (pour déboguer) ==========
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  
+  // Gérer les requêtes OPTIONS (preflight)
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  next();
+});
 
-// Middleware pour parser JSON
+app.use(cors());
 app.use(express.json());
 
 // Log des requêtes
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - Origin: ${req.headers.origin}`);
   next();
 });
 
@@ -63,26 +65,20 @@ contactEmail.verify((error) => {
 });
 
 // ========== ROUTES ==========
-
-// Route de test
 app.get('/', (req, res) => {
   res.json({ 
     message: 'API Portfolio fonctionne !',
     timestamp: new Date().toISOString(),
-    cors: 'enabled'
+    cors: 'enabled for all origins'
   });
 });
 
-// Route OPTIONS pour le preflight CORS
-app.options('/contact', cors());
-
-// Route POST contact
 app.post('/contact', async (req, res) => {
-  console.log('📧 Contact reçu:', req.body);
+  console.log('📧 Contact reçu depuis:', req.headers.origin);
+  console.log('📦 Données:', req.body);
   
   const { name, email, message } = req.body;
 
-  // Validation
   if (!name || !email || !message) {
     return res.status(400).json({ 
       error: "Tous les champs sont requis" 
@@ -90,12 +86,12 @@ app.post('/contact', async (req, res) => {
   }
 
   try {
-    // 1. Sauvegarde en base de données
+    // 1. Sauvegarde DB
     const newContact = new Contact({ name, email, message });
     await newContact.save();
-    console.log("✅ Message sauvegardé en DB");
+    console.log("✅ Sauvegardé en DB");
 
-    // 2. Envoi de l'email
+    // 2. Email
     const mail = {
       from: process.env.EMAIL_USER,
       replyTo: email,
@@ -107,6 +103,8 @@ app.post('/contact', async (req, res) => {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
+        <hr>
+        <p><small>Envoyé depuis: ${req.headers.origin || 'inconnu'}</small></p>
       `,
     };
 
@@ -114,27 +112,20 @@ app.post('/contact', async (req, res) => {
     console.log("✅ Email envoyé");
 
     res.status(200).json({ 
-      code: 200, 
-      status: "Message envoyé avec succès",
-      success: true
+      success: true,
+      message: "Message envoyé avec succès"
     });
 
   } catch (error) {
     console.error("❌ Erreur:", error);
     res.status(500).json({ 
-      error: "Erreur lors de l'envoi du message",
+      error: "Erreur lors de l'envoi",
       details: error.message 
     });
   }
 });
 
-// Gestion des routes non trouvées
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route non trouvée' });
-});
-
-// Démarrage du serveur
 app.listen(port, () => {
-  console.log(`🚀 Serveur démarré sur port ${port}`);
-  console.log(`📍 URL: https://portfolio-hani-derrouiche.onrender.com`);
+  console.log(`🚀 Serveur sur port ${port}`);
+  console.log(`📍 https://portfolio-hani-derrouiche.onrender.com`);
 });
