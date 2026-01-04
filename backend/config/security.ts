@@ -3,7 +3,7 @@ import compression from 'compression';
 import cors from 'cors';
 import express, { Application } from 'express';
 
-const origins = ['https://portfolio-hani-nine.vercel.app', 'http://localhost:5173', /\.vercel\.app$/];
+const origins = ['https://portfolio-hani-nine.vercel.app', "https://portfolio-hani-csznouery-hanis-projects-d75033fd.vercel.app", 'http://localhost:5173', /\.vercel\.app$/];
 
 /**
  * Middlewares de sécurité et optimisation réseau
