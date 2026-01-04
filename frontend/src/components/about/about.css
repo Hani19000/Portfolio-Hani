@@ -1,7 +1,9 @@
+/* ================= ABOUT ================= */
 .about__container {
   display: grid;
   grid-template-columns: 35% 50%;
   gap: 15%;
+  align-items: center; /* Assure un bon alignement vertical */
 }
 
 .about__me {
@@ -22,20 +24,6 @@
   margin: 0 auto;
 }
 
-.about__me::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 2rem;
-  padding: 2px;
-  background: linear-gradient(45deg, var(--color-primary), transparent, var(--color-primary));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  animation: rotate 4s linear infinite;
-}
-
 .about__me:hover {
   transform: scale(1.02);
   box-shadow: 0 20px 40px rgba(77, 181, 255, 0.3);
@@ -48,7 +36,6 @@
   transition: var(--transition);
   width: 100%;
   height: 100%;
-  max-width: 100%;
 }
 
 .about__me-image img {
@@ -61,6 +48,7 @@
   transform: rotate(0deg) scale(1.05);
 }
 
+/* ================= CARDS ================= */
 .about__cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -74,17 +62,7 @@
   text-align: center;
   transition: var(--transition);
   border: 1px solid transparent;
-}
-
-.about__card:hover {
-  background: transparent;
-  border-color: var(--color-primary-variant);
-  transform: translateY(-10px);
-}
-
-.about__card:hover::before {
-  left: 100%;
-  transition: left 0.6s ease;
+  cursor: default;
 }
 
 .about__card:hover {
@@ -92,7 +70,6 @@
   border-color: var(--color-primary-variant);
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(77, 181, 255, 0.2);
-  cursor: default;
 }
 
 .about__icon {
@@ -100,6 +77,7 @@
   color: var(--color-primary);
   margin-bottom: 1rem;
   transition: var(--transition);
+  display: inline-block;
 }
 
 .about__card:hover .about__icon {
@@ -110,13 +88,11 @@
   font-size: 1rem;
   margin-bottom: 0.5rem;
   color: var(--color-white);
-  font-weight: 500;
 }
 
 .about__card small {
   font-size: 0.8rem;
   color: var(--color-light);
-  display: block;
   line-height: 1.4;
 }
 
@@ -124,12 +100,9 @@
   margin: 2rem 0 2.6rem;
   color: var(--color-light);
   line-height: 1.8;
-  font-size: 1rem;
 }
 
-/* Précédents styles restent identiques... */
-
-/* ========== TIMELINE SECTIONS ========== */
+/* ================= TIMELINE ================= */
 .about__timeline-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -181,7 +154,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, var(--color-primary), rgba(77, 181, 255, 0.2));
+  background: linear-gradient(180deg, var(--color-primary), rgba(77, 181, 255, 0.1));
 }
 
 .about__timeline-item {
@@ -224,7 +197,6 @@
   font-size: 1.15rem;
   color: var(--color-white);
   margin-bottom: 0.3rem;
-  font-weight: 500;
 }
 
 .about__timeline-company {
@@ -240,44 +212,50 @@
   font-size: 0.9rem;
 }
 
-/* ========== RESPONSIVE TIMELINE ========== */
+/* ================= MEDIA QUERIES ================= */
+
+/* Tablettes */
 @media screen and (max-width: 1024px) {
   .about__container {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
+
+  .about__me {
+    width: 50%;
+    margin-bottom: 3rem;
+  }
+
   .about__timeline-wrapper {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .about__me {
-    width: 60%;
-    margin: 2rem auto;
-  }
 }
 
+/* Mobiles */
 @media screen and (max-width: 768px) {
+  .about__me {
+    width: 65%;
+  }
+
+  .about__cards {
+    grid-template-columns: 1fr 1fr; /* 2 colonnes sur mobile moyen */
+    gap: 1rem;
+  }
+
   .about__timeline {
     padding: 2rem;
   }
-
-  .about__timeline-title {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .about__timeline-container {
-    padding-left: 1.5rem;
-  }
-
-  .about__timeline-content h4 {
-    font-size: 1rem;
-  }
 }
 
-@media screen and (max-width: 480px) {
-  .about__timeline-wrapper {
-    margin-top: 3rem;
+/* Petits Mobiles */
+@media screen and (max-width: 600px) {
+  .about__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .about__me {
+    width: 85%;
   }
 
   .about__timeline {
@@ -285,23 +263,6 @@
   }
 
   .about__timeline-title {
-    font-size: 1.3rem;
-  }
-
-  .about__timeline-container {
-    padding-left: 1rem;
-  }
-
-  .about__timeline-dot {
-    left: -2rem;
-    width: 10px;
-    height: 10px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .about__cards {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    font-size: 1.4rem;
   }
 }
