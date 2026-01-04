@@ -1,7 +1,9 @@
-import rateLimit from 'express-rate-limit';
+import { rateLimit } from 'express-rate-limit'
 
-export const contactLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1h
-  max: 3,
-  message: { error: 'Trop de requêtes. Réessayez dans 1h.' }
-});
+export const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 10, // Limite chaque IP à 10 requêtes par fenêtre
+	standardHeaders: 'draft-7', 
+	legacyHeaders: false, 
+    // validate: { xForwardedForHeader: false }, // Optionnel : si l'erreur persiste
+})

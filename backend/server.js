@@ -6,7 +6,7 @@ import { errorHandler } from './middleware/validation.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+app.set('trust proxy', 1);
 // Setup
 await connectDB();
 securityMiddleware(app);
