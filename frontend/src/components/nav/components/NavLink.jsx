@@ -11,9 +11,10 @@ function NavLink() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
+  const closeMenu = () => setIsOpen(false);
   return (
     <>
+    {isOpen && <div className="nav__overlay" onClick={closeMenu}></div>}
       <MenuToggle isOpen={isOpen} toggle={toggleMenu} />
       <nav className={isOpen ? "nav-sidebar active" : "nav-sidebar"}>
         {NAV_LINKS.map(({ id, icon }) => (

@@ -70,3 +70,20 @@ nav a:hover, nav a.active {
     pointer-events: auto;
   }
 }
+
+.nav__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* Un léger voile sombre pour focus sur le menu */
+    backdrop-filter: blur(2px);   /* Optionnel : floute un peu le fond */
+    z-index: 998;                 /* Juste en dessous de la nav (999) */
+    animation: fadeIn 0.3s ease;
+  }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
