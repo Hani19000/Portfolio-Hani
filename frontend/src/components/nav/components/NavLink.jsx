@@ -23,6 +23,7 @@ function NavLink() {
             href={id}
             onClick={(e) => {
               handleNavClick(e, id);
+              closeMenu();
             }}
             className={activeNav === id ? "active" : ""}
           >
