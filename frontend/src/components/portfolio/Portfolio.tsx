@@ -1,15 +1,13 @@
-// src/components/portfolio/Portfolio.tsx
-
 import React from "react";
 import "./portfolio.css";
 import portfolioCards, { PortfolioItem } from "./PortfolioCards";
 import HeaderParticles from "../header/components/HeaderParticles";
 
-// Import Swiper React components & modules
+/* Import Swiper React components & modules */
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 
-// Import Swiper styles
+/* Import Swiper styles */
 import "swiper/css";
 import "swiper/css/pagination";
 

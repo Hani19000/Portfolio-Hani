@@ -1,8 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
-/**
- * Structure de données pour les messages de contact
- */
+/* Structure de données pour les messages de contact */
 export interface IContact extends Document {
   name: string;
   email: string;
@@ -18,10 +16,8 @@ const contactSchema = new Schema<IContact>({
   message: { type: String, required: true },
   createdAt: { type: Date, default: Date.now }
 }, { 
-  versionKey: false // Gain de performance : supprime le champ __v inutile
+  versionKey: false
 });
 
-/**
- * Modèle compilé pour l'accès aux données
- */
+/* Modèle compilé pour l'accès aux données */
 export default model<IContact>('Contact', contactSchema);

@@ -3,19 +3,19 @@ import { BsFillAwardFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { LuFolderCode } from "react-icons/lu";
 
-// Interface pour les petites cartes du haut
+/* Interface pour les petites cartes du haut */
 export interface AboutCardItem {
   icon: ReactNode;
   title: string;
   description: string;
 }
 
-// Interface générique pour les éléments de la Timeline (Education ou Work)
+/* Interface générique pour les éléments de la Timeline (Education ou Work) */
 export interface TimelineItem {
   year: string;
   title: string;
-  institution?: string; // Optionnel car spécifique à l'éducation
-  company?: string;     // Optionnel car spécifique au travail
+  institution?: string; 
+  company?: string;     
   description: string;
 }
 

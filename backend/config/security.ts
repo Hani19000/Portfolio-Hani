@@ -5,9 +5,7 @@ import express, { Application } from 'express';
 
 const origins = ['https://portfolio-hani-nine.vercel.app', "https://portfolio-hani-csznouery-hanis-projects-d75033fd.vercel.app", 'http://localhost:5173', /\.vercel\.app$/];
 
-/**
- * Middlewares de sécurité et optimisation réseau
- */
+/* Middlewares de sécurité et optimisation réseau */
 export const securityMiddleware = (app: Application): void => {
   app.use(helmet());
   app.use(compression());

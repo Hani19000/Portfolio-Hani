@@ -1,7 +1,7 @@
 import React from "react";
 import "./services.css";
 import { FaCheck } from "react-icons/fa";
-// Importation des données et du type
+/* Importation des données et du type */
 import ServicesCards, { ServiceItem } from "./ServicesCards"; 
 import HeaderParticles from "../header/components/HeaderParticles";
 

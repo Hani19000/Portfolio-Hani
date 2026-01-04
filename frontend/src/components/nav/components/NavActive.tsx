@@ -1,6 +1,6 @@
 import { useState, useEffect, MouseEvent } from "react";
 
-// Définition du type de retour pour le hook
+/* Définition du type de retour pour le hook */
 interface NavActiveReturn {
   activeNav: string;
   handleNavClick: (e: MouseEvent<HTMLAnchorElement>, id: string) => void;

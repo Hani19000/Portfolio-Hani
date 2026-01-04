@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 const HeaderParticles = ({ count = 20 }) => {
-  // Générer les positions une seule fois avec useMemo
+  /* Générer les positions une seule fois avec useMemo */
   const particles = useMemo(() => {
     const generateParticles = () =>
       Array.from({ length: count }, (_, i) => ({

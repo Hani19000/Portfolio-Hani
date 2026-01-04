@@ -4,10 +4,10 @@ import { FaUser, FaBriefcase } from "react-icons/fa";
 import { FaBookOpen, FaStarHalfStroke } from "react-icons/fa6";
 import { RiServiceFill } from "react-icons/ri";
 
-// Interface pour un lien de navigation
+/* Interface pour un lien de navigation */
 export interface NavItem {
   id: string;
-  icon: ReactNode; // ReactNode permet de stocker du JSX (les icônes)
+  icon: ReactNode; 
 }
 
 const NavData: NavItem[] = [

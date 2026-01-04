@@ -2,11 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import v from 'validator';
 import { logger } from '../utils/logger.js';
 
-/**
- * Validation et nettoyage des données de contact
- */
+/* Validation et nettoyage des données de contact */
 export const validateContact = (req: Request, res: Response, next: NextFunction): void => {
-  const { name, email, message } = req.body;
+  const { name, email, message, subject } = req.body;
 
   // Validation immédiate : Si un champ manque ou est invalide, on stop
   if (!name || !email || !message) return void res.status(400).json({ error: 'Champs requis manquants' });
@@ -17,15 +15,14 @@ export const validateContact = (req: Request, res: Response, next: NextFunction)
   Object.assign(req.body, {
     name: v.escape(name.trim()),
     email: v.normalizeEmail(email) || email,
+    subject: v.escape(subject.trim()),
     message: v.escape(message.trim())
   });
 
   next();
 };
 
-/**
- * Gestionnaire d'erreurs global
- */
+/* Gestionnaire d'erreurs global */
 export const errorHandler = (err: any, _req: Request, res: Response, _next: NextFunction): void => {
   const isCors = err.message === 'Non autorisé par CORS';
   

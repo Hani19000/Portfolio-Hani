@@ -1,5 +1,3 @@
-// src/components/portfolio/PortfolioCards.ts
-
 import IMG1 from "../../assets/portfolio1.webp";
 import IMG2 from "../../assets/portfolio2.webp";
 import IMG3 from "../../assets/portfolio3.webp";
@@ -7,7 +5,8 @@ import IMG4 from "../../assets/portfolio4.webp";
 import IMG5 from "../../assets/portfolio5.webp";
 import IMG6 from "../../assets/portfolio6.webp";
 
-// Définition de l'interface
+/* Définition de l'interface */
+
 export interface PortfolioItem {
   id: number;
   image: string;

@@ -1,4 +1,5 @@
-// Définition de l'interface pour un service
+/* Définition de l'interface pour un service */
+
 export interface ServiceItem {
   title: string;
   features: string[];

@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",         // Indispensable pour "type": "module"
+    "module": "ESNext",         
     "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": "./",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": true,             // On active le strict car ton code est maintenant bien typé
+    "strict": true,             
     "resolveJsonModule": true,
     "allowJs": true
   },

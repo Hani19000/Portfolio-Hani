@@ -1,5 +1,5 @@
 import React from 'react';
-import CV from "../../../assets/cv.pdf"; // TypeScript validera via vite-env.d.ts
+import CV from "../../../assets/cv.pdf"; 
 
 const CTA: React.FC = () => (
   <div className="cta">

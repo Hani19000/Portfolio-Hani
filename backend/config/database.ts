@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 import { logger } from '../utils/logger.js';
 
-/**
- * Connexion à MongoDB avec gestion d'erreur critique
- */
+/* Connexion à MongoDB avec gestion d'erreur critique */
 export const connectDB = async (): Promise<void> => {
   try {
     const uri = process.env.MONGODB_URI;
