@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
-import { connectDB } from './config/database';
-import { securityMiddleware } from './config/security';
-import contactRoutes from './routes/contact';
-import { errorHandler } from './middleware/validation';
-import { logger } from './utils/logger';
+import { connectDB } from './config/database.js';
+import { securityMiddleware } from './config/security.js';
+import contactRoutes from './routes/contact.js';
+import { errorHandler } from './middleware/validation.js';
+import { logger } from './utils/logger.js';
 
 const app: Application = express();
 const PORT = process.env.PORT || 5000;

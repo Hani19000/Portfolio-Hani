@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import v from 'validator';
-import { logger } from '../utils/logger';
+import { logger } from '../utils/logger.js';
 
 /**
  * Validation et nettoyage des données de contact
