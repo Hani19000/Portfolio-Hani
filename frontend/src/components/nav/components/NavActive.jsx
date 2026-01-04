@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 function NavActive() {
   const [activeNav, setActiveNav] = useState("#");
 
-  const sectionIds = ["#", "about", "experience", "services-section", "portfolio", "testimonials", "contact"];
-
   // --- LOGIQUE DU SCROLL (Automatique) ---
   useEffect(() => {
+    const sectionIds = ["#", "about", "experience", "services-section", "portfolio", "testimonials", "contact"];
+    
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 

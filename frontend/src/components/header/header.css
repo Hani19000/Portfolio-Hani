@@ -23,13 +23,13 @@ header {
 }
 
 .header__container h1 {
-  margin: 0.5rem 0;
-  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   background: linear-gradient(45deg, var(--color-white), var(--color-primary));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
+
 
 /*============== CTA ==============*/
 .cta {
@@ -44,12 +44,10 @@ header {
 .header__socials {
   position: absolute;
   left: 2rem;
-  bottom: 50%;
-  transform: translateY(50%);
+  bottom: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
 }
 
 .header__socials a {
@@ -83,17 +81,16 @@ header {
 
 /*============== ME ==============*/
 .me {
-  background: linear-gradient(135deg, var(--color-primary), transparent);
-  width: clamp(280px, 35%, 450px);
-  height: clamp(350px, 60vh, 500px);
-  border-radius: 20rem 20rem 0 0;
+  width: clamp(260px, 30%, 400px);
+  aspect-ratio: 1/1.2;
+  background: linear-gradient(var(--color-primary), transparent);
+  border-radius: 12rem 12rem 0 0;
+  margin-top: 2rem;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+    align-items: flex-end;
   justify-content: center;
   position: relative;
-  box-shadow: 0 20px 40px rgba(77, 181, 255, 0.2);
-  border: 3px solid var(--color-primary-variant);
 }
 
 .me::before {
@@ -162,78 +159,183 @@ header {
   }
 }
 
-/* ======== MEDIA QUERIES (SMALL DEVICES - Mobiles) ======== */
+/* Garde tout ton CSS actuel et ajoute ceci à la fin */
+
+/* ========== PARTICULES ========== */
+.header__particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-particle 10s infinite;
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+@keyframes float-particle {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(100px);
+  }
+}
+
+/* ========== BADGE STATUT ========== */
+.header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(77, 181, 255, 0.1);
+  border: 1px solid var(--color-primary-variant);
+  padding: 0.5rem 1.2rem;
+  border-radius: 2rem;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  margin-bottom: 1rem;
+  animation: badge-pulse 2s infinite;
+}
+
+.badge__dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff41;
+  border-radius: 50%;
+  animation: dot-pulse 2s infinite;
+  box-shadow: 0 0 10px #00ff41;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(77, 181, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(77, 181, 255, 0.4);
+  }
+}
+
+@keyframes dot-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ========== TITRE AVEC TYPING ========== */
+.header__title {
+  position: relative;
+  min-height: 3rem;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 3px;
+  animation: blink 1s infinite;
+  color: var(--color-primary);
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* ========== DESCRIPTION ========== */
+.header__description {
+  max-width: 600px;
+  margin: 1.5rem auto;
+  color: var(--color-light);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* ========== STATS ========== */
+.header__stats {
+  display: flex;
+  gap: 3rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.stat {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  background: rgba(77, 181, 255, 0.05);
+  border-radius: 1rem;
+  border: 1px solid rgba(77, 181, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: var(--transition);
+}
+
+.stat:hover {
+  background: rgba(77, 181, 255, 0.1);
+  border-color: var(--color-primary-variant);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(77, 181, 255, 0.2);
+}
+
+.stat h3 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.stat p {
+  font-size: 0.85rem;
+  color: var(--color-light);
+}
+
+/* ========== RESPONSIVE ADDITIONS ========== */
 @media screen and (max-width: 768px) {
+  .header__socials, .scroll__down {
+    display: none;
+  }
+  
   header {
-    height: 100vh;
-    padding-top: 4rem;
-  }
-
-  .header__container {
-    gap: 0.8rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .cta {
-    flex-direction: row;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1.5rem;
-  }
-
-  .cta .btn {
-    flex: 0 1 auto;
-    min-width: 120px;
-  }
-
-  .me {
-    width: clamp(220px, 60%, 280px);
-    height: clamp(280px, 45vh, 360px);
-    margin-top: 1rem;
-  }
-
-  .header__socials {
-    display: none;
-  }
-
-  .scroll__down {
-    display: none;
+    height: auto;
+    padding: 8rem 0 4rem;
   }
 }
 
 @media screen and (max-width: 480px) {
-  header {
-    height: 100vh;
-    padding-top: 3rem;
+  .header__badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
   }
 
-  .header__container h5 {
+  .header__description {
     font-size: 0.85rem;
   }
 
-  h1 {
-    font-size: 1.8rem;
+  .stat h3 {
+    font-size: 1.5rem;
   }
 
-  .cta {
-    flex-direction: column;
-    gap: 0.8rem;
-    width: 100%;
-    align-items: center;
-  }
-
-  .cta .btn {
-    width: 100%;
-    max-width: 200px;
-    text-align: center;
-  }
-
-  .me {
-    width: 200px;
-    height: 280px;
+  .stat p {
+    font-size: 0.75rem;
   }
 }

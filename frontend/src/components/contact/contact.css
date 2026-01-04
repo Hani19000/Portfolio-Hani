@@ -201,6 +201,14 @@ form .btn-primary:active {
 }
 
 /* ======== MEDIA QUERIES (SMALL DEVICES) ======== */
+
+@media screen and (max-width: 1024px) {
+  .contact__container {
+    grid-template-columns: 1fr;
+    width: var(--container-width-md);
+  }
+}
+
 @media screen and (max-width: 768px) {
   .container.contact__container {
     width: var(--container-width-sm);

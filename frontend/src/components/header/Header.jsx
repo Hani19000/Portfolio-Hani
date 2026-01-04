@@ -1,22 +1,20 @@
-import './header.css'
-import CTA from './components/CTA'
-import ME from '../../assets/me.webp'
-import HeaderSocials from "./components/HeaderSocials";
-function Header() {
-  return (
-    <header>
-      <div className="container header__container">
-        <h5>Hello</h5>
-        <h1>Hani</h1>
-        <h5 className="text-light">Full stack Developer</h5>
-        <CTA />
-        <HeaderSocials />
-        <div className="me">
-          <img src={ME} alt="me" loading="lazy"/>
-        </div>
-        <a href="#contact" className='scroll__down'>Scroll Down</a>
-      </div>
-    </header>
-  )
-}
+import './header.css';
+import ME from '../../assets/me.webp';
+import HeaderParticles from './components/HeaderParticles';
+import HeaderContent from './components/HeaderContent';
+
+
+const Header = () => (
+  <header style={{ position: 'relative' }}> 
+    <HeaderParticles count={20} />
+    <HeaderContent 
+      name="Hani Derrouiche"
+      title="Des idées au code, donnons vie à vos projets"
+      role="développeur web full-stack"
+      description="Passionné par les technologies web modernes, j'aime concevoir des applications performantes et bien pensées."
+      image={ME}
+    />
+  </header>
+);
+
 export default Header;

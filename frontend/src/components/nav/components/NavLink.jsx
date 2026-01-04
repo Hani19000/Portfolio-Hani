@@ -1,26 +1,35 @@
-import  useNavActive  from './NavActive'
-import NavData from './NavLinkData';
-
+import { useState } from "react";
+import useNavActive from "./NavActive";
+import NavData from "./NavLinkData";
+import MenuToggle from "./MenuToggle";
 const NAV_LINKS = NavData;
 // On définit les liens dans un tableau
 
 function NavLink() {
   const { activeNav, handleNavClick } = useNavActive();
 
-return (
-    <nav>
-      {NAV_LINKS.map(({ id, icon }) => (
-        <a
-          key={id}
-          href={id}
-          // On utilise la nouvelle fonction de clic ici
-          onClick={(e) => handleNavClick(e, id)} 
-          className={activeNav === id ? "active" : ""}
-        >
-          {icon}
-        </a>
-      ))}
-    </nav>
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  return (
+    <>
+      <MenuToggle isOpen={isOpen} toggle={toggleMenu} />
+      <nav className={isOpen ? "nav-sidebar active" : "nav-sidebar"}>
+        {NAV_LINKS.map(({ id, icon }) => (
+          <a
+            key={id}
+            href={id}
+            onClick={(e) => {
+              handleNavClick(e, id);
+            }}
+            className={activeNav === id ? "active" : ""}
+          >
+            {icon}
+          </a>
+        ))}
+      </nav>
+    </>
   );
 }
 export default NavLink;

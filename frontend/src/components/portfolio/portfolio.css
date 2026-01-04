@@ -110,7 +110,7 @@
 /* ======== MEDIA QUERIES (MEDIUM DEVICES) ======== */
 @media screen and (max-width: 1024px) {
   .portfolio__container {
-    grid-template-columns: 1fr 1fr;
+grid-template-columns: repeat(2, 1fr); 
     gap: 2rem;
   }
 
