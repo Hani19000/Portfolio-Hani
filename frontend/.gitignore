@@ -35,4 +35,4 @@ dist/
 build/
 .DS_Store
 
-testimonials/
+frontend/testimonials/
