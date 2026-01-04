@@ -1,30 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'icons': ['react-icons'],
-          'swiper': ['swiper']
-        }
-      }
-    },
-    minify: 'esbuild',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
-    sourcemap: false
-  },
-  
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'react-icons']
-  }
-});
+})
