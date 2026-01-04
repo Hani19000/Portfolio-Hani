@@ -28,3 +28,5 @@ backend/logs/
 
 # Dossier spécifique frontend (si nécessaire)
 frontend/src/components/testimonials/
+
+.gitattributes
