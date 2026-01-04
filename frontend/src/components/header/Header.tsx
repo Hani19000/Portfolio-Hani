@@ -4,6 +4,7 @@ import ME from '../../assets/me.webp';
 import HeaderParticles from './components/HeaderParticles';
 import HeaderContent from './components/HeaderContent';
 
+
 const Header: React.FC = () => (
   <header style={{ position: 'relative' }}> 
     <HeaderParticles count={20} />

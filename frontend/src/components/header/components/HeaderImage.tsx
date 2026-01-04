@@ -1,5 +1,5 @@
 import React from 'react';
-
+import OptimizedImage from '../../common/OptimizedImage';
 interface HeaderImageProps {
   src: string;
   alt?: string;
@@ -7,7 +7,7 @@ interface HeaderImageProps {
 
 const HeaderImage: React.FC<HeaderImageProps> = ({ src, alt = "Profile" }) => (
   <div className="me">
-    <img src={src} alt={alt} loading="lazy" />
+    <OptimizedImage src={src} alt={alt} />
   </div>
 );
 

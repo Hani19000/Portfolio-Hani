@@ -8,21 +8,23 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      // On combine les globales du navigateur ET de Node.js
+      globals: {
+        ...globals.browser,
+        ...globals.node, 
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
     },
+    // Note: Le bloc "extends" doit être à plat dans la config ou via js.configs
     rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
