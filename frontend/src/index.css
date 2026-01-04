@@ -53,7 +53,7 @@ font-family: "Poppins", sans-serif;
   
   /* On applique la texture avec la variable dynamique */
   background-image: linear-gradient(var(--color-overlay), var(--color-overlay)), 
-                    url('./assets/axiom-pattern.png');
+                    url('./assets/axiom-pattern.webp');
   background-size: 200px;
   background-repeat: repeat;
   background-attachment: fixed;
