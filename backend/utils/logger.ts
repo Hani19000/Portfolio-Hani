@@ -1,25 +1,11 @@
-import winston from 'winston';
+const format = (lvl: string, msg: string) => 
+  `[${new Date().toISOString()}] ${lvl}: ${msg}`;
 
-/**
- * Configuration du Logger Winston pour TypeScript
- * Permet de centraliser les logs et de les structurer (format JSON)
- */
-export const logger = winston.createLogger({
-  level: 'info', // Niveau minimum de log (info, warn, error)
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  transports: [
-    // Affiche les logs dans la console
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-      )
-    })
-  ]
-});
-
-// Note : En production sur Render, Winston enverra ces logs 
-// directement dans le dashboard "Logs" du service.
+export const logger = {
+  info: (msg: string, ...args: any[]): void => console.log(format('ℹ️ INFO', msg), ...args),
+  error: (msg: string, ...args: any[]): void => console.error(format('❌ ERROR', msg), ...args),
+  warn: (msg: string, ...args: any[]): void => console.warn(format('⚠️ WARN', msg), ...args),
+  debug: (msg: string, ...args: any[]): void => {
+    if (process.env.NODE_ENV !== 'production') console.debug(format('🐛 DEBUG', msg), ...args);
+  }
+};

@@ -1,21 +1,18 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import { logger } from '../utils/logger';
 
-dotenv.config();
-
+/**
+ * Connexion à MongoDB avec gestion d'erreur critique
+ */
 export const connectDB = async (): Promise<void> => {
-  const uri = process.env.MONGODB_URI;
-
-  if (!uri) {
-    console.error('❌ Erreur : MONGODB_URI n\'est pas défini dans le fichier .env');
-    process.exit(1);
-  }
-
   try {
+    const uri = process.env.MONGODB_URI;
+    if (!uri) throw new Error('MONGODB_URI manquant');
+    
     await mongoose.connect(uri);
-    console.log('✅ MongoDB Connecté');
+    logger.info('✅ DB Connectée');
   } catch (err) {
-    console.error('❌ Erreur de connexion DB:', err instanceof Error ? err.message : err);
+    logger.error(`❌ Erreur DB: ${err instanceof Error ? err.message : err}`);
     process.exit(1);
   }
 };

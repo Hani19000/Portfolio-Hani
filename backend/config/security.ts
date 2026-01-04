@@ -3,23 +3,20 @@ import compression from 'compression';
 import cors from 'cors';
 import express, { Application } from 'express';
 
+const origins = ['https://portfolio-hani-nine.vercel.app', 'http://localhost:5173', /\.vercel\.app$/];
+
+/**
+ * Middlewares de sécurité et optimisation réseau
+ */
 export const securityMiddleware = (app: Application): void => {
   app.use(helmet());
   app.use(compression());
   
-  const allowedOrigins = [
-    'https://portfolio-hani-nine.vercel.app',
-    'http://localhost:5173'
-  ];
-
   app.use(cors({
-    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-      if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: (origin, cb) => 
+      !origin || origins.some(o => o instanceof RegExp ? o.test(origin) : o === origin)
+        ? cb(null, true) 
+        : cb(new Error('Non autorisé par CORS')),
     methods: ['GET', 'POST'],
     credentials: true
   }));

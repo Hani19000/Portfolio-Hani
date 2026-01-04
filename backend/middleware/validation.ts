@@ -1,46 +1,37 @@
 import { Request, Response, NextFunction } from 'express';
-import validator from 'validator';
+import v from 'validator';
+import { logger } from '../utils/logger';
 
 /**
- * Middleware de validation pour le formulaire de contact
+ * Validation et nettoyage des données de contact
  */
-export const validateContact = (req: Request, res: Response, next: NextFunction) => {
+export const validateContact = (req: Request, res: Response, next: NextFunction): void => {
   const { name, email, message } = req.body;
 
-  // 1. Vérification de présence
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: 'Tous les champs sont obligatoires.' });
-  }
+  // Validation immédiate : Si un champ manque ou est invalide, on stop
+  if (!name || !email || !message) return void res.status(400).json({ error: 'Champs requis manquants' });
+  if (!v.isEmail(email)) return void res.status(400).json({ error: 'Format email invalide' });
+  if (!v.isLength(message, { min: 10, max: 1000 })) return void res.status(400).json({ error: 'Message (10-1000 car.)' });
 
-  // 2. Validation du format Email
-  if (!validator.isEmail(email)) {
-    return res.status(400).json({ error: 'Veuillez fournir une adresse email valide.' });
-  }
-
-  // 3. Validation de la longueur du message
-  if (!validator.isLength(message, { min: 10, max: 1000 })) {
-    return res.status(400).json({ error: 'Le message doit contenir entre 10 et 1000 caractères.' });
-  }
-
-  // 4. Sanétisation (Nettoyage)
-  // On réassigne les valeurs nettoyées pour la suite de la requête
-  req.body.name = validator.escape(name.trim());
-  req.body.email = validator.normalizeEmail(email) || email;
-  req.body.message = validator.escape(message.trim());
+  // Sanétisation par réaffectation déstructurée
+  Object.assign(req.body, {
+    name: v.escape(name.trim()),
+    email: v.normalizeEmail(email) || email,
+    message: v.escape(message.trim())
+  });
 
   next();
 };
 
 /**
- * Middleware global de gestion d'erreurs
+ * Gestionnaire d'erreurs global
  */
-export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error('❌ Error Details:', err.stack);
+export const errorHandler = (err: any, _req: Request, res: Response, _next: NextFunction): void => {
+  const isCors = err.message === 'Non autorisé par CORS';
+  
+  logger.error(err.stack || err.message);
 
-  // Si c'est une erreur CORS ou spécifique, on peut l'isoler ici
-  if (err.message === 'Not allowed by CORS') {
-    return res.status(403).json({ error: 'Accès refusé par la politique CORS' });
-  }
-
-  res.status(500).json({ error: 'Une erreur interne est survenue sur le serveur.' });
+  res.status(isCors ? 403 : 500).json({ 
+    error: isCors ? 'Accès CORS refusé' : 'Erreur interne du serveur' 
+  });
 };

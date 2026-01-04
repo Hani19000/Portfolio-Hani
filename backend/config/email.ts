@@ -1,32 +1,21 @@
-import * as sgMail from '@sendgrid/mail'; // Utilisez l'import étoile
-import dotenv from 'dotenv';
-
-dotenv.config();
+import sgMail from '@sendgrid/mail';
 
 const apiKey = process.env.SENDGRID_API_KEY;
-if (apiKey) {
-  sgMail.setApiKey(apiKey);
-}
+apiKey && sgMail.setApiKey(apiKey);
 
-interface EmailParams {
-  name: string;
-  email: string;
-  message: string;
-}
+interface EmailParams { name: string; email: string; message: string; }
 
-export const sendEmail = async ({ name, email, message }: EmailParams): Promise<void> => {
-  const msg = {
-    to: process.env.EMAIL_TO as string,
-    from: process.env.EMAIL_USER as string, 
+/**
+ * Envoi d'email via SendGrid API
+ */
+export const sendEmail = async ({ name, email, message }: EmailParams) => {
+  const { EMAIL_TO: to, EMAIL_USER: from } = process.env;
+  
+  return sgMail.send({
+    to: to!,
+    from: from!,
     replyTo: email,
     subject: `Portfolio - Nouveau message de ${name}`,
-    html: `<h3>Message de ${name}</h3><p>${message}</p>`,
-  };
-
-  try {
-    await sgMail.send(msg);
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+    html: `<p><strong>De:</strong> ${name}</p><p>${message.replace(/\n/g, '<br>')}</p>`
+  });
 };

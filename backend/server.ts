@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application } from 'express';
 import { connectDB } from './config/database';
 import { securityMiddleware } from './config/security';
 import contactRoutes from './routes/contact';
@@ -8,53 +8,28 @@ import { logger } from './utils/logger';
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
 
-/**
- * CONFIGURATION RENDER
- * 'trust proxy' est essentiel sur Render/Vercel pour que le Rate Limiter
- * puisse récupérer la vraie IP du client et non celle du proxy.
- */
+// Configuration Proxy (Render/Vercel)
 app.set('trust proxy', 1);
 
-/**
- * MIDDLEWARES DE SÉCURITÉ
- * Initialise CORS, Helmet, Compression et le JSON Parser
- */
+// Initialisation des middlewares de sécurité et parsing
 securityMiddleware(app);
 
-/**
- * ROUTES
- */
-// Root route pour le Health Check de Render
-app.get('/', (req: Request, res: Response) => {
-  res.json({ 
-    status: 'OK', 
-    version: '1.0.0',
-    message: 'Portfolio Backend API is running' 
-  });
-});
-
-// Montage des routes de contact
+// Définition des points d'entrée
+app.get('/', (_, res) => res.json({ status: 'OK', version: '1.0.0' }));
 app.use('/contact', contactRoutes);
 
-/**
- * GESTION DES ERREURS
- * Toujours placer errorHandler en dernier après les routes
- */
+// Gestion centralisée des erreurs (doit être après les routes)
 app.use(errorHandler);
 
 /**
- * DÉMARRAGE DU SERVEUR
+ * Initialisation de la base de données et lancement du serveur
  */
 const startServer = async (): Promise<void> => {
   try {
-    // Connexion à MongoDB avant de lancer le serveur
     await connectDB();
-    
-    app.listen(PORT, () => {
-      logger.info(`🚀 Serveur démarré sur le port : ${PORT}`);
-    });
+    app.listen(PORT, () => logger.info(`🚀 Serveur actif sur le port : ${PORT}`));
   } catch (err) {
-    logger.error('❌ Échec du démarrage du serveur:', err instanceof Error ? err.message : err);
+    logger.error('❌ Échec critique au démarrage:', err instanceof Error ? err.message : err);
     process.exit(1);
   }
 };
