@@ -27,7 +27,6 @@
   --container-width-sm: 90%;
 }
 .light-mode {
-  /* LIGHT MODE */
   --color-bg: #fdfdfd;
   --color-bg-variant: #f0f0f0;
   --color-primary: #000000;
@@ -35,9 +34,7 @@
   --color-white: #000000;
   --color-light: rgba(0, 0, 0, 0.6);
   --border-color: rgba(0, 0, 0, 0.08);
-  /* Voile blanc pour le Light Mode */
-  --color-overlay: rgba(253, 253, 253, 0.9); 
-  background-blend-mode: multiply;
+  --color-overlay: rgba(253, 253, 253, 0.65);
 }
 html {
   scroll-behavior: smooth;
@@ -62,12 +59,26 @@ font-family: "Poppins", sans-serif;
   background-attachment: fixed;
 }
 
-.light-mode body {
-    /* Si ton image est blanche, ceci la rendra sombre */
-    background-image: linear-gradient(var(--color-overlay), var(--color-overlay)), 
-                      url('./assets/axiom-pattern.png');
-    filter: contrast(120%); /* Ajuste selon le rendu */
+img {
+  filter: grayscale(100%);
+  transition: filter 400ms ease, transform 300ms ease;
 }
+
+img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.light-mode img {
+  filter: grayscale(0%);
+}
+
+.light-mode img:hover {
+  filter: grayscale(100%);
+}
+
+
+
 
 .header__particles {
   position: fixed; /* Change 'absolute' en 'fixed' */
@@ -187,7 +198,7 @@ a:hover {
   color: var(--color-bg);
   border-color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(77, 181, 255, 0.3);
+  box-shadow: 0 10px 20px var(--color-primary-variant);
 }
 
 .btn-primary {

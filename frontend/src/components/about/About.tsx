@@ -36,10 +36,7 @@ const About: React.FC = () => {
           </div>
 
           <p>
-            Passionné par les technologies web modernes, j'aime concevoir des
-            applications performantes et bien pensées. Du design à la mise en
-            production, je m'implique dans chaque étape pour créer des solutions
-            solides et évolutives.
+            Bonjour ! Je suis Hani Derrouiche, développeur web full-stack passionné par la création d'application web complète fonctionnelles et performantes, en accordant une grande importance à la qualité du code et aux bonnes pratiques. J’aime comprendre ce que je développe et chercher des solutions propres, adaptées aux besoins réels d’un projet..
           </p>
 
           <a href="#contact" className="btn btn-primary">Let's Talk</a>

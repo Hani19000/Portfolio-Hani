@@ -1,9 +1,10 @@
 import IMG1 from "../../assets/portfolio1.webp";
 import IMG2 from "../../assets/portfolio2.webp";
-import IMG3 from "../../assets/portfolio3.webp";
-import IMG4 from "../../assets/portfolio4.webp";
+import IMG3 from "../../assets/portfolio3.jpg";
+import IMG4 from "../../assets/portfolio4.jpg";
 import IMG5 from "../../assets/portfolio5.webp";
 import IMG6 from "../../assets/portfolio6.webp";
+import IMG7 from "../../assets/portfolio7.webp";
 
 /* Définition de l'interface */
 
@@ -18,38 +19,44 @@ const portfolioCards: PortfolioItem[] = [
   {
     id: 1,
     image: IMG1,
-    title: "Portfolio Item 1",
-    github: "https://github.com/votre-lien-1"
+    title: "E-commerce website",
+    github: "https://github.com/Hani19000/E-commerce-website"
   },
   {
     id: 2,
     image: IMG2,
-    title: "Portfolio Item 2",
-    github: "https://github.com/votre-lien-2"
+    title: "QR code",
+    github: "https://github.com/Hani19000/QR-code"
   },
   {
     id: 3,
     image: IMG3,
-    title: "Portfolio Item 3",
-    github: "https://github.com/votre-lien-3"
+    title: "Audio_player",
+    github: "https://github.com/Hani19000/Audio_player"
   },
   {
     id: 4,
     image: IMG4,
-    title: "Portfolio Item 4",
-    github: "https://github.com/votre-lien-4"
+    title: "Agence de voyage",
+    github: "https://github.com/Hani19000/agence-de-voyage"
   },
   {
     id: 5,
     image: IMG5,
-    title: "Portfolio Item 5",
-    github: "https://github.com/votre-lien-5"
+    title: "To Do List",
+    github: "https://github.com/Hani19000/To-Do-List"
   },
   {
     id: 6,
     image: IMG6,
-    title: "Portfolio Item 6",
-    github: "https://github.com/votre-lien-6"
+    title: "API REST Authentication",
+    github: "https://github.com/Hani19000/API_REST_TYPESCRIPT"
+  },
+    {
+    id: 7,
+    image: IMG7,
+    title: "Text-To-voice-converting",
+    github: "https://github.com/Hani19000/Text-To-voice-converting"
   },
 ];
 

@@ -17,7 +17,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ name, title, role, descri
     <h5>{name}</h5>
     <HeaderTitle fullText={title} />
     <h5 className="text-light">{role}</h5>
-    <p className="header__description">{description}</p>
+    <h5 className="header__description">{description}</h5>
     <CTA />
     <HeaderSocials />
     <HeaderImage src={image} alt={name} />

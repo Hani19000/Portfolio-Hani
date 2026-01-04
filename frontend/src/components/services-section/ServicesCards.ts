@@ -9,28 +9,29 @@ const ServicesCards: ServiceItem[] = [
   {
     title: "UI/UX Design",
     features: [
-      "Wireframing and Prototyping",
-      "User Research and Analysis",
-      "Interaction Design",
-      "Visual Design",
+      "Conception de maquettes simples (landing pages, sites vitrines)",
+      "Design moderne (dark / light mode)",
+      "Hiérarchie visuelle claire",
+      "Navigation fluide et logique",
+      "Responsive design",
     ],
   },
   {
     title: "WEB DEVELOPMENT",
     features: [
-      "Frontend Development",
-      "Backend API Integration",
-      "Database Management",
-      "React & Next.js Expert",
+      "Sites vitrines modernes sur mesure",
+      "Développement front-end avec React",
+      "Responsive complet (desktop, tablette, mobile)",
+      "Intégration front-end / back-end",
+      "Déploiement et mise en ligne",
     ],
   },
   {
-    title: "CONTENT CREATION",
+    title: "Maintenance & Accompagnement",
     features: [
-      "Technical Writing",
-      "Video Editing",
-      "Graphic Design",
-      "SEO Optimization",
+      "Maintenance technique",
+      "Corrections de bugs",
+      "Support technique",
     ],
   },
 ];

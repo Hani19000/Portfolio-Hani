@@ -1,4 +1,4 @@
-/* ================= NAVIGATION - MONOCHROME CAPSULE ================= */
+/* ================= NAVIGATION ================= */
 
 nav {
   position: fixed;
@@ -8,18 +8,39 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: rgba(0, 0, 0, 0.6); /* Fond plus sombre pour le contraste */
+  background: rgba(0, 0, 0, 0.6); /* Valeur par défaut Dark */
   padding: 1.2rem 0.7rem;
   z-index: 999;
   border-radius: 3rem;
   backdrop-filter: blur(15px);
   border: 1px solid var(--border-color);
   transition: var(--transition);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustement intelligent pour le Light Mode */
+.light-mode nav {
+  background: rgba(255, 255, 255, 0.85); /* Plus opaque pour la lisibilité */
+  border: 1px solid rgba(0, 0, 0, 0.1);  /* Bordure fine noire */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode nav a {
+  color: #666666; /* Icônes grises par défaut */
+}
+
+.light-mode nav a:hover, 
+.light-mode nav a.active {
+  background: #000000;
+  color: #ffffff !important;
+}
+
+/* Le bouton toggle lui-même */
+.light-mode .theme-toggle {
+  color: #000000;
 }
 
 nav a {
-  background: transparent;
   padding: 0.8rem;
   border-radius: 50%;
   display: flex;
@@ -28,38 +49,41 @@ nav a {
   color: var(--color-light);
   font-size: 1.2rem;
   transition: var(--transition);
-  position: relative;
   width: 45px;
   height: 45px;
 }
 
-/* L'effet au survol et actif */
+/* Survol et Active UNIFIÉ */
 nav a:hover, nav a.active {
-  background: var(--color-white);
-  color: var(--color-bg);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  background: var(--color-primary);
+  color: var(--color-bg) !important; /* Le texte prend la couleur du fond inverse */
   transform: scale(1.1);
 }
 
-/*============== TOOLTIP (L'astuce créative) ==============*/
-nav a::after {
-  content: attr(data-name); /* Affiche le nom de la section (ex: About) */
-  position: absolute;
-  right: 120%;
-  color: var(--color-bg);
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  opacity: 0;
-  pointer-events: none;
-  transition: var(--transition);
-  white-space: nowrap;
+/* DIVISEUR ET TOGGLE */
+.nav__divider {
+  width: 60%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 0.5rem auto;
 }
 
-nav a:hover::after {
-  opacity: 1;
-  right: 140%;
+.theme-toggle {
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 45px;
+  height: 45px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  transform: rotate(30deg) scale(1.2);
 }
 
 /* ================= MENU TOGGLE (MOBILE) ================= */
@@ -75,11 +99,11 @@ nav a:hover::after {
     top: 2rem;
     right: 2rem;
     z-index: 1000;
-    background: var(--color-primary); /* Garde ta couleur de base */
+    background: var(--color-primary);
     color: var(--color-bg);
     border: none;
     padding: 0.7rem;
-    border-radius: 0.8rem; /* Garde ton arrondi de base */
+    border-radius: 0.8rem;
     font-size: 1.6rem;
     cursor: pointer;
     align-items: center;
@@ -87,22 +111,19 @@ nav a:hover::after {
     transition: all 0.4s ease;
   }
 
-  /* EFFET SUR LA CROIX : Rotation et finesse */
   .menu-toggle svg, .menu-toggle i {
     transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   }
 
-  /* Quand le menu est ouvert, la croix tourne et devient plus "lumineuse" */
   .menu-toggle.active {
-    background: var(--color-white); /* Le bouton devient blanc pur */
+    background: var(--color-white);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   }
 
   .menu-toggle.active svg, .menu-toggle.active i {
-    transform: rotate(180deg) scale(1.1); /* Rotation élégante de la croix */
+    transform: rotate(180deg) scale(1.1);
   }
 
-  /* SIDEBAR MOBILE */
   nav.nav-sidebar {
     right: -100px;
     opacity: 0;
@@ -116,12 +137,10 @@ nav a:hover::after {
   }
 }
 
-/* VOILE DE FOND */
 .nav__overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
   z-index: 998;
-  display: none; /* Géré par ton JS (display block quand actif) */
 }

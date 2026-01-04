@@ -1,10 +1,9 @@
-/* ================= HEADER COMPLET - TRANSPARENT POUR VOIR LA TEXTURE ================= */
+/* ================= HEADER - GRAYSCALE ADAPTATIF ================= */
 header {
   height: 100vh;
   padding-top: 7rem;
   overflow: hidden;
   position: relative;
-  /* IMPORTANT : On met transparent pour voir la texture définie dans le body */
   background: transparent; 
 }
 
@@ -17,7 +16,7 @@ header {
   text-align: center;
   position: relative;
   gap: 1.5rem;
-  z-index: 2; /* Pour rester au dessus des particules */
+  z-index: 2;
 }
 
 .header__container h5 {
@@ -35,7 +34,7 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
-/*============== CTA (Boutons) ==============*/
+/*============== CTA ==============*/
 .cta {
   margin-top: 2.5rem;
   display: flex;
@@ -44,7 +43,7 @@ header {
   align-items: center;
 }
 
-/*============== HEADER SOCIALS ==============*/
+/*============== SOCIALS ==============*/
 .header__socials {
   position: absolute;
   left: 2rem;
@@ -84,7 +83,7 @@ header {
   background: linear-gradient(transparent, var(--border-color), transparent);
 }
 
-/*============== ME (Image Grayscale) ==============*/
+/*============== IMAGE - GRAYSCALE EN DARK MODE ==============*/
 .me {
   width: clamp(260px, 30%, 400px);
   aspect-ratio: 1/1.2;
@@ -103,22 +102,33 @@ header {
   content: '';
   position: absolute;
   inset: 0;
-  /* On utilise var(--color-bg) pour fondre l'image dans le noir */
   background: linear-gradient(180deg, transparent 60%, var(--color-bg));
   z-index: 1;
 }
 
+/* DARK MODE : Grayscale par défaut */
 .me img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%);
-  transition: var(--transition);
+  transition: filter 400ms ease, transform 300ms ease;
 }
 
-.me:hover img {
-  transform: scale(1.05);
+.me:hover img,
+.me:active img {
   filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+/* LIGHT MODE : Couleur par défaut, grayscale au hover et active */
+.light-mode .me img {
+  filter: grayscale(0%);
+}
+
+.light-mode .me:hover img,
+.light-mode .me:active img {
+  filter: grayscale(100%);
 }
 
 /*============== SCROLL DOWN ==============*/
@@ -142,13 +152,13 @@ header {
   transform: rotate(90deg) translateX(5px);
 }
 
-/* ========== PARTICULES (Z-INDEX CORRIGÉ) ========== */
+/* ========== PARTICULES ========== */
 .header__particles {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1; /* Derrière le texte, devant le fond */
+  z-index: 1;
 }
 
 .particle {
@@ -168,7 +178,7 @@ header {
   100% { opacity: 0; transform: translateY(-100px); }
 }
 
-/* ========== CURSEUR TYPING ========== */
+/* ========== CURSEUR ========== */
 .cursor {
   display: inline-block;
   margin-left: 3px;

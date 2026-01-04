@@ -1,16 +1,17 @@
-/* ================= PORTFOLIO - MONOCHROME PREMIUM ================= */
+/* ================= PORTFOLIO - VERSION CORRIGÉE AVEC GRAYSCALE INVERSÉ ================= */
 
-.portfolio__container {
+.container.portfolio__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
+  padding: 4rem;
 }
 
 .portfolio__items {
   background: var(--color-bg-variant);
   padding: 1.5rem;
   border-radius: 2rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -18,7 +19,6 @@
   flex-direction: column;
 }
 
-/* EFFET CRÉATIF : Balayage lumineux vertical blanc */
 .portfolio__items::before {
   content: '';
   position: absolute;
@@ -28,7 +28,6 @@
   height: 100%;
   background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05), transparent);
   transition: top 0.6s ease;
-  z-index: 1;
 }
 
 .portfolio__items:hover::before {
@@ -36,14 +35,14 @@
 }
 
 .portfolio__items:hover {
+  background: rgba(255, 255, 255, 0.02);
   border-color: var(--color-primary-variant);
-  background: rgba(255, 255, 255, 0.03);
+  cursor: default;
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
 }
 
-/*============== IMAGE DU PROJET (L'EFFET WOW) ==============*/
+/* ============== IMAGE - GRAYSCALE INVERSÉ ============== */
 .portfolio__items-image {
   border-radius: 1.5rem;
   overflow: hidden;
@@ -54,23 +53,6 @@
   border: 1px solid var(--border-color);
 }
 
-.portfolio__items-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Noir et blanc par défaut */
-  filter: grayscale(100%);
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              filter 0.6s ease;
-}
-
-/* Au survol de la carte : l'image zoom et reprend ses couleurs */
-.portfolio__items:hover .portfolio__items-image img {
-  transform: scale(1.1);
-  filter: grayscale(0%);
-}
-
-/* Overlay sombre progressif sur l'image au survol */
 .portfolio__items-image::after {
   content: '';
   position: absolute;
@@ -84,13 +66,51 @@
   opacity: 1;
 }
 
-/*============== TEXTES ==============*/
+/* DARK MODE : Noir et blanc par défaut */
+.portfolio__items-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              filter 0.6s ease;
+}
+
+/* DARK MODE : Couleur au hover et active (mobile) */
+.portfolio__items:hover .portfolio__items-image img,
+.portfolio__items:active .portfolio__items-image img {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+}
+
+/* LIGHT MODE : Couleur par défaut */
+.light-mode .portfolio__items-image img {
+  filter: grayscale(0%);
+}
+
+/* LIGHT MODE : Noir et blanc au hover et active (mobile) */
+.light-mode .portfolio__items:hover .portfolio__items-image img,
+.light-mode .portfolio__items:active .portfolio__items-image img {
+  filter: grayscale(100%);
+}
+
+/* Ajustement de l'overlay en light mode */
+.light-mode .portfolio__items-image::after {
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3));
+}
+
+/* ============== TEXTES ============== */
 .portfolio__items h3 {
-  margin: 0 0 1rem;
+  margin: 0 0 1.5rem;
   color: var(--color-white);
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 1.4;
   transition: var(--transition);
+}
+
+.portfolio__items:hover h3 {
+  color: var(--color-primary);
 }
 
 .portfolio__items p {
@@ -101,69 +121,157 @@
   flex-grow: 1;
 }
 
-/*============== BOUTONS (CTA) ==============*/
+/* ============== BOUTONS ============== */
 .portfolio__items-cta {
   display: flex;
   gap: 1rem;
   margin-top: auto;
+  flex-wrap: wrap;
 }
 
-/* Style spécifique pour tes boutons en mode monochrome */
 .portfolio__items-cta .btn {
-  background: transparent;
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  padding: 0.6rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.85rem;
-  transition: var(--transition);
-  text-align: center;
   flex: 1;
+  min-width: 100px;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.2rem;
 }
 
-.portfolio__items-cta .btn-primary {
+/* ========== PARTICULES ========== */
+.header__particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
   background: var(--color-primary);
-  color: var(--color-bg);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-particle 10s infinite;
+  box-shadow: 0 0 10px var(--color-primary);
 }
 
-.portfolio__items-cta .btn:hover {
-  background: var(--color-white);
-  color: var(--color-bg);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-/*============== SWIPER (Si utilisé) ==============*/
-.swiper-pagination-bullet {
-  background: var(--color-light) !important;
-}
-
-.swiper-pagination-bullet-active {
-  background: var(--color-primary) !important;
-  width: 25px !important;
-  border-radius: 5px !important;
-}
-
-/* ======== MEDIA QUERIES ======== */
-@media screen and (max-width: 1024px) {
-  .portfolio__container {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+@keyframes float-particle {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(100px);
   }
 }
 
+/* ============== SWIPER ============== */
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  background: var(--color-primary);
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+  transition: var(--transition);
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet-active {
+  background: var(--color-primary);
+  opacity: 1;
+  width: 30px;
+  border-radius: 6px;
+}
+
+.swiper-pagination {
+  margin-top: 2rem;
+}
+
+/* ======== MEDIA QUERIES (TABLETTES) ======== */
+@media screen and (max-width: 1024px) {
+  .portfolio__container {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2rem;
+    padding: 3rem;
+  }
+
+  .portfolio__items {
+    padding: 1.3rem;
+  }
+
+  .portfolio__items h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* ======== MEDIA QUERIES (MOBILES) ======== */
 @media screen and (max-width: 768px) {
   .portfolio__container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  .portfolio__items {
+    padding: 1.2rem;
+  }
+
+  .portfolio__items-image {
+    margin-bottom: 1.2rem;
+  }
+
+  .portfolio__items h3 {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+  }
+
+  .portfolio__items p {
+    font-size: 0.88rem;
+    margin-bottom: 1.2rem;
   }
 
   .portfolio__items-cta {
-    flex-direction: row; /* On garde les boutons côte à côte sur mobile si possible */
+    gap: 0.8rem;
+  }
+
+  .portfolio__items-cta .btn {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
   }
 }
 
+/* ======== MEDIA QUERIES (PETITS MOBILES) ======== */
 @media screen and (max-width: 480px) {
+  .portfolio__container {
+    gap: 1.2rem;
+    padding: 1.5rem;
+  }
+
+  .portfolio__items {
+    padding: 1rem;
+  }
+
+  .portfolio__items h3 {
+    font-size: 1rem;
+  }
+
+  .portfolio__items p {
+    font-size: 0.85rem;
+  }
+
   .portfolio__items-cta {
     flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .portfolio__items-cta .btn {
+    width: 100%;
   }
 }
