@@ -1,5 +1,5 @@
 import express from 'express';
-import Contact from '../models/contact.js'; 
+import Contact from '../models/Contact.js'; 
 import { sendEmail } from '../config/email.js';
 import { validateContact } from '../middleware/validation.js';
 import { contactLimiter } from '../middleware/ratelimiter.js';
