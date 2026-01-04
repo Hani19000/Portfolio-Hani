@@ -14,7 +14,7 @@ interface EmailParams {
  */
 export const sendEmail = async ({ name, email, subject, message }: EmailParams) => {
   const from = process.env.EMAIL_USER!;
-  const to = process.env.EMAIL_RECEIVER!;
+  const to = process.env.EMAIL_TO!;
 
   const content = `
     <strong>Nom:</strong> ${name}<br>
