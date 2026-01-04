@@ -27,9 +27,9 @@ app.use(errorHandler);
 const startServer = async (): Promise<void> => {
   try {
     await connectDB();
-    app.listen(PORT, () => logger.info(`🚀 Serveur actif sur le port : ${PORT}`));
+    app.listen(PORT, () => logger.info(` Serveur actif sur le port : ${PORT}`));
   } catch (err) {
-    logger.error('❌ Échec critique au démarrage:', err instanceof Error ? err.message : err);
+    logger.error('Échec lros du démarrage:', err instanceof Error ? err.message : err);
     process.exit(1);
   }
 };

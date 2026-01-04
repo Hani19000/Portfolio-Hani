@@ -16,10 +16,10 @@ router.post('/', contactLimiter, validateContact, async (req, res, next) => {
     // Sauvegarde DB et Envoi Email en parallèle
     await Promise.all([
       Contact.create({ name, email, message, subject }),
-      sendEmail({ name, email, message })
+      sendEmail({ name, email, message, subject })
     ]);
 
-    res.status(201).json({ success: true, message: 'Message envoyé' });
+    res.status(201).json({ success: true, message: 'Message envoyé !' });
   } catch (err) {
     next(err);
   }

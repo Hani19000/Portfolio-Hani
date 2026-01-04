@@ -4,15 +4,15 @@ interface UseEmailReturn {
   form: React.RefObject<HTMLFormElement>;
   sendEmail: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   isLoading: boolean;
-  status: { type: 'success' | 'error' | null; text: string }; // Nouvel état pour le statut
+  status: { type: 'success' | 'error' | null; message: string };
 }
 
 function useEmail(): UseEmailReturn {
   const form = useRef<HTMLFormElement>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; text: string }>({
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({
     type: null,
-    text: ""
+    message: ""
   });
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
@@ -20,42 +20,27 @@ function useEmail(): UseEmailReturn {
     if (isLoading) return;
 
     setIsLoading(true);
-    setStatus({ type: null, text: "" }); // Réinitialise le message au début
-
-    const target = e.currentTarget;
-    const formData = Object.fromEntries(new FormData(target));
+    setStatus({ type: null, message: "" });
 
     try {
       const baseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
-      
       const response = await fetch(`${baseUrl}/contact`, {
         method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(e.currentTarget))),
       });
 
       if (response.ok) {
-        target.reset();
-        setStatus({ type: 'success', text: "✅ Votre message a été envoyé avec succès !" });
+        e.currentTarget.reset();
+        setStatus({ type: 'success', message: "Message envoyé." });
       } else {
-        const data = await response.json().catch(() => ({}));
-        setStatus({ 
-          type: 'error', 
-          text: `❌ ${data.message || "Une erreur est survenue lors de l'envoi."}` 
-        });
+        setStatus({ type: 'error', message: "Erreur lors de l'envoi." });
       }
-    } catch (error) {
-      setStatus({ 
-        type: 'error', 
-        text: "❌ Impossible de contacter le serveur. Réessayez plus tard." 
-      });
+    } catch {
+      setStatus({ type: 'error', message: "Serveur indisponible." });
     } finally {
       setIsLoading(false);
-      // Optionnel : faire disparaître le message après 5 secondes
-      setTimeout(() => setStatus({ type: null, text: "" }), 5000);
+      setTimeout(() => setStatus({ type: null, message: "" }), 4000);
     }
   };
 

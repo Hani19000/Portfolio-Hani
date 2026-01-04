@@ -3,7 +3,7 @@ import sgMail from '@sendgrid/mail';
 const apiKey = process.env.SENDGRID_API_KEY;
 apiKey && sgMail.setApiKey(apiKey);
 
-interface EmailParams { name: string; email: string; message: string; }
+interface EmailParams { name: string; email: string; message: string; subject: string; }
 
 /**
  * Envoi d'email via SendGrid API

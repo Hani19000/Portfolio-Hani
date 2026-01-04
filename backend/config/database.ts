@@ -10,9 +10,9 @@ export const connectDB = async (): Promise<void> => {
     if (!uri) throw new Error('MONGODB_URI manquant');
     
     await mongoose.connect(uri);
-    logger.info('✅ DB Connectée');
+    logger.info('connexion a la BD');
   } catch (err) {
-    logger.error(`❌ Erreur DB: ${err instanceof Error ? err.message : err}`);
+    logger.error(`Erreur DB: ${err instanceof Error ? err.message : err}`);
     process.exit(1);
   }
 };
