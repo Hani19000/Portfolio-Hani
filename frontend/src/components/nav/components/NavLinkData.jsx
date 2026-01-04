@@ -12,7 +12,7 @@ const NavData = [
   { id: '#experience', icon: <FaBookOpen /> },
   { id: '#services-section', icon: <RiServiceFill /> },
   { id: '#portfolio', icon: <FaBriefcase /> },
-  { id: '#testimonials', icon: <FaStarHalfStroke /> },
+  // { id: '#testimonials', icon: <FaStarHalfStroke /> },
   { id: '#contact', icon: <IoMdContact /> },
 ];
 
