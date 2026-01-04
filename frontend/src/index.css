@@ -40,7 +40,16 @@ body {
   background-image: url(../src/assets/bg-texture.webp);
   overflow-x: hidden;
 }
-
+.header__particles {
+  position: fixed; /* Change 'absolute' en 'fixed' */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Assure-toi qu'elles restent derrière tout le contenu */
+  pointer-events: none; /* Pour que les clics passent à travers vers les boutons */
+  overflow: hidden;
+}
 /* ======== GENERAL STYLES ======== */
 .container {
   width: var(--container-width-lg);

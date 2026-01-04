@@ -9,12 +9,13 @@ import Portfolio from './components/portfolio/Portfolio'
 // import Testimonial from './components/testimonials/Testimonials'
 import Contact from './components/contact/Contact'
 import Footer from './components/footer/Footer'
-
+import HeaderParticles from './components/header/components/HeaderParticles'
 
 function App() {
 
   return (
     <>
+    <HeaderParticles count={20} />
 <Header />
 <Nav />
 <About />
