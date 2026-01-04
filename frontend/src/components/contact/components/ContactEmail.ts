@@ -4,29 +4,30 @@ interface UseEmailReturn {
   form: React.RefObject<HTMLFormElement>;
   sendEmail: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   isLoading: boolean;
+  status: { type: 'success' | 'error' | null; text: string }; // Nouvel état pour le statut
 }
 
 function useEmail(): UseEmailReturn {
   const form = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; text: string }>({
+    type: null,
+    text: ""
+  });
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Empêche les envois multiples si une requête est déjà en cours
     if (isLoading) return;
 
     setIsLoading(true);
+    setStatus({ type: null, text: "" }); // Réinitialise le message au début
 
-    // Extraction des données du formulaire
     const target = e.currentTarget;
     const formData = Object.fromEntries(new FormData(target));
 
     try {
-      // 1. On récupère l'URL et on retire le slash final s'il existe pour éviter le "//contact"
       const baseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
       
-      // 2. Envoi de la requête POST au backend Render
       const response = await fetch(`${baseUrl}/contact`, {
         method: "POST",
         headers: { 
@@ -36,25 +37,29 @@ function useEmail(): UseEmailReturn {
         body: JSON.stringify(formData),
       });
 
-      // 3. Traitement de la réponse
       if (response.ok) {
         target.reset();
-        alert("✅ Message envoyé avec succès !");
+        setStatus({ type: 'success', text: "✅ Votre message a été envoyé avec succès !" });
       } else {
-        // On essaie de lire le message d'erreur renvoyé par le backend
         const data = await response.json().catch(() => ({}));
-        alert(`❌ Erreur: ${data.message || data.error || "Le serveur a refusé l'envoi"}`);
+        setStatus({ 
+          type: 'error', 
+          text: `❌ ${data.message || "Une erreur est survenue lors de l'envoi."}` 
+        });
       }
     } catch (error) {
-      // Si on arrive ici, c'est que le réseau a coupé ou que l'URL est fausse
-      console.error("Erreur Fetch:", error);
-      alert("❌ Serveur injoignable. Vérifiez votre connexion ou l'état du serveur.");
+      setStatus({ 
+        type: 'error', 
+        text: "❌ Impossible de contacter le serveur. Réessayez plus tard." 
+      });
     } finally {
       setIsLoading(false);
+      // Optionnel : faire disparaître le message après 5 secondes
+      setTimeout(() => setStatus({ type: null, text: "" }), 5000);
     }
   };
 
-  return { form, sendEmail, isLoading };
+  return { form, sendEmail, isLoading, status };
 }
 
 export default useEmail;
