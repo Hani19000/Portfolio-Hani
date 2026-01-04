@@ -27,7 +27,7 @@ export const sendEmail = async ({ name, email, subject, message }: EmailParams) 
   return sgMail.send({
     to,
     from,
-    subject: `Nouveau message de votre Portfolio ${subject}`,
+    subject: `Nouveau message Portfolio — ${name}`,
     text: `Nom: ${name}\nEmail: ${email}\nSujet: ${subject}\n\nMessage:\n${message}`,
     html: `<div style="font-family: sans-serif; border: 1px solid #eee; padding: 20px;">${content}</div>`,
   });
