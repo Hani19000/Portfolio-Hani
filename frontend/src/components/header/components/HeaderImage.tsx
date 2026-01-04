@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface HeaderImageProps {
   src: string;
@@ -7,7 +7,7 @@ interface HeaderImageProps {
 
 const HeaderImage: React.FC<HeaderImageProps> = ({ src, alt = "Profile" }) => (
   <div className="me">
-    <img src={src} alt={alt} loading="lazy" />
+    <img src={src} alt={alt} width="400" height="500" loading="eager" />
   </div>
 );
 

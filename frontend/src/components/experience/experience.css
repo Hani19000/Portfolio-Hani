@@ -48,7 +48,8 @@
 .particle {
   position: absolute;
   width: 4px;
-  height: 4px;
+  transform: translateY(20px);
+will-change: transform;
   background: var(--color-primary);
   border-radius: 50%;
   opacity: 0;

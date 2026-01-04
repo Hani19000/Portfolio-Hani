@@ -8,7 +8,7 @@
     <title>Hani Derrouiche | Développeur Full-Stack</title>
     <meta
       name="description"
-      content="Portfolio de Hani Derrouiche - Développeur Full-Stack spécialisé en React, Node.js et TypeScript. Découvrez mes projets et mon expertise web."
+      content="Portfolio de Hani Derrouiche - Développeur Full-Stack spécialisé en React, Node.js et TypeScript."
     />
     <meta
       name="keywords"
@@ -17,6 +17,7 @@
     <meta name="author" content="Hani Derrouiche" />
     <meta name="theme-color" content="#0a0a0a" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://portfolio-hani-nine.vercel.app/" />
     <meta
@@ -32,24 +33,24 @@
       content="https://portfolio-hani-nine.vercel.app/og-image.jpg"
     />
 
+    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta
-      property="twitter:title"
-      content="Hani Derrouiche | Développeur Full-Stack"
-    />
-    <meta
-      property="twitter:description"
-      content="Portfolio de Hani Derrouiche - Développeur Full-Stack spécialisé en React, Node.js."
-    />
 
+    <!-- Fonts optimisation -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
       media="print"
-      onload="this.media = 'all'"
+      onload="this.media='all'"
     />
 
     <noscript>
@@ -59,12 +60,28 @@
       />
     </noscript>
 
+    <!-- CSS critique -->
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background-color: #0a0a0a;
+        color: #ffffff;
+      }
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+
+    <!-- Backend prefetch -->
     <link
       rel="dns-prefetch"
       href="https://portfolio-hani-backend.onrender.com"
     />
 
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <!-- Module preload -->
+    <link rel="modulepreload" href="/src/main.tsx" />
   </head>
   <body>
     <div id="root"></div>
