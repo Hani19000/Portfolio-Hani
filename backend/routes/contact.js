@@ -1,8 +1,8 @@
 import express from 'express';
 import Contact from '../models/Contact.js'; 
-import { sendEmail } from '../config/email.js';
-import { validateContact } from '../middleware/validation.js';
-import { contactLimiter } from '../middleware/ratelimiter.js';
+import  sendEmail from '../config/email.js';
+import  validateContact  from '../middleware/validation.js';
+import  contactLimiter  from '../middleware/ratelimiter.js';
 
 const router = express.Router();
 
