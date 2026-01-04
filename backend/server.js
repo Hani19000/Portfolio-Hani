@@ -3,6 +3,8 @@ import cors from 'cors';
 import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import helmet from 'helmet';
+import compression from 'compression';
 
 dotenv.config();
 const app = express();
@@ -20,6 +22,9 @@ app.use(({ method, path }, res, next) => {
   console.log(`[${new Date().toISOString()}] ${method} ${path}`);
   next();
 });
+
+app.use(helmet()); // Headers de sécurité
+app.use(compression()); // Compression gzip
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
