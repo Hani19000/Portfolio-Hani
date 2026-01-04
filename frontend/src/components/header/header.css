@@ -1,8 +1,11 @@
+/* ================= HEADER COMPLET - TRANSPARENT POUR VOIR LA TEXTURE ================= */
 header {
   height: 100vh;
   padding-top: 7rem;
   overflow: hidden;
   position: relative;
+  /* IMPORTANT : On met transparent pour voir la texture définie dans le body */
+  background: transparent; 
 }
 
 .header__container {
@@ -14,6 +17,7 @@ header {
   text-align: center;
   position: relative;
   gap: 1.5rem;
+  z-index: 2; /* Pour rester au dessus des particules */
 }
 
 .header__container h5 {
@@ -24,14 +28,14 @@ header {
 
 .header__container h1 {
   font-size: clamp(2rem, 5vw, 3.5rem);
-  background: linear-gradient(45deg, var(--color-white), var(--color-primary));
+  color: var(--color-white);
+  background: linear-gradient(to bottom, var(--color-white), var(--color-light));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-
-/*============== CTA ==============*/
+/*============== CTA (Boutons) ==============*/
 .cta {
   margin-top: 2.5rem;
   display: flex;
@@ -48,6 +52,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  z-index: 3;
 }
 
 .header__socials a {
@@ -57,8 +62,8 @@ header {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(77, 181, 255, 0.1);
-  border: 1px solid var(--color-primary-variant);
+  background: var(--color-bg-variant);
+  border: 1px solid var(--border-color);
   color: var(--color-primary);
   font-size: 1.2rem;
   transition: var(--transition);
@@ -69,35 +74,37 @@ header {
   background: var(--color-primary);
   color: var(--color-bg);
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(77, 181, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .header__socials::after {
   content: '';
-  width: 2px;
+  width: 1px;
   height: 3rem;
-  background: linear-gradient(transparent, var(--color-primary), transparent);
+  background: linear-gradient(transparent, var(--border-color), transparent);
 }
 
-/*============== ME ==============*/
+/*============== ME (Image Grayscale) ==============*/
 .me {
   width: clamp(260px, 30%, 400px);
   aspect-ratio: 1/1.2;
-  background: linear-gradient(var(--color-primary), transparent);
+  background: linear-gradient(var(--border-color), transparent);
   border-radius: 12rem 12rem 0 0;
   margin-top: 2rem;
   overflow: hidden;
   display: flex;
-    align-items: flex-end;
+  align-items: flex-end;
   justify-content: center;
   position: relative;
+  border: 1px solid var(--border-color);
 }
 
 .me::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(31, 31, 56, 0.8));
+  /* On utilise var(--color-bg) pour fondre l'image dans le noir */
+  background: linear-gradient(180deg, transparent 60%, var(--color-bg));
   z-index: 1;
 }
 
@@ -105,12 +112,13 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  filter: grayscale(100%);
   transition: var(--transition);
 }
 
 .me:hover img {
   transform: scale(1.05);
+  filter: grayscale(0%);
 }
 
 /*============== SCROLL DOWN ==============*/
@@ -121,90 +129,46 @@ header {
   font-size: 0.9rem;
   font-weight: 400;
   transform: rotate(90deg);
-  color: var(--color-primary);
+  color: var(--color-light);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: var(--transition);
+  z-index: 3;
 }
 
 .scroll__down:hover {
+  color: var(--color-primary);
   transform: rotate(90deg) translateX(5px);
 }
 
-/* ======== MEDIA QUERIES (MEDIUM DEVICES - Tablettes) ======== */
-@media screen and (max-width: 1024px) {
-  header {
-    height: 90vh;
-    padding-top: 5rem;
-  }
-
-  .header__container {
-    gap: 1rem;
-  }
-
-  .me {
-    width: clamp(250px, 40%, 350px);
-    height: clamp(320px, 50vh, 420px);
-    margin-top: 1rem;
-  }
-
-  .header__socials {
-    left: 1rem;
-  }
-
-  .scroll__down {
-    right: 1rem;
-    bottom: 3rem;
-  }
-}
-
-/* Garde tout ton CSS actuel et ajoute ceci à la fin */
-
-/* ========== PARTICULES ========== */
+/* ========== PARTICULES (Z-INDEX CORRIGÉ) ========== */
 .header__particles {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  z-index: 1; /* Derrière le texte, devant le fond */
 }
 
 .particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--color-primary);
+  width: 3px;
+  height: 3px;
+  background: var(--color-light);
   border-radius: 50%;
   opacity: 0;
   animation: float-particle 10s infinite;
-  box-shadow: 0 0 10px var(--color-primary);
 }
 
 @keyframes float-particle {
-  0% {
-    opacity: 0;
-    transform: translateY(100vh) translateX(0);
-  }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-100px) translateX(100px);
-  }
+  0% { opacity: 0; transform: translateY(100vh); }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-100px); }
 }
 
-
-
-/* ========== TITRE AVEC TYPING ========== */
-.header__title {
-  position: relative;
-  min-height: 3rem;
-}
-
+/* ========== CURSEUR TYPING ========== */
 .cursor {
   display: inline-block;
   margin-left: 3px;
@@ -213,21 +177,8 @@ header {
 }
 
 @keyframes blink {
-  0%, 49% {
-    opacity: 1;
-  }
-  50%, 100% {
-    opacity: 0;
-  }
-}
-
-/* ========== DESCRIPTION ========== */
-.header__description {
-  max-width: 600px;
-  margin: 1.5rem auto;
-  color: var(--color-light);
-  line-height: 1.8;
-  font-size: 1rem;
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 /* ========== STATS ========== */
@@ -241,25 +192,17 @@ header {
 .stat {
   text-align: center;
   padding: 1rem 1.5rem;
-  background: rgba(77, 181, 255, 0.05);
+  background: var(--color-bg-variant);
   border-radius: 1rem;
-  border: 1px solid rgba(77, 181, 255, 0.1);
-  backdrop-filter: blur(5px);
+  border: 1px solid var(--border-color);
   transition: var(--transition);
-}
-
-.stat:hover {
-  background: rgba(77, 181, 255, 0.1);
-  border-color: var(--color-primary-variant);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(77, 181, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .stat h3 {
   font-size: 2rem;
-  color: var(--color-primary);
+  color: var(--color-white);
   margin-bottom: 0.3rem;
-  font-weight: 700;
 }
 
 .stat p {
@@ -267,33 +210,13 @@ header {
   color: var(--color-light);
 }
 
-/* ========== RESPONSIVE ADDITIONS ========== */
-@media screen and (max-width: 768px) {
-  .header__socials, .scroll__down {
-    display: none;
-  }
-  
-  header {
-    height: auto;
-    padding: 8rem 0 4rem;
-  }
+/* ======== MEDIA QUERIES ======== */
+@media screen and (max-width: 1024px) {
+  header { height: 90vh; }
+  .me { width: 300px; height: 380px; }
 }
 
-@media screen and (max-width: 480px) {
-  .header__badge {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.8rem;
-  }
-
-  .header__description {
-    font-size: 0.85rem;
-  }
-
-  .stat h3 {
-    font-size: 1.5rem;
-  }
-
-  .stat p {
-    font-size: 0.75rem;
-  }
+@media screen and (max-width: 768px) {
+  .header__socials, .scroll__down { display: none; }
+  header { height: auto; padding-top: 8rem; }
 }

@@ -1,15 +1,16 @@
-.container.portfolio__container {
+/* ================= PORTFOLIO - MONOCHROME PREMIUM ================= */
+
+.portfolio__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
-  padding: 4rem;
 }
 
 .portfolio__items {
   background: var(--color-bg-variant);
   padding: 1.5rem;
   border-radius: 2rem;
-  border: 1px solid transparent;
+  border: 1px solid var(--border-color);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -17,6 +18,7 @@
   flex-direction: column;
 }
 
+/* EFFET CRÉATIF : Balayage lumineux vertical blanc */
 .portfolio__items::before {
   content: '';
   position: absolute;
@@ -24,8 +26,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, transparent, rgba(77, 181, 255, 0.1), transparent);
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05), transparent);
   transition: top 0.6s ease;
+  z-index: 1;
 }
 
 .portfolio__items:hover::before {
@@ -34,11 +37,13 @@
 
 .portfolio__items:hover {
   border-color: var(--color-primary-variant);
-  background: rgba(44, 44, 108, 0.8);
+  background: rgba(255, 255, 255, 0.03);
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(77, 181, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
 }
 
+/*============== IMAGE DU PROJET (L'EFFET WOW) ==============*/
 .portfolio__items-image {
   border-radius: 1.5rem;
   overflow: hidden;
@@ -46,13 +51,31 @@
   position: relative;
   aspect-ratio: 16/10;
   background: var(--color-bg);
+  border: 1px solid var(--border-color);
 }
 
+.portfolio__items-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Noir et blanc par défaut */
+  filter: grayscale(100%);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              filter 0.6s ease;
+}
+
+/* Au survol de la carte : l'image zoom et reprend ses couleurs */
+.portfolio__items:hover .portfolio__items-image img {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+}
+
+/* Overlay sombre progressif sur l'image au survol */
 .portfolio__items-image::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(31, 31, 56, 0.8));
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.7));
   opacity: 0;
   transition: var(--transition);
 }
@@ -61,28 +84,13 @@
   opacity: 1;
 }
 
-.portfolio__items-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.portfolio__items:hover .portfolio__items-image img {
-  transform: scale(1.1);
-}
-
+/*============== TEXTES ==============*/
 .portfolio__items h3 {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
   color: var(--color-white);
   font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: 600;
   transition: var(--transition);
-}
-
-.portfolio__items:hover h3 {
-  color: var(--color-primary);
 }
 
 .portfolio__items p {
@@ -93,153 +101,69 @@
   flex-grow: 1;
 }
 
+/*============== BOUTONS (CTA) ==============*/
 .portfolio__items-cta {
   display: flex;
   gap: 1rem;
   margin-top: auto;
-  flex-wrap: wrap;
 }
 
+/* Style spécifique pour tes boutons en mode monochrome */
 .portfolio__items-cta .btn {
-  flex: 1;
-  min-width: 100px;
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 0.7rem 1.2rem;
-}
-
-/* ========== PARTICULES ========== */
-.header__particles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  opacity: 0;
-  animation: float-particle 10s infinite;
-  box-shadow: 0 0 10px var(--color-primary);
-}
-
-@keyframes float-particle {
-  0% {
-    opacity: 0;
-    transform: translateY(100vh) translateX(0);
-  }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-100px) translateX(100px);
-  }
-}
-
-
-/* Swiper customization  */
-.swiper-pagination-clickable .swiper-pagination-bullet {
-  background: var(--color-primary);
-  width: 12px;
-  height: 12px;
-  opacity: 0.5;
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
   transition: var(--transition);
+  text-align: center;
+  flex: 1;
 }
 
-.swiper-pagination-clickable .swiper-pagination-bullet-active {
+.portfolio__items-cta .btn-primary {
   background: var(--color-primary);
-  opacity: 1;
-  width: 30px;
-  border-radius: 6px;
+  color: var(--color-bg);
 }
 
-.swiper-pagination {
-  margin-top: 2rem;
+.portfolio__items-cta .btn:hover {
+  background: var(--color-white);
+  color: var(--color-bg);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-/* ======== MEDIA QUERIES (MEDIUM DEVICES) ======== */
+/*============== SWIPER (Si utilisé) ==============*/
+.swiper-pagination-bullet {
+  background: var(--color-light) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-primary) !important;
+  width: 25px !important;
+  border-radius: 5px !important;
+}
+
+/* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
   .portfolio__container {
-grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
-  }
-
-  .portfolio__items {
-    padding: 1.3rem;
-  }
-
-  .portfolio__items h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1.2rem;
   }
 }
 
-/* ======== MEDIA QUERIES (SMALL DEVICES) ======== */
 @media screen and (max-width: 768px) {
   .portfolio__container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-  .portfolio__items {
-    padding: 1.2rem;
-  }
-
-  .portfolio__items-image {
-    margin-bottom: 1.2rem;
-  }
-
-  .portfolio__items h3 {
-    font-size: 1.05rem;
-    margin-bottom: 1rem;
-  }
-
-  .portfolio__items p {
-    font-size: 0.88rem;
-    margin-bottom: 1.2rem;
-  }
-
   .portfolio__items-cta {
-    gap: 0.8rem;
-  }
-
-  .portfolio__items-cta .btn {
-    font-size: 0.85rem;
-    padding: 0.6rem 1rem;
+    flex-direction: row; /* On garde les boutons côte à côte sur mobile si possible */
   }
 }
 
 @media screen and (max-width: 480px) {
-  .portfolio__container {
-    gap: 1.2rem;
-  }
-
-  .portfolio__items {
-    padding: 1rem;
-  }
-
-  .portfolio__items h3 {
-    font-size: 1rem;
-  }
-
-  .portfolio__items p {
-    font-size: 0.85rem;
-  }
-
   .portfolio__items-cta {
     flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .portfolio__items-cta .btn {
-    width: 100%;
   }
 }

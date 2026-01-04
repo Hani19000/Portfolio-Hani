@@ -1,3 +1,4 @@
+/* ================= SERVICES - MONOCHROME EDITION ================= */
 .services__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7,7 +8,7 @@
 .service {
   background: var(--color-bg-variant);
   border-radius: 0 0 2rem 2rem;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--border-color);
   min-height: 400px;
   transition: var(--transition);
   position: relative;
@@ -16,6 +17,7 @@
   flex-direction: column;
 }
 
+/* EFFET CRÉATIF : Éclat de lumière blanche au survol */
 .service::before {
   content: '';
   position: absolute;
@@ -23,8 +25,14 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(77, 181, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent
+  );
   transition: left 0.6s ease;
+  z-index: 2;
 }
 
 .service:hover::before {
@@ -32,30 +40,31 @@
 }
 
 .service:hover {
-  background: rgba(44, 44, 108, 0.6);
-  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--color-primary-variant);
   cursor: default;
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(77, 181, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 .service__head {
-  background: var(--color-primary);
+  background: var(--color-primary); /* Blanc pur */
   padding: 2rem;
   border-radius: 0 0 2rem 2rem;
   box-shadow: 0 2rem 1rem rgba(0, 0, 0, 0.2);
   position: relative;
-  z-index: 1;
+  z-index: 3;
   transition: var(--transition);
 }
 
 .service:hover .service__head {
   box-shadow: 0 2.5rem 1.5rem rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
+  background: var(--color-white);
 }
 
 .service__head h3 {
-  color: var(--color-bg);
+  color: var(--color-bg); /* Texte noir sur fond blanc */
   font-size: 1.1rem;
   text-align: center;
   font-weight: 600;
@@ -80,12 +89,12 @@
 }
 
 .service__list li:hover {
-  background: rgba(77, 181, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05);
   transform: translateX(5px);
 }
 
 .service__list-icon {
-  color: var(--color-primary);
+  color: var(--color-primary); /* Blanc */
   font-size: 1.1rem;
   margin-top: 0.2rem;
   min-width: 20px;
@@ -94,91 +103,48 @@
 
 .service__list li:hover .service__list-icon {
   transform: scale(1.2);
+  filter: drop-shadow(0 0 5px white);
 }
 
 .service__list p {
-  color: var(--color-light);
+  color: var(--color-light); /* Gris clair */
   font-size: 0.95rem;
   line-height: 1.6;
 }
 
-/* ========== PARTICULES ========== */
-.header__particles {
+/* ========== PARTICULES (Cohérence visuelle) ========== */
+.service__particles {
   position: absolute;
   inset: 0;
-  overflow: hidden;
   pointer-events: none;
+  z-index: 0;
 }
 
 .particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--color-primary);
+  width: 3px;
+  height: 3px;
+  background: var(--color-light);
   border-radius: 50%;
-  opacity: 0;
-  animation: float-particle 10s infinite;
-  box-shadow: 0 0 10px var(--color-primary);
+  opacity: 0.3;
 }
 
-@keyframes float-particle {
-  0% {
-    opacity: 0;
-    transform: translateY(100vh) translateX(0);
-  }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-100px) translateX(100px);
-  }
-}
-
-/* ======== MEDIA QUERIES (MEDIUM DEVICES) ======== */
+/* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
-.services__container {
-    /* On garde les 3 colonnes jusqu'à 900px par exemple */
-    grid-template-columns: repeat(3, 1fr); 
+  .services__container {
+    grid-template-columns: repeat(2, 1fr); 
     gap: 1.5rem;
   }
-
-  /* Supprimer ou commenter la règle qui réduit la taille à 50% */
-  .service:last-child:nth-child(odd) {
-    grid-column: auto;
-    max-width: 100%;
-    margin: 0;
-  }
-
 
   .service {
     min-height: 350px;
   }
-
-  .service__head {
-    padding: 1.8rem;
-  }
-
-  .service__list {
-    padding: 2rem 1.5rem;
-  }
 }
 
-/* ======== MEDIA QUERIES (SMALL DEVICES) ======== */
 @media screen and (max-width: 768px) {
   .services__container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  /* Réinitialiser le centrage sur mobile (1 colonne) */
-  .service:last-child:nth-child(odd) {
-    grid-column: auto;
-    max-width: 100%;
-    margin: 0;
   }
 
   .service {
@@ -189,53 +155,18 @@
     padding: 1.5rem;
   }
 
-  .service__head h3 {
-    font-size: 1rem;
-  }
-
   .service__list {
     padding: 2rem 1.5rem;
-    gap: 0.8rem;
-  }
-
-  .service__list li {
-    gap: 0.8rem;
-  }
-
-  .service__list-icon {
-    font-size: 1rem;
-  }
-
-  .service__list p {
-    font-size: 0.9rem;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .services__container {
-    gap: 1.2rem;
-  }
-
   .service__head {
     padding: 1.2rem;
   }
 
-  .service__head h3 {
-    font-size: 0.95rem;
-  }
-
   .service__list {
     padding: 1.5rem 1rem;
-    gap: 0.7rem;
-  }
-
-  .service__list li {
-    gap: 0.7rem;
-    padding: 0.4rem;
-  }
-
-  .service__list-icon {
-    font-size: 0.95rem;
   }
 
   .service__list p {

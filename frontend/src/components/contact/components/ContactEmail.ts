@@ -17,24 +17,22 @@ function useEmail(): UseEmailReturn {
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const currentForm = e.currentTarget; // On capture le formulaire ici
+    const formElement = e.currentTarget;
     if (isLoading) return;
 
     setIsLoading(true);
     setStatus({ type: null, message: "" });
 
     try {
-      const formData = Object.fromEntries(new FormData(currentForm));
       const baseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
-
       const response = await fetch(`${baseUrl}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(Object.fromEntries(new FormData(e.currentTarget))),
       });
 
       if (response.ok) {
-        currentForm.reset(); // REINITIALISATION DU FORMULAIRE
+        formElement.reset();
         setStatus({ type: 'success', message: "Message envoyé." });
       } else {
         setStatus({ type: 'error', message: "Erreur lors de l'envoi." });
