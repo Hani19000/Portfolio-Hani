@@ -1,7 +1,8 @@
-.portfolio__container {
+.container.portfolio__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
+  padding: 4rem;
 }
 
 .portfolio__items {
@@ -105,6 +106,63 @@
   text-align: center;
   font-size: 0.9rem;
   padding: 0.7rem 1.2rem;
+}
+
+/* ========== PARTICULES ========== */
+.header__particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-particle 10s infinite;
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+@keyframes float-particle {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(100px);
+  }
+}
+
+
+/* Swiper customization  */
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  background: var(--color-primary);
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+  transition: var(--transition);
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet-active {
+  background: var(--color-primary);
+  opacity: 1;
+  width: 30px;
+  border-radius: 6px;
+}
+
+.swiper-pagination {
+  margin-top: 2rem;
 }
 
 /* ======== MEDIA QUERIES (MEDIUM DEVICES) ======== */

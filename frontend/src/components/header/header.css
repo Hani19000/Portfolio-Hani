@@ -197,49 +197,7 @@ header {
   }
 }
 
-/* ========== BADGE STATUT ========== */
-.header__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(77, 181, 255, 0.1);
-  border: 1px solid var(--color-primary-variant);
-  padding: 0.5rem 1.2rem;
-  border-radius: 2rem;
-  color: var(--color-primary);
-  font-size: 0.85rem;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  margin-bottom: 1rem;
-  animation: badge-pulse 2s infinite;
-}
 
-.badge__dot {
-  width: 8px;
-  height: 8px;
-  background: #00ff41;
-  border-radius: 50%;
-  animation: dot-pulse 2s infinite;
-  box-shadow: 0 0 10px #00ff41;
-}
-
-@keyframes badge-pulse {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(77, 181, 255, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(77, 181, 255, 0.4);
-  }
-}
-
-@keyframes dot-pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
 
 /* ========== TITRE AVEC TYPING ========== */
 .header__title {

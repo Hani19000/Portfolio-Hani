@@ -1,0 +1,17 @@
+import React from 'react';
+import { HiMenuAlt3, HiX } from 'react-icons/hi';
+
+interface MenuToggleProps {
+  isOpen: boolean;
+  toggle: () => void; // Une fonction qui ne retourne rien
+}
+
+const MenuToggle: React.FC<MenuToggleProps> = ({ isOpen, toggle }) => {
+  return (
+    <button className="menu-toggle" onClick={toggle} aria-label="Toggle Menu">
+      {isOpen ? <HiX /> : <HiMenuAlt3 />}
+    </button>
+  );
+};
+
+export default MenuToggle;
