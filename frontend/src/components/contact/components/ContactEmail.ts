@@ -17,6 +17,7 @@ function useEmail(): UseEmailReturn {
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formElement = e.currentTarget;
     if (isLoading) return;
 
     setIsLoading(true);
@@ -31,7 +32,7 @@ function useEmail(): UseEmailReturn {
       });
 
       if (response.ok) {
-        e.currentTarget.reset();
+        formElement.reset();
         setStatus({ type: 'success', message: "Message envoyé." });
       } else {
         setStatus({ type: 'error', message: "Erreur lors de l'envoi." });
