@@ -22,7 +22,7 @@
   place-items: center;
   transition: var(--transition);
   position: relative;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 /* Conteneur image */
@@ -220,11 +220,12 @@
   .about__container, .about__timeline-wrapper { grid-template-columns: 1fr; }
   .about__container { gap: 3rem; }
   .about__me { width: 60%; margin: 0 auto 3rem; }
+  
 }
 
 @media screen and (max-width: 600px) {
-  .about__me { width: 85%; padding: 1.5rem; }
-  .about__me-image { width: calc(100% - 3rem); height: calc(100% - 3rem); }
+  .about__me { width: 85%; padding: 1rem; }
+  .about__me-image { width: calc(100%); height: calc(100%); transform: rotate(8deg);}
   .about__cards { grid-template-columns: 1fr; gap: 1rem; }
   .about__timeline { padding: 1.5rem; }
   .about__timeline-container { padding-left: 1.5rem; }
