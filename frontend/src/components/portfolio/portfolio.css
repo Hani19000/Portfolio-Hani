@@ -1,20 +1,26 @@
 /* ================= PORTFOLIO - VERSION CORRIGÉE AVEC GRAYSCALE INVERSÉ ================= */
 
-body {
-    overflow-x: hidden;
-}
-
 .container.portfolio__container {
-display: block; /* Swiper gère lui-même l'alignement horizontal */
-  width: 90%;
-  margin: 0 auto;
-  overflow: hidden;
+    width: var(--container-width-lg);
+    margin: 0 auto;
+    /* Supprime display: grid ici si tu utilises Swiper ! */
+    overflow: visible !important; /* Permet aux ombres de ne pas être coupées */
+    position: relative;
+    padding: 4rem;
 }
 
 .portfolio__items {
-width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+    background: var(--color-bg-variant);
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Important pour que toutes les cartes aient la même taille */
+    user-select: none;
+    /* Fix Performance : Empêche les calculs de peinture inutiles */
+    contain: content; 
 }
 
 .portfolio__items::before {
@@ -42,10 +48,13 @@ will-change: transform;
 
 /* ============== IMAGE - GRAYSCALE INVERSÉ ============== */
 .portfolio__items-image {
-    aspect-ratio: 16/10;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 1.5rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  position: relative;
+  aspect-ratio: 16/10;
+  background: var(--color-bg);
+  border: 1px solid var(--border-color);
 }
 
 .portfolio__items-image::after {

@@ -234,6 +234,8 @@
 }
 
 .about__timeline-description {
+  display: flex;
+  justify-content: center;
   color: var(--color-light);
   font-size: 0.9rem;
   line-height: 1.6;
