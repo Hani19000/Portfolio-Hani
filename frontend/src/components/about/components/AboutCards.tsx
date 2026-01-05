@@ -29,14 +29,20 @@ export const educationData: TimelineItem[] = [
   {
     year: "Oct 2025 - En cours",
     title: "Bachelor Développeur d'application Python (bac+3)",
-    institution: "STUDI | ECOLE EN LIGNE",
+    institution: "STUDI | bac +3",
     description: "formation complète centrée sur la conception et la mise en œuvre de solutions web avec Python, l’intégration de bases de données, et la maîtrise des bonnes pratiques de développement logiciel.",
   },
   {
     year: "Oct 2024 - En cours",
     title: "Graduat Développeur Web Full-stack",
-    institution: "STUDI | ECOLE EN LIGNE",
+    institution: "STUDI | bac +2",
     description: "Développement d’applications web full stack. Mise en œuvre de projets complets intégrant authentification, gestion des données et interactions front-end / back-end optimisées.",
+  },
+    {
+    year: "Septemrbe 2023 - Juin 2025",
+    title: "Diplome universitaire Animaton et Gestion des activités sportives et culutrel (DEUST AGAPSC)",
+    institution: "Université lyon 1 | bac +2",
+    description: "Formation axée sur la gestion et l’animation d’équipes, la conduite de projets éducatifs, la coordination d’acteurs, la résolution de conflits et le renforcement des compétences en leadership et communication.",
   }
 ];
 
@@ -46,5 +52,11 @@ export const workExperienceData: TimelineItem[] = [
     title: "Développeur Full-Stack Indépendant",
     company: "Projets Personnels",
     description: "Développement d’applications web full stack incluant une plateforme e-commerce, une application de lecture audio et des API REST sécurisées. Approche orientée performance, expérience utilisateur et fiabilité des fonctionnalités.",
+  },
+    {
+    year: "2022 - 2024",
+    title: "Animateur/Directeur adjoint",
+    company: "Venissieux/St-Priest",
+    description: "Direction et animation d’équipes dans des projets éducatifs et socioculturels, incluant la conception et la mise en œuvre d’actions adaptées aux publics, la coordination des intervenants, la gestion des conflits, ainsi que le développement de compétences en leadership et en communication.",
   }
 ];

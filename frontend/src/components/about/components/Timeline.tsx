@@ -9,7 +9,7 @@ interface TimelineProps {
 const Timeline: React.FC<TimelineProps> = ({ data, type }) => (
   <div className="about__timeline">
     <h3 className="about__timeline-title">
-      {type === "education" ? "Education" : "Work Experience"}
+      {type === "education" ? "Education" : "Expérience Professionnelles"}
     </h3>
     <div className="about__timeline-container">
       {data.map(({ year, title, institution, company, description }, i) => (

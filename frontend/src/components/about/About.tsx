@@ -14,8 +14,8 @@ const About: React.FC = () => {
   return (
     <section id="about" style={{ position: "relative" }}>
       <HeaderParticles count={20} />
-      <h5>Get to Know</h5>
-      <h2>About me</h2>
+      <h5>Me Connaitre</h5>
+      <h2>A propos de moi</h2>
 
       <div className="container about__container">
         <div className="about__me">
@@ -55,7 +55,7 @@ const About: React.FC = () => {
           </p>
 
           <a href="#contact" className="btn btn-primary">
-            Let's Talk
+            Me Contacter
           </a>
         </div>
       </div>

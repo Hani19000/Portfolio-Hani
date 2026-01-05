@@ -9,8 +9,8 @@ const Services: React.FC = () => {
   return (
     <section id="services-section" style={{ position: 'relative' }}>
       <HeaderParticles count={20} />
-      <h5>What I offer</h5>
-      <h2>Services</h2>
+      <h5>Ce Que Je Propose</h5>
+      <h2>Mes Services</h2>
 
       <div className="container services__container">
         {ServicesCards.map(({ title, features }: ServiceItem, index: number) => (

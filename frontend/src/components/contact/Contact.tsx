@@ -7,8 +7,8 @@ import HeaderParticles from "../header/components/HeaderParticles";
 const Contact: React.FC = () => (
   <section id="contact" style={{ position: 'relative' }}>
     <HeaderParticles count={20} />
-    <h5>Get In Touch</h5>
-    <h2>Contact Me</h2>
+    <h5>Restons En Contact</h5>
+    <h2>Pour Me Contacter</h2>
 
     <div className="container contact__container">
       <ContactExt />
