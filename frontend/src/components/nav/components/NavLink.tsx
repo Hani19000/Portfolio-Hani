@@ -10,15 +10,16 @@ const NavLink: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const toggleMenu = () => setIsOpen(prev => !prev);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
 
+  const handleThemeChange = () => {toggleTheme(); closeMenu();};
   return (
     <>
       {isOpen && <div className="nav__overlay" onClick={closeMenu} />}
       <MenuToggle isOpen={isOpen} toggle={toggleMenu} />
-      
-      <nav className={`nav-sidebar ${isOpen ? 'active' : ''}`}>
+
+      <nav className={`nav-sidebar ${isOpen ? "active" : ""}`}>
         {NavData.map(({ id, icon }: NavItem) => (
           <a
             key={id}
@@ -32,9 +33,9 @@ const NavLink: React.FC = () => {
             {icon}
           </a>
         ))}
-        
+
         <div className="nav__divider" />
-        <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+        <ThemeToggle isDark={isDark} onToggle={handleThemeChange} />
       </nav>
     </>
   );

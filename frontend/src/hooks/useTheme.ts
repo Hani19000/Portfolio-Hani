@@ -1,26 +1,20 @@
 import { useState, useEffect } from 'react';
 
 const useTheme = () => {
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    const stored = localStorage.getItem('theme');
-    // On vérifie si l'utilisateur a déjà une préférence, sinon on met Dark par défaut
-    return stored ? stored === 'dark' : true;
-  });
+  // Initialisation plus courte : on récupère ou on met 'dark' par défaut
+  const [isDark, setIsDark] = useState(() => localStorage.getItem('theme') !== 'light');
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.remove('light-mode');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.add('light-mode');
-      localStorage.setItem('theme', 'light');
-    }
+    const theme = isDark ? 'dark' : 'light';
+    
+    // Bascule la classe 'light-mode' sur <html> 
+    document.documentElement.classList.toggle('light-mode', !isDark);
+    
+    // Sauvegarde la préférence
+    localStorage.setItem('theme', theme);
   }, [isDark]);
 
-  const toggleTheme = () => setIsDark(!isDark);
-
-  return { isDark, toggleTheme };
+  return { isDark, toggleTheme: () => setIsDark(!isDark) };
 };
 
 export default useTheme;
