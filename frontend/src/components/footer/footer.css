@@ -1,32 +1,26 @@
-/* ================= FOOTER - MONOCHROME PREMIUM ================= */
+/* ================= FOOTER ================= */
 
 footer {
-  background: var(--color-bg-variant); /* Noir profond */
+  background: var(--color-bg-variant);
   padding: 4rem 0;
   text-align: center;
   font-size: 0.9rem;
   margin-top: 7rem;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid var(--border-color); /* Ligne fine de séparation */
+  border-top: 1px solid var(--border-color);
 }
 
-/* Texture de grille subtile en arrière-plan */
+/* Texture de grille subtile */
 footer::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
   pointer-events: none;
 }
 
-footer > * {
-  position: relative;
-  z-index: 1;
-}
+footer > * { position: relative; z-index: 1; }
 
 /*============== LOGO ==============*/
 .footer__logo {
@@ -44,7 +38,7 @@ footer > * {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-/*============== LIENS (PERMALINKS) ==============*/
+/*============== LIENS & PERMALINKS ==============*/
 .permalinks {
   display: flex;
   flex-wrap: wrap;
@@ -55,34 +49,25 @@ footer > * {
 }
 
 .permalinks a {
-  color: var(--color-light); /* Gris clair */
-  font-weight: 400;
+  color: var(--color-light);
   font-size: 0.95rem;
   position: relative;
   padding-bottom: 5px;
   transition: var(--transition);
 }
 
-.permalinks a:hover {
-  color: var(--color-white);
-}
+.permalinks a:hover { color: var(--color-white); }
 
-/* Ligne de soulignement élégante */
 .permalinks a::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1px;
+  bottom: 0; left: 50%; width: 0; height: 1px;
   background: var(--color-white);
   transition: var(--transition);
   transform: translateX(-50%);
 }
 
-.permalinks a:hover::after {
-  width: 100%;
-}
+.permalinks a:hover::after { width: 100%; }
 
 /*============== RÉSEAUX SOCIAUX ==============*/
 .footer__socials {
@@ -93,23 +78,20 @@ footer > * {
 }
 
 .footer__socials a {
-  background: transparent;
   color: var(--color-white);
-  padding: 0.8rem;
-  border-radius: 50%; /* On passe sur du rond pour le luxe */
+  width: 45px; height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: var(--transition);
   font-size: 1.2rem;
-  width: 45px;
-  height: 45px;
 }
 
 .footer__socials a:hover {
   background: var(--color-white);
-  color: var(--color-bg); /* L'icône devient noire au survol */
+  color: var(--color-bg);
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 }
@@ -122,28 +104,15 @@ footer > * {
   letter-spacing: 1px;
 }
 
-.footer__copyright small {
-  opacity: 0.6;
-}
+.footer__copyright small { opacity: 0.6; }
 
 /* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
-  .permalinks {
-    gap: 1.5rem;
-  }
+  .permalinks { gap: 1.5rem; }
 }
 
 @media screen and (max-width: 600px) {
-  footer {
-    padding: 3rem 0;
-  }
-
-  .permalinks {
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-
-  .footer__socials {
-    margin-bottom: 2.5rem;
-  }
+  footer { padding: 3rem 0; }
+  .permalinks { flex-direction: column; gap: 1.2rem; }
+  .footer__socials { margin-bottom: 2.5rem; }
 }

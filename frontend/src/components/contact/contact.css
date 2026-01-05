@@ -1,4 +1,4 @@
-/* ================= CONTACT - MONOCHROME EDITION ================= */
+/* ================= CONTACT ================= */
 
 .contact__container {
   width: 58%;
@@ -13,6 +13,7 @@
   gap: 1.5rem;
 }
 
+/*============== OPTIONS DE CONTACT ==============*/
 .contact__option {
   background: var(--color-bg-variant);
   padding: 1.5rem;
@@ -29,17 +30,13 @@
 .contact__option::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transition: left 0.6s ease;
 }
 
-.contact__option:hover::before {
-  left: 100%;
-}
+.contact__option:hover::before { left: 100%; }
 
 .contact__option:hover {
   border-color: var(--color-primary-variant);
@@ -50,7 +47,7 @@
 
 .contact__option-icon {
   font-size: 1.8rem;
-  color: var(--color-primary); /* Blanc */
+  color: var(--color-primary);
   margin-bottom: 0.8rem;
   transition: var(--transition);
 }
@@ -60,19 +57,8 @@
   filter: drop-shadow(0 0 8px white);
 }
 
-.contact__option h4 {
-  color: var(--color-white);
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.contact__option h5 {
-  color: var(--color-light);
-  font-size: 0.85rem;
-  font-weight: 400;
-  margin-bottom: 0.8rem;
-}
+.contact__option h4 { font-size: 1rem; font-weight: 500; color: var(--color-white); margin-bottom: 0.5rem; }
+.contact__option h5 { font-size: 0.85rem; font-weight: 400; color: var(--color-light); margin-bottom: 0.8rem; }
 
 .contact__option a {
   margin-top: 0.8rem;
@@ -89,19 +75,14 @@
   text-decoration: underline;
 }
 
-/* ================= FORMULAIRE (VERRE FUMÉ) ================= */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+/* ================= FORMULAIRE ================= */
+form { display: flex; flex-direction: column; gap: 1.5rem; }
 
-input,
-textarea {
+input, textarea {
   width: 100%;
   padding: 1.5rem;
   border-radius: 0.8rem;
-  background: rgba(255, 255, 255, 0.02); /* Très transparent */
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-color);
   resize: none;
   color: var(--color-white);
@@ -111,8 +92,7 @@ textarea {
   font-size: 0.95rem;
 }
 
-input:focus,
-textarea:focus {
+input:focus, textarea:focus {
   outline: none;
   border-color: var(--color-primary);
   background: rgba(255, 255, 255, 0.05);
@@ -120,7 +100,7 @@ textarea:focus {
   transform: translateY(-2px);
 }
 
-/* Correction pour l'autofill (le fond bleu moche de Chrome) */
+/* Autofill & Placeholder */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -129,22 +109,16 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: white !important;
 }
 
-::placeholder {
-  color: var(--color-light);
-  opacity: 0.5;
-}
-
-textarea {
-  min-height: 200px;
-}
+::placeholder { color: var(--color-light); opacity: 0.5; }
+textarea { min-height: 200px; }
 
 /* BOUTON D'ENVOI */
 form .btn-primary {
   width: max-content;
   padding: 1rem 2.5rem;
   cursor: pointer;
-  background: var(--color-primary); /* Blanc */
-  color: var(--color-bg); /* Noir */
+  background: var(--color-primary);
+  color: var(--color-bg);
   font-weight: 600;
   border: 1px solid var(--color-primary);
   transition: var(--transition);
@@ -153,13 +127,13 @@ form .btn-primary {
 
 form .btn-primary:hover {
   background: transparent;
-  color: var(--color-white);
+  color: var(--color-bg);
   border-color: var(--color-white);
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 }
 
-/* ========== PARTICULES (Cohérence) ========== */
+/* ========== PARTICULES & DECO ========== */
 .contact__particles {
   position: absolute;
   inset: 0;
@@ -170,8 +144,7 @@ form .btn-primary:hover {
 
 .particle {
   position: absolute;
-  width: 3px;
-  height: 3px;
+  width: 3px; height: 3px;
   background: var(--color-light);
   border-radius: 50%;
   opacity: 0.3;
@@ -179,34 +152,16 @@ form .btn-primary:hover {
 
 /* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
-  .contact__container {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    width: 80%;
-  }
-
-  .contact__options {
-    flex-direction: row;
-    gap: 1.2rem;
-  }
+  .contact__container { grid-template-columns: 1fr; gap: 3rem; width: 80%; }
+  .contact__options { flex-direction: row; gap: 1.2rem; }
 }
 
 @media screen and (max-width: 768px) {
-  .contact__container {
-    width: 90%;
-  }
-
-  .contact__options {
-    flex-direction: column;
-  }
-
-  form .btn-primary {
-    width: 100%;
-  }
+  .contact__container { width: 90%; }
+  .contact__options { flex-direction: column; }
+  form .btn-primary { width: 100%; }
 }
 
 @media screen and (max-width: 480px) {
-  input, textarea {
-    padding: 1rem;
-  }
+  input, textarea { padding: 1rem; }
 }

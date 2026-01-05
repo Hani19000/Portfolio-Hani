@@ -1,8 +1,7 @@
-/* Définition de l'interface pour un service */
-
 export interface ServiceItem {
   title: string;
   features: string[];
+  price: string;
 }
 
 const ServicesCards: ServiceItem[] = [
@@ -15,6 +14,7 @@ const ServicesCards: ServiceItem[] = [
       "Navigation fluide et logique",
       "Responsive design",
     ],
+    price: "Sur devis"
   },
   {
     title: "WEB DEVELOPMENT",
@@ -25,6 +25,7 @@ const ServicesCards: ServiceItem[] = [
       "Intégration front-end / back-end",
       "Déploiement et mise en ligne",
     ],
+    price: "À partir de 800€"
   },
   {
     title: "Maintenance & Accompagnement",
@@ -33,6 +34,7 @@ const ServicesCards: ServiceItem[] = [
       "Corrections de bugs",
       "Support technique",
     ],
+    price: "50€ / heure"
   },
 ];
 

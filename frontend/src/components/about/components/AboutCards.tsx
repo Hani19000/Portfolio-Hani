@@ -20,7 +20,7 @@ export interface TimelineItem {
 }
 
 export const aboutCards: AboutCardItem[] = [
-  { icon: <BsFillAwardFill />, title: "Experience", description: "1+ Years Working" },
+  { icon: <BsFillAwardFill />, title: "Experience", description: "1+ d'Éxperience" },
   { icon: <FaBusinessTime />, title: "Disponibilité", description: "5J/7" },
   { icon: <LuFolderCode />, title: "Projects", description: "20+ Projects" },
 ];
@@ -30,7 +30,7 @@ export const educationData: TimelineItem[] = [
     year: "Oct 2025 - En cours",
     title: "Bachelor Développeur d'application Python (bac+3)",
     institution: "STUDI | bac +3",
-    description: "formation complète centrée sur la conception et la mise en œuvre de solutions web avec Python, l’intégration de bases de données, et la maîtrise des bonnes pratiques de développement logiciel.",
+    description: "Formation complète centrée sur la conception et la mise en œuvre de solutions web avec Python, l’intégration de bases de données, et la maîtrise des bonnes pratiques de développement logiciel.",
   },
   {
     year: "Oct 2024 - En cours",

@@ -15,8 +15,8 @@ const Portfolio: React.FC = () => {
   return (
     <section id="portfolio" style={{ position: "relative" }}>
       <HeaderParticles count={20} />
-      <h5>Mes Projets Récents </h5>
-      <h2>Portfolio</h2>
+      <h5>Réalisations </h5>
+      <h2>Mes Projets</h2>
 
       <Swiper
         className="container portfolio__container"

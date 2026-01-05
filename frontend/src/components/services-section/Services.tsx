@@ -7,13 +7,13 @@ import HeaderParticles from "../header/components/HeaderParticles";
 
 const Services: React.FC = () => {
   return (
-    <section id="services-section" style={{ position: 'relative' }}>
+<section id="services-section" style={{ position: 'relative' }}>
       <HeaderParticles count={20} />
-      <h5>Ce Que Je Propose</h5>
-      <h2>Mes Services</h2>
+      <h5>Offre De Services</h5>
+      <h2>Expertise & Accompagnement</h2>
 
       <div className="container services__container">
-        {ServicesCards.map(({ title, features }: ServiceItem, index: number) => (
+        {ServicesCards.map(({ title, features, price }: ServiceItem, index: number) => (
           <article className="service" key={index}>
             <div className="service__head">
               <h3>{title}</h3>
@@ -27,6 +27,10 @@ const Services: React.FC = () => {
                 </li>
               ))}
             </ul>
+
+            <div className="service__footer">
+              <span className="service__price">{price}</span>
+            </div>
           </article>
         ))}
       </div>

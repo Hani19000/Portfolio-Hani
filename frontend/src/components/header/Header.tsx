@@ -12,7 +12,7 @@ const Header: React.FC = () => (
       name="Hani Derrouiche"
       title="Des idées au code, donnons vie à vos projets"
       role="développeur web full-stack"
-      description="Vous avez un projet ou une idée à concrétiser ? Parlons-en je serai ravi d’échanger et de voir comment je peux vous aider à la réaliser."
+      description="Un projet en tête ? Discutons-en pour voir comment je peux vous aider à le concrétiser."
       image={ME}
     />
   </header>

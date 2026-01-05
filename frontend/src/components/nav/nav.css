@@ -8,7 +8,7 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: rgba(0, 0, 0, 0.6); /* Valeur par défaut Dark */
+  background: rgba(0, 0, 0, 0.6);
   padding: 1.2rem 0.7rem;
   z-index: 999;
   border-radius: 3rem;
@@ -18,54 +18,28 @@ nav {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Ajustement intelligent pour le Light Mode */
+/* Ajustement Light Mode */
 .light-mode nav {
-  background: rgba(255, 255, 255, 0.85); /* Plus opaque pour la lisibilité */
-  border: 1px solid rgba(0, 0, 0, 0.1);  /* Bordure fine noire */
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.light-mode nav a {
-  color: #666666; /* Icônes grises par défaut */
-}
-
-.light-mode nav a:hover, 
-.light-mode nav a.active {
-  background: #000000;
-  color: #ffffff !important;
-}
-
-/* Le bouton toggle lui-même */
-.light-mode .theme-toggle {
-  color: #000000;
+/*============== ÉLÉMENTS INTERACTIFS (LIENS & TOGGLE) ==============*/
+nav a, .theme-toggle {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  border-radius: 50%;
 }
 
 nav a {
   padding: 0.8rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--color-light);
   font-size: 1.2rem;
-  transition: var(--transition);
-  width: 45px;
-  height: 45px;
-}
-
-/* Survol et Active UNIFIÉ */
-nav a:hover, nav a.active {
-  background: var(--color-primary);
-  color: var(--color-bg) !important; /* Le texte prend la couleur du fond inverse */
-  transform: scale(1.1);
-}
-
-/* DIVISEUR ET TOGGLE */
-.nav__divider {
-  width: 60%;
-  height: 1px;
-  background: var(--border-color);
-  margin: 0.5rem auto;
 }
 
 .theme-toggle {
@@ -73,31 +47,52 @@ nav a:hover, nav a.active {
   color: var(--color-primary);
   font-size: 1.3rem;
   cursor: pointer;
-  transition: var(--transition);
-  width: 45px;
-  height: 45px;
   border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.theme-toggle:hover {
-  transform: rotate(30deg) scale(1.2);
+/* États Hover & Active */
+nav a:hover, nav a.active {
+  background: var(--color-primary);
+  color: var(--color-bg) !important;
+  transform: scale(1.1);
 }
 
-/* ================= MENU TOGGLE (MOBILE) ================= */
+.theme-toggle:hover { transform: rotate(30deg) scale(1.2); }
 
-.menu-toggle {
-  display: none;
+/* Spécificités Light Mode */
+.light-mode nav a { color: #666666; }
+.light-mode .theme-toggle { color: #000000; }
+
+.light-mode nav a:hover, 
+.light-mode nav a.active {
+  background: #000000;
+  color: #ffffff !important;
 }
+
+/*============== STRUCTURE & OVERLAY ==============*/
+.nav__divider {
+  width: 60%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 0.5rem auto;
+}
+
+.nav__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+}
+
+/* ================= MOBILE (MENU TOGGLE) ================= */
+.menu-toggle { display: none; }
 
 @media screen and (max-width: 768px) {
   .menu-toggle {
     display: flex;
     position: fixed;
-    top: 2rem;
-    right: 2rem;
+    top: 2rem; right: 2rem;
     z-index: 1000;
     background: var(--color-primary);
     color: var(--color-bg);
@@ -120,27 +115,8 @@ nav a:hover, nav a.active {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   }
 
-  .menu-toggle.active svg, .menu-toggle.active i {
-    transform: rotate(180deg) scale(1.1);
-  }
+  .menu-toggle.active svg, .menu-toggle.active i { transform: rotate(180deg) scale(1.1); }
 
-  nav.nav-sidebar {
-    right: -100px;
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  nav.nav-sidebar.active {
-    right: 1rem;
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-.nav__overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  z-index: 998;
+  nav.nav-sidebar { right: -100px; opacity: 0; visibility: hidden; }
+  nav.nav-sidebar.active { right: 1rem; opacity: 1; visibility: visible; }
 }

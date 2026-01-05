@@ -1,30 +1,29 @@
-/* ================= PORTFOLIO - FIX RESPONSIVE MOBILE ================= */
+/* ================= PORTFOLIO ================= */
 
 .container.portfolio__container {
     width: var(--container-width-lg);
     margin: 0 auto;
-    /* Important pour Swiper : ne pas mettre de grid ici */
     position: relative;
-    padding-bottom: 3rem; /* Espace pour la pagination */
+    padding-bottom: 3rem;
 }
 
 .portfolio__items {
     background: var(--color-bg-variant);
-    padding: 1.2rem; /* Réduit pour laisser respirer l'image sur mobile */
+    padding: 1.2rem;
     border-radius: 2rem;
     border: 1px solid var(--border-color);
     transition: var(--transition);
     display: flex;
     flex-direction: column;
     height: 100%; 
-    box-sizing: border-box; /* Crucial pour le calcul de largeur */
+    box-sizing: border-box;
 }
 
 /*============== IMAGE STABILISÉE ==============*/
 .portfolio__items-image {
     border-radius: 1.5rem;
     overflow: hidden;
-    width: 100%; /* S'adapte au parent */
+    width: 100%;
     aspect-ratio: 16/10;
     margin-bottom: 1.2rem;
 }
@@ -34,91 +33,66 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    filter: grayscale(0%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
 }
 
-/* ============== TEXTE & BOUTONS ============== */
-.portfolio__items h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.8rem;
-    color: var(--color-white);
-}
+/*============== TEXTE & BOUTONS ==============*/
+.portfolio__items h3 { font-size: 1.1rem; margin-bottom: 0.8rem; color: var(--color-white); }
+.portfolio__items p { font-size: 0.85rem; margin-bottom: 1.5rem; flex-grow: 1; }
 
-.portfolio__items p {
-    font-size: 0.85rem;
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-}
+.portfolio__items-cta { display: flex; gap: 0.8rem; width: 100%; }
+.portfolio__items-cta .btn { flex: 1; text-align: center; padding: 0.6rem 0.2rem; font-size: 0.8rem; }
 
-.portfolio__items-cta {
-    display: flex;
-    gap: 0.8rem;
-    width: 100%;
-}
+/*============== SWIPER ==============*/
+.swiper-slide { height: auto !important; display: flex; }
+.swiper-pagination { margin-top: 2rem; }
 
-.portfolio__items-cta .btn {
-    flex: 1;
-    text-align: center;
-    padding: 0.6rem 0.2rem;
-    font-size: 0.8rem;
-}
-
-/* ============== SWIPER ============== */
 .swiper-pagination-clickable .swiper-pagination-bullet {
   background: var(--color-primary);
-  width: 12px;
-  height: 12px;
+  width: 12px; height: 12px;
   opacity: 0.5;
   transition: var(--transition);
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet-active {
-  background: var(--color-primary);
   opacity: 1;
   width: 30px;
   border-radius: 6px;
 }
 
-.swiper-pagination {
-  margin-top: 2rem;
+/*============== LOGIQUE GRAYSCALE (DARK/LIGHT) ==============*/
+
+/* Dark Mode (Par défaut) */
+.portfolio__items:hover .portfolio__items-image img,
+.portfolio__items:active .portfolio__items-image img {
+  transform: scale(1.1);
+  filter: grayscale(100%);
 }
 
+/* Light Mode */
+.light-mode .portfolio__items-image img { filter: grayscale(100%); }
 
+.light-mode .portfolio__items:hover .portfolio__items-image img,
+.light-mode .portfolio__items:active .portfolio__items-image img {
+  filter: grayscale(0%);
+}
 
-/* ======== MEDIA QUERIES (MOBILE FIX) ======== */
+.light-mode .portfolio__items-image::after {
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3));
+}
+
+/* ======== MEDIA QUERIES ======== */
 
 @media screen and (max-width: 1024px) {
-    .container.portfolio__container {
-        width: var(--container-width-md);
-    }
+    .container.portfolio__container { width: var(--container-width-md); }
 }
 
 @media screen and (max-width: 600px) {
-    .container.portfolio__container {
-        width: 90%; /* On donne plus de largeur sur petit écran */
-    }
-
-    .portfolio__items {
-        padding: 1rem;
-    }
-
-    .portfolio__items-cta {
-        /* Sur très petit écran, on empile les boutons pour éviter qu'ils ne sortent */
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .portfolio__items-cta .btn {
-        width: 100%;
-    }
-
-    /* On réduit la taille du texte pour gagner de la place */
-    .portfolio__items h3 {
-        font-size: 1rem;
-    }
-}
-
-/* ======== AJUSTEMENT SWIPER ======== */
-.swiper-slide {
-    height: auto !important; /* Force les slides à s'ajuster au contenu */
-    display: flex;
+    .container.portfolio__container { width: 90%; }
+    .portfolio__items { padding: 1rem; }
+    .portfolio__items h3 { font-size: 1rem; }
+    
+    .portfolio__items-cta { flex-direction: column; gap: 0.5rem; }
+    .portfolio__items-cta .btn { width: 100%; }
 }
