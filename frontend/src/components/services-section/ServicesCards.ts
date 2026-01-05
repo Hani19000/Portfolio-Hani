@@ -24,6 +24,7 @@ const ServicesCards: ServiceItem[] = [
       "Responsive complet (desktop, tablette, mobile)",
       "Intégration front-end / back-end",
       "Déploiement et mise en ligne",
+      "Refonte De Site Internet",
     ],
     price: "À partir de 800€"
   },
