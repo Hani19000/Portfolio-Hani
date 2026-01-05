@@ -5,25 +5,16 @@ body {
 }
 
 .container.portfolio__container {
-    width: var(--container-width-lg);
-    margin: 0 auto;
-    /* Supprime display: grid ici si tu utilises Swiper ! */
-    overflow: visible !important; /* Permet aux ombres de ne pas être coupées */
-    position: relative;
+display: block; /* Swiper gère lui-même l'alignement horizontal */
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .portfolio__items {
-    background: var(--color-bg-variant);
-    padding: 1.5rem;
-    border-radius: 2rem;
-    border: 1px solid transparent;
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Important pour que toutes les cartes aient la même taille */
-    user-select: none;
-    /* Fix Performance : Empêche les calculs de peinture inutiles */
-    contain: content; 
+width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .portfolio__items::before {
