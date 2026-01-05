@@ -101,6 +101,7 @@ header {
   object-fit: cover;
   filter: grayscale(0%);
   transition: filter 400ms ease, transform 300ms ease;
+  object-position: center top;
 }
 
 .me:hover img, .me:active img { filter: grayscale(100%); transform: scale(1.02); }
