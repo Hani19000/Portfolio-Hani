@@ -26,12 +26,9 @@ const Portfolio: React.FC = () => {
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         breakpoints={{
-          600: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
+          320: { slidesPerView: 1, spaceBetween: 20 },
+          600: { slidesPerView: 2, spaceBetween: 30 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
         }}
       >
         {portfolioCards.map(({ id, image, title, github }: PortfolioItem) => {
