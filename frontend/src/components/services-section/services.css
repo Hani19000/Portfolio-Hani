@@ -65,6 +65,7 @@
 }
 
 /*============== LISTE DES SERVICES ==============*/
+
 .service__list {
   padding: 2.5rem 2rem;
   flex-grow: 1;
@@ -77,14 +78,24 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 0.5rem;
-  transition: var(--transition);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.service__list li:hover {
+  transform: translateX(5px);
 }
 
 .service__list li:hover {
   background: rgba(255, 255, 255, 0.05);
-  transform: translateX(5px);
+}
+
+.service__list p {
+  color: var(--color-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
 .service__list-icon {
@@ -92,19 +103,27 @@
   font-size: 1.1rem;
   margin-top: 0.2rem;
   min-width: 20px;
-  transition: var(--transition);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .service__list li:hover .service__list-icon {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 5px white);
+  transform: scale(1.15);
 }
 
-.service__list p {
-  color: var(--color-light);
-  font-size: 0.95rem;
-  line-height: 1.6;
+/*============== LIGHT MODE ==============*/
+
+.light-mode .service__list li:hover {
+  background: #000;
 }
+
+.light-mode .service__list li:hover p {
+  color: #fff;
+}
+
+.light-mode .service__list li:hover .service__list-icon {
+  color: #fff;
+}
+
 
 /* ========== Prix ========== */
 .service__footer {
