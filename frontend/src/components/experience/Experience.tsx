@@ -8,7 +8,7 @@ const Experience: React.FC = () => {
     <section id="experience" style={{ position: 'relative' }}>
       <HeaderParticles count={20} />
       <h5>Technologies</h5>
-      <h2>Outils Que Je Maitrise</h2>
+      <h2>Stack technique</h2>
 
       <div className="container experience__container">
         <div className="experience__frontend">
