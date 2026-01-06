@@ -20,7 +20,7 @@ export interface TimelineItem {
 }
 
 export const aboutCards: AboutCardItem[] = [
-  { icon: <BsFillAwardFill />, title: "Experience", description: "1+ d'Éxperience" },
+  { icon: <BsFillAwardFill />, title: "Experience", description: "+1 ans D'Éxperience" },
   { icon: <FaBusinessTime />, title: "Disponibilité", description: "5J/7" },
   { icon: <LuFolderCode />, title: "Projects", description: "20+ Projects" },
 ];
