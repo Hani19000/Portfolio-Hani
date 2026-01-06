@@ -180,7 +180,6 @@ header {
 }
   .me { order: 1; }
   .cta { order: 2; }
-  header {height: min(100vh, 900px); padding-top: 4rem;}
 
-.header__container {justify-content: flex-start;}
+
 }
