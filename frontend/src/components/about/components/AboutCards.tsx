@@ -40,7 +40,7 @@ export const educationData: TimelineItem[] = [
   },
     {
     year: "Septemrbe 2023 - Juin 2025",
-    title: "Diplome universitaire Animaton et Gestion des activités sportives et culutrel (DEUST AGAPSC)",
+    title: "Diplome universitaire Animation et Gestion des activités sportives et culutrel (DEUST AGAPSC)",
     institution: "Université lyon 1 | bac +2",
     description: "Formation axée sur la gestion et l’animation d’équipes, la conduite de projets éducatifs, la coordination d’acteurs, la résolution de conflits et le renforcement des compétences en leadership et communication.",
   }
