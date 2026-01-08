@@ -6,12 +6,15 @@ import { logger } from '../utils/logger.js';
 export const validateContact = (req: Request, res: Response, next: NextFunction): void => {
   const { name, email, message, subject } = req.body;
 
-  // Validation immédiate : Si un champ manque ou est invalide, on stop
-  if (!name || !email || !message) return void res.status(400).json({ error: 'Champs requis manquants' });
-  if (!v.isEmail(email)) return void res.status(400).json({ error: 'Format email invalide' });
-  if (!v.isLength(message, { min: 10, max: 1000 })) return void res.status(400).json({ error: 'il faut minimum 10 caractères ' });
+  /* Validation immédiate : Si un champ manque ou est invalide, on stop */
+  if (!name || !email || !message) return 
+  void res.status(400).json({ error: 'Champs requis manquants' });
+  if (!v.isEmail(email)) 
+    return void res.status(400).json({ error: 'Format email invalide' });
+  if (!v.isLength(message, { min: 10, max: 1000 })) 
+    return void res.status(400).json({ error: 'il faut minimum 10 caractères ' });
 
-  // Sanétisation par réaffectation déstructurée
+  /* Sanétisation par réaffectation déstructurée */
   Object.assign(req.body, {
     name: v.escape(name.trim()),
     email: v.normalizeEmail(email) || email,
