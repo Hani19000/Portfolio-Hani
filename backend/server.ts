@@ -17,7 +17,7 @@ securityMiddleware(app);
 app.get('/', (_, res) => res.json({ status: 'OK', version: '1.0.0' }));
 app.use('/contact', contactRoutes);
 
-/* Gestion centralisée des erreurs (doit être après les routes) */
+/* Gestion centralisée des erreurs */
 app.use(errorHandler);
 
 /* Initialisation de la base de données et lancement du serveur */
