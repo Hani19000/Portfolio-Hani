@@ -24,7 +24,7 @@ export const validateContact = (req: Request, res: Response, next: NextFunction)
     return;
   }
 
-  /* Sanétisation par réaffectation déstructurée */
+  /* Sanitisation par réaffectation déstructurée */  /* nettoyer et sécuriser les données entrantes */
   Object.assign(req.body, {
     name: v.escape(name.trim()),
     email: v.normalizeEmail(email) || email,
