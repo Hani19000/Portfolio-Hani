@@ -2,16 +2,22 @@ import React from "react";
 import useEmail from "./ContactEmail";
 
 const ContactForm: React.FC = () => {
-  const { form, sendEmail, isLoading } = useEmail();
-  
+  const { form, sendEmail, isLoading, status } = useEmail();
+
   return (
     <form ref={form} onSubmit={sendEmail}>
-      <input type="text" name="subject" placeholder="Subject" required />
-      <input type="text" name="name" placeholder="Your Full Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows={7} placeholder="Your Message" required />
+      <input type="text" name="subject" placeholder="Sujet" required />
+      <input type="text" name="name" placeholder="Votre nom complet" required />
+      <input type="email" name="email" placeholder="Votre email" required />
+      <textarea name="message" rows={7} placeholder="Votre message" required />
+
+      {/* Affichage du statut */}
+      {status.type && (
+        <div className={`form-status ${status.type}`}>{status.message}</div>
+      )}
+
       <button type="submit" className="btn btn-primary" disabled={isLoading}>
-        {isLoading ? "Envoi en cours..." : "Send Message"}
+        {isLoading ? "Envoi en cours..." : "Envoyer le message"}
       </button>
     </form>
   );

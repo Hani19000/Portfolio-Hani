@@ -19,7 +19,7 @@ const ServicesCards: ServiceItem[] = [
   {
     title: "WEB DEVELOPMENT",
     features: [
-      "Sites vitrines modernes sur mesure",
+      "Sites vitrines ou E-commerce modernes sur mesure",
       "Développement front-end avec React",
       "Responsive complet (desktop, tablette, mobile)",
       "Intégration front-end / back-end",
