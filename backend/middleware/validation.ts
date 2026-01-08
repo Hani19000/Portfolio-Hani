@@ -7,18 +7,23 @@ export const validateContact = (req: Request, res: Response, next: NextFunction)
   const { name, email, message, subject } = req.body;
 
   /* Validation immédiate : Si un champ manque ou est invalide, on stop */
-  if (!name || !email || !message) return 
-  void res.status(400).json({ error: 'Champs requis manquants' });
-  if (!v.isEmail(email)) 
+  if (!name || !email || !message) {
+    return void res.status(400).json({ error: 'Champs requis manquants' });
+  }
+  
+  if (!v.isEmail(email)) {
     return void res.status(400).json({ error: 'Format email invalide' });
-  if (!v.isLength(message, { min: 10, max: 1000 })) 
-    return void res.status(400).json({ error: 'il faut minimum 10 caractères ' });
+  }
+  
+  if (!v.isLength(message, { min: 10, max: 1000 })) {
+    return void res.status(400).json({ error: 'Le message doit contenir entre 10 et 1000 caractères' });
+  }
 
   /* Sanétisation par réaffectation déstructurée */
   Object.assign(req.body, {
     name: v.escape(name.trim()),
     email: v.normalizeEmail(email) || email,
-    subject: v.escape(subject.trim()),
+    subject: subject ? v.escape(subject.trim()) : 'Nouveau message depuis le portfolio',
     message: v.escape(message.trim())
   });
 
