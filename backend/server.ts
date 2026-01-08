@@ -1,5 +1,4 @@
 import express, { Application } from 'express';
-import { connectDB } from './config/database.js';
 import { securityMiddleware } from './config/security.js';
 import contactRoutes from './routes/contact.js';
 import { errorHandler } from './middleware/validation.js';
@@ -24,7 +23,6 @@ app.use(errorHandler);
 /* Initialisation de la base de données et lancement du serveur */
 const startServer = async (): Promise<void> => {
   try {
-    await connectDB();
     app.listen(PORT, () => logger.info(` Serveur actif sur le port : ${PORT}`));
   } catch (err) {
     logger.error('Échec lros du démarrage:', err instanceof Error ? err.message : err);
