@@ -2,7 +2,7 @@ import sgMail from "@sendgrid/mail";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-interface EmailParams {
+export interface EmailParams {
   name: string;
   email: string;
   subject: string;

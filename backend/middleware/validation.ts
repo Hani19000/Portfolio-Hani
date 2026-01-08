@@ -1,22 +1,27 @@
 import { Request, Response, NextFunction } from 'express';
 import v from 'validator';
 import { logger } from '../utils/logger.js';
+import { EmailParams } from '../config/email.js';
+
 
 /* Validation et nettoyage des données de contact */
 export const validateContact = (req: Request, res: Response, next: NextFunction): void => {
-  const { name, email, message, subject } = req.body;
+  const { name, email, message, subject } = req.body as EmailParams;
 
   /* Validation immédiate : Si un champ manque ou est invalide, on stop */
   if (!name || !email || !message) {
-    return void res.status(400).json({ error: 'Champs requis manquants' });
+    res.status(400).json({ error: 'Champs requis manquants' });
+    return;
   }
   
   if (!v.isEmail(email)) {
-    return void res.status(400).json({ error: 'Format email invalide' });
+    res.status(400).json({ error: 'Format email invalide' });
+    return;
   }
   
   if (!v.isLength(message, { min: 10, max: 1000 })) {
-    return void res.status(400).json({ error: 'Le message doit contenir entre 10 et 1000 caractères' });
+    res.status(400).json({ error: 'Le message doit contenir entre 10 et 1000 caractères' });
+    return;
   }
 
   /* Sanétisation par réaffectation déstructurée */

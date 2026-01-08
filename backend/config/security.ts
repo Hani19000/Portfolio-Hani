@@ -9,6 +9,7 @@ const origins = ['https://portfolio-hani-nine.vercel.app', "https://portfolio-ha
 export const securityMiddleware = (app: Application): void => {
   app.use(helmet());
   app.use(compression());
+  
   app.use(cors({
     origin: (origin, cb) => 
       !origin || origins.some(o => o instanceof RegExp ? o.test(origin) : o === origin)
