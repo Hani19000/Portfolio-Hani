@@ -1,11 +1,10 @@
-import React from "react";
-import useEmail from "../../scripts/ContactEmail";
+import  useEmail  from "../../hooks/ContactEmail";
 
 const ContactForm: React.FC = () => {
-  const { form, sendEmail, isLoading, status } = useEmail();
+  const { onSubmit, isLoading, status } = useEmail(); 
 
   return (
-    <form ref={form} onSubmit={sendEmail}>
+    <form onSubmit={onSubmit}>
       <input type="text" name="subject" placeholder="Sujet" required />
       <input type="text" name="name" placeholder="Votre nom complet" required />
       <input type="email" name="email" placeholder="Votre email" required />
