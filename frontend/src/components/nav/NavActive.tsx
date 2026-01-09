@@ -9,8 +9,15 @@ function useNavActive(): NavActiveReturn {
   const [activeNav, setActiveNav] = useState<string>("#");
 
   useEffect(() => {
-    const sectionIds = ["about", "experience", "services-section", "portfolio", "testimonials", "contact"];
-    
+    const sectionIds = [
+      "about",
+      "experience",
+      "services-section",
+      "portfolio",
+      "testimonials",
+      "contact",
+    ];
+
     // On observe les sections
     const observer = new IntersectionObserver(
       (entries) => {
@@ -20,9 +27,9 @@ function useNavActive(): NavActiveReturn {
           }
         });
       },
-      { 
+      {
         rootMargin: "-40% 0px -40% 0px", // Déclenche quand la section est au milieu
-        threshold: 0 
+        threshold: 0,
       }
     );
 
@@ -47,11 +54,18 @@ function useNavActive(): NavActiveReturn {
     e.preventDefault();
     setActiveNav(id);
 
-    const targetId = id.replace('#', '');
-    const element = targetId === '' ? document.querySelector('header') : document.getElementById(targetId);
-    
-    element?.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, "", id === '#' ? '/' : `#${targetId}`);
+    const targetId = id.replace("#", "");
+    const element =
+      targetId === ""
+        ? document.querySelector("header")
+        : document.getElementById(targetId);
+
+    element?.scrollIntoView({ behavior: "smooth" });
+    if (id === "#") {
+      window.history.pushState(null, "", "/");
+    } else {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
   };
 
   return { activeNav, handleNavClick };
