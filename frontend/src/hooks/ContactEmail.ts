@@ -68,7 +68,7 @@ export function useEmail() {
         window.clearTimeout(timeoutRef.current);
       }
 
-      // ou bien mais peut envoyer error si elle est null : clearTimeout(timeoutRef.current!); 
+      // ou bien mais peut envoyer error si elle est null : clearTimeout(timeoutRef.current!);
 
       timeoutRef.current = window.setTimeout(
         () => setStatus({ type: "idle", message: "" }),
