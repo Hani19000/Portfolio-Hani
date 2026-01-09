@@ -3,9 +3,15 @@ import { securityMiddleware } from './config/security.js';
 import contactRoutes from './routes/contact.js';
 import { errorHandler } from './middleware/validation.js';
 import { logger } from './utils/logger.js';
+import * as Sentry from "@sentry/node";
 
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  tracesSampleRate: 1.0,
+});
 
 /* Configuration Proxy (Render/Vercel) */
 app.set('trust proxy', 1);
@@ -13,9 +19,13 @@ app.set('trust proxy', 1);
 /* Initialisation des middlewares de sécurité et parsing */
 securityMiddleware(app);
 
+
 /* Définition des points d'entrée */
 app.get('/', (_, res) => res.json({ status: 'OK', version: '1.0.0' }));
 app.use('/contact', contactRoutes);
+
+/* Gestionnaire d'erreurs Sentry */
+Sentry.setupExpressErrorHandler(app);
 
 /* Gestion centralisée des erreurs */
 app.use(errorHandler);

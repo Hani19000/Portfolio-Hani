@@ -1,5 +1,5 @@
 import sgMail from "@sendgrid/mail";
-
+import * as Sentry from "@sentry/node";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
 export interface EmailParams {
@@ -28,12 +28,18 @@ export const sendEmail = async ({
     ${message.replace(/\n/g, "<br>")}
   `;
 
-  return sgMail.send({
-    to,
-    from,
-    replyTo: email,
-    subject: `Nouveau message Portfolio — ${name}`,
-    text: `Nom: ${name}\nEmail: ${email}\nSujet: ${subject}\n\nMessage:\n${message}`,
-    html: `<div style="font-family: sans-serif; border: 1px solid #eee; padding: 20px;">${content}</div>`,
-  });
+  try {
+    return await sgMail.send({
+      to,
+      from,
+      replyTo: email,
+      subject: `Nouveau message Portfolio — ${name}`,
+      text: `Nom: ${name}\nEmail: ${email}\nSujet: ${subject}\n\nMessage:\n${message}`,
+      html: `<div style="font-family: sans-serif; border: 1px solid #eee; padding: 20px;">${content}</div>`,
+    });
+  } catch (error) {
+    Sentry.captureException(error);
+    console.error("Erreur SendGrid capturée par Sentry");
+    throw error;
+  }
 };
