@@ -8,3 +8,10 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+
+// index.js ou main.tsx
+if (import.meta.env.PROD) {
+  console.log = () => {};
+  console.error = () => {};
+  console.debug = () => {};
+}
