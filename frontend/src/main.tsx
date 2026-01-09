@@ -5,7 +5,7 @@ import App from './App'
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
-  dsn: "https://747b042321d19a0b8583aff54d66cbf2@o4510681965199360.ingest.de.sentry.io/4510681966444624",
+  dsn: "https://99046f49da55b7eaf56f5e991c6b9fe2@o4510681965199360.ingest.de.sentry.io/4510681995411536",
   integrations: [Sentry.browserTracingIntegration()],
   tracesSampleRate: 1.0, // Capture 100% des transactions en dev
   environment: import.meta.env.MODE, // Ajoute "development" ou "production" automatiquement
