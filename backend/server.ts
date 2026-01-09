@@ -4,14 +4,9 @@ import contactRoutes from './routes/contact.js';
 import { errorHandler } from './middleware/validation.js';
 import { logger } from './utils/logger.js';
 import * as Sentry from "@sentry/node";
-
+import './instrument.js';
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
-
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-  tracesSampleRate: 1.0,
-});
 
 /* Configuration Proxy (Render/Vercel) */
 app.set('trust proxy', 1);
