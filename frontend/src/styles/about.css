@@ -62,10 +62,7 @@
 /*        LIGHT MODE         */
 /* ========================= */
 
-.light-mode .about__me-image {
-  border: 4px solid var(--color-bg-variant);
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.12);
-}
+
 
 /* LIGHT MODE : image NOIRE par défaut */
 .light-mode .about__me-image img {
