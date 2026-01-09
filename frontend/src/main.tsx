@@ -10,6 +10,7 @@ Sentry.init({
   tracesSampleRate: 1.0, // Capture 100% des transactions en dev
   environment: import.meta.env.MODE, // Ajoute "development" ou "production" automatiquement
 });
+Sentry.captureMessage("Test de connexion Sentry réussi !");
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
