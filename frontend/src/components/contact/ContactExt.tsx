@@ -1,5 +1,5 @@
 import React from "react";
-import contactData, { ContactOption } from "../../Data/contact/ContactData";
+import contactData, { ContactOption } from "../../Data/ContactData";
 
 const ContactExt: React.FC = () => (
   <div className="contact__options">

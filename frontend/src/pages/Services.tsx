@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/services.css";
 import { FaCheck } from "react-icons/fa";
 /* Importation des données et du type */
-import ServicesCards, { ServiceItem } from "../Data/services-section/ServicesCards"; 
+import ServicesCards, { ServiceItem } from "../Data/ServicesCards"; 
 import HeaderParticles from "../components/header/HeaderParticles";
 
 const Services: React.FC = () => {

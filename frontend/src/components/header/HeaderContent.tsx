@@ -1,6 +1,6 @@
 import React from 'react';
 import CTA from './CTA';
-import HeaderSocials from '../../Data/header/HeaderSocials';
+import HeaderSocials from '../../Data/HeaderSocials';
 import HeaderTitle from './HeaderTitle';
 import HeaderImage from './HeaderImage';
 

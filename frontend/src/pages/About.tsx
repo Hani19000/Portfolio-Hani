@@ -8,7 +8,7 @@ import {
   educationData,
   workExperienceData,
   AboutCardItem,
-} from "../Data/about/AboutCards";
+} from "../Data/AboutCards";
 
 const About: React.FC = () => {
   return (
