@@ -61,11 +61,9 @@ function useNavActive(): NavActiveReturn {
         : document.getElementById(targetId);
 
     element?.scrollIntoView({ behavior: "smooth" });
-    if (id === "#") {
-      window.history.pushState(null, "", "/");
-    } else {
-      window.history.replaceState(null, "", window.location.pathname);
-    }
+
+    const url = id === "#" ? "/" : window.location.pathname;
+    window.history.replaceState(null, "", url);
   };
 
   return { activeNav, handleNavClick };
