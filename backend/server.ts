@@ -8,6 +8,7 @@ import './instrument.js';
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
 
+
 /* Configuration Proxy (Render/Vercel) */
 app.set('trust proxy', 1);
 
@@ -34,5 +35,5 @@ const startServer = async (): Promise<void> => {
     process.exit(1);
   }
 };
-
+Sentry.captureMessage("Serveur démarré et Sentry actif !");
 startServer();
