@@ -1,5 +1,5 @@
 import React from "react";
-import experienceItems, { ExperienceItem } from "./ExperiencesItems";
+import experienceItems, { ExperienceItem } from "../../Data/experience/ExperiencesItems";
 
 interface ExperienceCardsProps {
   type: "frontend" | "backend";

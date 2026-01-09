@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimelineItem } from './AboutCards';
+import { TimelineItem } from '../../Data/about/AboutCards';
 
 interface TimelineProps {
   data: TimelineItem[];
