@@ -16,7 +16,7 @@ export const securityMiddleware = (app: Application): void => {
         ? cb(null, true) 
         : cb(new Error('Non autorisé par CORS')),
     methods: ['GET', 'POST'],
-    credentials: true
+    credentials: true // utile pour plus tard pour une eventuelle page admin et connexion
   }));
 
   app.use(express.json({ limit: '10kb' }));
