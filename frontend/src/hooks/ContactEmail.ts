@@ -54,11 +54,12 @@ export function useEmail() {
       if (form instanceof HTMLFormElement) form.reset();
 
       setStatus({ type: "success", message: res.message });
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const error = err instanceof Error ? err : new Error("Unknown error");
       Sentry.captureException(err, { extra: { payload: data } });
       setStatus({
         type: "error",
-        message: err.message || "Une erreur est survenue lors de l'envoi.",
+        message: error.message || "Une erreur est survenue lors de l'envoi.",
       });
     } finally {
       setIsLoading(false);
