@@ -35,5 +35,4 @@ const startServer = async (): Promise<void> => {
     process.exit(1);
   }
 };
-Sentry.captureMessage("Serveur démarré et Sentry actif !");
 startServer();
