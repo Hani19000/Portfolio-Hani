@@ -1,7 +1,7 @@
 import React from "react";
-import "./portfolio.css";
-import portfolioCards, { PortfolioItem } from "./PortfolioCards";
-import HeaderParticles from "../header/components/HeaderParticles";
+import "../styles/portfolio.css";
+import portfolioCards, { PortfolioItem } from "../Data/PortfolioCards";
+import HeaderParticles from "../components/header/HeaderParticles";
 
 /* Import Swiper React components & modules */
 import { Swiper, SwiperSlide } from "swiper/react";

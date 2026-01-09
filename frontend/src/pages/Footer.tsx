@@ -1,9 +1,9 @@
 import React from "react";
-import "./footer.css";
-import footerLinks, { FooterLink } from "./components/FooterLinks";
-import FooterIcons from "./components/FooterIcons";
-import FooterLinkItem from "./components/FooterLinksItem";
-import FooterCopy from "./components/FooterCopy";
+import "../styles/footer.css";
+import footerLinks, { FooterLink } from "../Data/FooterLinks";
+import FooterIcons from "../components/footer/FooterIcons";
+import FooterLinkItem from "../components/footer/FooterLinksItem";
+import FooterCopy from "../components/footer/FooterCopy";
 
 const Footer: React.FC = () => {
   return (

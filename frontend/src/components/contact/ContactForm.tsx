@@ -1,5 +1,5 @@
 import React from "react";
-import useEmail from "./ContactEmail";
+import useEmail from "../../scripts/ContactEmail";
 
 const ContactForm: React.FC = () => {
   const { form, sendEmail, isLoading, status } = useEmail();

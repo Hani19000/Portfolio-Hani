@@ -1,8 +1,8 @@
 import React from 'react';
-import './header.css';
-import ME from '../../assets/me.webp';
-import HeaderParticles from './components/HeaderParticles';
-import HeaderContent from './components/HeaderContent';
+import '../styles/header.css';
+import ME from '../assets/me.webp';
+import HeaderParticles from '../components/header/HeaderParticles';
+import HeaderContent from '../components/header/HeaderContent';
 
 
 const Header: React.FC = () => (

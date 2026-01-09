@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useTheme = () => {
-  // Initialisation plus courte : on récupère ou on met 'dark' par défaut
+  // Initialisation plus courte :  'dark' par défaut
   const [isDark, setIsDark] = useState(() => localStorage.getItem('theme') !== 'light');
 
   useEffect(() => {

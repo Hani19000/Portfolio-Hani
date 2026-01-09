@@ -1,13 +1,13 @@
 import './index.css'
-import Header from './components/header/Header'
-import Nav from './components/nav/Nav'
-import About from './components/about/About'
-import Experience from './components/experience/Experience'
-import Services from './components/services-section/Services'
-import Portfolio from './components/portfolio/Portfolio'
-// import Testimonial from './components/testimonials/Testimonials'
-import Contact from './components/contact/Contact'
-import Footer from './components/footer/Footer'
+import Header from './pages/Header'
+import Nav from './pages//Nav'
+import About from './pages/About'
+import Experience from './pages/Experience'
+import Services from './pages/Services'
+import Portfolio from './pages/Portfolio'
+// import Testimonial from './pages/Testimonials'
+import Contact from './pages/Contact'
+import Footer from './pages/Footer'
 
 function App() {
 

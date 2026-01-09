@@ -1,8 +1,8 @@
 import React from "react";
-import "./contact.css";
-import ContactExt from "./components/ContactExt";
-import ContactForm from "./components/ContactForm";
-import HeaderParticles from "../header/components/HeaderParticles";
+import "../styles/contact.css";
+import ContactExt from "../components/contact/ContactExt";
+import ContactForm from "../components/contact/ContactForm";
+import HeaderParticles from "../components/header/HeaderParticles";
 
 const Contact: React.FC = () => (
   <section id="contact" style={{ position: 'relative' }}>

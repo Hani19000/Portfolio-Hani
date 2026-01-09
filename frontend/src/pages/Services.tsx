@@ -1,9 +1,9 @@
 import React from "react";
-import "./services.css";
+import "../styles/services.css";
 import { FaCheck } from "react-icons/fa";
 /* Importation des données et du type */
-import ServicesCards, { ServiceItem } from "./ServicesCards"; 
-import HeaderParticles from "../header/components/HeaderParticles";
+import ServicesCards, { ServiceItem } from "../Data/ServicesCards"; 
+import HeaderParticles from "../components/header/HeaderParticles";
 
 const Services: React.FC = () => {
   return (

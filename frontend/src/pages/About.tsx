@@ -1,14 +1,14 @@
 import React from "react";
-import "./about.css";
-import ME from "../../assets/me-about.webp";
-import Timeline from "./components/Timeline";
-import HeaderParticles from "../header/components/HeaderParticles";
+import "../styles/about.css";
+import ME from "../assets/me-about.webp";
+import Timeline from "../components/about/Timeline";
+import HeaderParticles from "../components/header/HeaderParticles";
 import {
   aboutCards,
   educationData,
   workExperienceData,
   AboutCardItem,
-} from "./components/AboutCards";
+} from "../components/about/AboutCards";
 
 const About: React.FC = () => {
   return (

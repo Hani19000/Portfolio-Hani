@@ -1,6 +1,6 @@
 import React from "react";
-import "./nav.css";
-import NavLink from "./components/NavLink";
+import "../styles/nav.css";
+import NavLink from "../components/nav/NavLink";
 
 const Nav: React.FC = () => {
   return <NavLink />;

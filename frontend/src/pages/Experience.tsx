@@ -1,7 +1,7 @@
 import React from "react";
-import "./experience.css";
-import ExperienceCards from "./components/ExperienceCards";
-import HeaderParticles from "../header/components/HeaderParticles";
+import "../styles/experience.css";
+import ExperienceCards from "../components/experience/ExperienceCards";
+import HeaderParticles from "../components/header/HeaderParticles";
 
 const Experience: React.FC = () => {
   return (
