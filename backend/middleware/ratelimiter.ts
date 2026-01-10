@@ -5,10 +5,10 @@ import logger from "../utils/logger";
 export const contactLimiter = rateLimit({
      windowMs: 60 * 60 * 1000,
     max: 2,
-    handler: (req, res, next, options) => {
+    handler: (req, res, _next, options) => {
         logger.warn(`Tentative de spam détectée depuis l'IP : ${req.ip}`); 
-        res.status(options.statusCode).send(options.message);
-    },
+        res.status(options.statusCode).json(options.message);
+    }, 
     standardHeaders: true,
     legacyHeaders: false,
     message: { error: "Trop de messages. Réessayez dans 15 minutes." },
