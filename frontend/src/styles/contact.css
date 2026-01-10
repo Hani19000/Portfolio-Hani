@@ -155,6 +155,7 @@ form .btn-primary {
   transition: var(--transition);
   border-radius: 0.5rem;
   margin-top: -0.5rem;
+  margin : 0 auto
 }
 
 form .btn-primary:hover {
