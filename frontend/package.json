@@ -30,6 +30,7 @@
     "prettier": "^3.7.4",
     "rollup-plugin-visualizer": "^6.0.5",
     "sharp-cli": "^5.2.0",
+    "terser": "^5.44.1",
     "typescript": "^5.9.3",
     "vite": "^7.2.4"
   }
