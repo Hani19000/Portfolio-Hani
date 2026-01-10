@@ -1,5 +1,5 @@
 import rateLimit from "express-rate-limit";
-import logger from "../utils/logger";
+import logger from "../utils/logger.js";
 
 /* Restriction des requêtes pour prévenir le spam (5 msg / 15 min) */
 export const contactLimiter = rateLimit({
