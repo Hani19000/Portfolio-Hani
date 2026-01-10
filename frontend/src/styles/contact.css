@@ -98,7 +98,7 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 input,
@@ -139,7 +139,8 @@ input:-webkit-autofill:active {
   opacity: 0.5;
 }
 textarea {
-  min-height: 200px;
+  min-height: 160px;
+  margin-bottom: -0.5rem;
 }
 
 /* BOUTON D'ENVOI */
@@ -153,6 +154,7 @@ form .btn-primary {
   border: 1px solid var(--color-primary);
   transition: var(--transition);
   border-radius: 0.5rem;
+  margin-top: -0.5rem;
 }
 
 form .btn-primary:hover {
@@ -263,5 +265,6 @@ form .btn-primary:hover {
   input,
   textarea {
     padding: 1rem;
+    margin-bottom: -0.5rem;
   }
 }
