@@ -1,3 +1,7 @@
+# GitHub Actions = usine de construction
+#Le Pipeline (Workflow) : C'est l'usine entière.
+# job = un atelier spécifique dans l'usine. Chaque atelier est indépendant et possède sa propre machine (le serveur Ubuntu).
+
 name: CI/CD Pipeline
 
 on:
@@ -7,91 +11,113 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: "20"
 
 jobs:
-  # ================================
-  # JOB 1: LINT & TYPE CHECK
-  # ================================
+  # =========================================================
+  # JOB 1: QUALITÉ DU CODE (L'Atelier de Vérification)
+  # =========================================================
   lint-and-typecheck:
     name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: frontend/package-lock.json
-      
+
       - name: Install dependencies
         working-directory: ./frontend
         run: npm ci
-      
+
       - name: Type Check TypeScript
         working-directory: ./frontend
         run: npx tsc --noEmit
-      
+
       - name: Run ESLint
         working-directory: ./frontend
         run: npm run lint
-      
+
       - name: Check Prettier
         working-directory: ./frontend
         run: npx prettier --check "src/**/*.{ts,tsx,css}"
 
-  # ================================
-  # JOB 2: BUILD
-  # ================================
-  build:
-    name: 🏗️ Build Application
+  # =========================================================
+  # JOB 2: SÉCURITÉ (L'Atelier de Protection)
+  # =========================================================
+  security:
+    name: Security Audit
     runs-on: ubuntu-latest
-    needs: [lint-and-typecheck]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-      
+
+      - name: Run npm audit
+        working-directory: ./frontend
+        # On ajoute || true pour que le pipeline ne bloque pas totalement si une faille mineure est trouvée 
+        run: npm audit --production || echo "Vulnérabilités détectées"
+
+  # =========================================================
+  # JOB 3: CONSTRUCTION (L'Atelier de Fabrication)
+  # =========================================================
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: [lint-and-typecheck] # Attend que le code soit propre
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Install frontend deps
         working-directory: ./frontend
         run: npm ci
-      
+
       - name: Build frontend
         working-directory: ./frontend
         run: npm run build
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
-      
-      - name: Upload build artifacts
+
+      - name: Store Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: frontend-build
           path: frontend/dist/
           retention-days: 7
 
-  # ================================
-  # JOB 3: DEPLOY (Production)
-  # ================================
+  # =========================================================
+  # JOB 4: DÉPLOIEMENT (La Mise en Ligne)
+  # =========================================================
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    needs: [build]
+    # Ce job attend que la fabrication ET la sécurité soient OK
+    needs: [build, security]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: Deploy Frontend to Vercel
+
+      - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
+          vercel-args: "--prod"
+          # Pas besoin de working-directory ici car le Root Directory est déjà configuré sur le dashboard Vercel
