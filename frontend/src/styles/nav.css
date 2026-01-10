@@ -164,7 +164,7 @@ nav a.active {
   .menu-toggle {
     display: flex;
     position: fixed;
-    top: 1.5rem;
+    top: 2rem;
     right: 2rem;
     z-index: 1000;
     background: var(--color-primary);
@@ -177,8 +177,6 @@ nav a.active {
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
-    transform: scale(0.8);
-    right: 1.5rem;
   }
 
   .menu-toggle svg,
@@ -195,21 +193,10 @@ nav a.active {
     right: -100px;
     opacity: 0;
     visibility: hidden;
-    padding-top: 1.5rem;
   }
   nav.nav-sidebar.active {
     right: 1rem;
     opacity: 1;
     visibility: visible;
-  }
-  .nav__status-container {
-    /* On s'assure que le point vert n'est pas trop collé au haut de la barre */
-    margin-top: 0.5rem;
-  }
-  .nav__overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 998; /* Juste en dessous de la nav qui est à 999 */
   }
 }
