@@ -9,7 +9,7 @@ export const validateContact = (req: Request, res: Response, next: NextFunction)
   const { name, email, message, subject } = req.body as EmailParams;
 
   /* Validation immédiate : Si un champ manque ou est invalide, on stop */
-  if (!name || !email || !message) {
+  if (!name || !email || !message || subject) {
     res.status(400).json({ error: 'Champs requis manquants' });
     return;
   }
@@ -28,7 +28,7 @@ export const validateContact = (req: Request, res: Response, next: NextFunction)
   Object.assign(req.body, {
     name: v.escape(name.trim()),
     email: v.normalizeEmail(email) || email,
-    subject: subject ? v.escape(subject.trim()) : 'Nouveau message depuis le portfolio',
+    subject: subject ? v.escape(subject.trim()) : subject,
     message: v.escape(message.trim())
   });
 
