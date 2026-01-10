@@ -5,7 +5,7 @@ type LogArgs = (string | number | object | Error)[];
 
 export const logger = {
   info: (msg: string, ...args: LogArgs): void =>
-    console.log(format("ℹINFO", msg), ...args),
+    console.log(format("IINFO", msg), ...args),
 
   error: (msg: string, ...args: LogArgs): void =>
     console.error(format("ERREUR", msg), ...args),
