@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 
 /* Configuration Proxy (Render/Vercel) */ 
-app.set('trust proxy', 1);  // pour le ratelimiter fonctionne
+app.set('trust proxy', true);  // pour le ratelimiter fonctionne
 
 /* Initialisation des middlewares de sécurité et parsing */
 securityMiddleware(app);
