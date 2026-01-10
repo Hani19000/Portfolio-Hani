@@ -19,4 +19,13 @@ async function post<T>(url: string, body: unknown): Promise<T> {
   return json;
 }
 
+// fonction pour le réveil du server
+export const ReveilServer = async () => {
+  try {
+    return await fetch(`${baseUrl}/api/ping`);
+  } catch (error) {
+    console.log("Le serveur est en cours de réveil...", error);
+  }
+};
+
 export default post;

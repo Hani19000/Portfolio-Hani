@@ -19,6 +19,9 @@ securityMiddleware(app);
 /* Définition des points d'entrée */
 app.get('/', (_, res) => res.json({ status: 'OK', version: '1.0.0' }));
 app.use('/contact', contactRoutes);
+app.get('/api/ping', (req, res) => {
+  res.status(200).send('Server is awake');
+});
 
 /* Gestionnaire d'erreurs Sentry */
 Sentry.setupExpressErrorHandler(app);
@@ -31,7 +34,7 @@ const startServer = async (): Promise<void> => {
   try {
     app.listen(PORT, () => logger.info(` Serveur actif sur le port : ${PORT}`));
   } catch (err) {
-    logger.error('Échec lros du démarrage:', err instanceof Error ? err.message : err);
+    logger.error('Échec lros du démarrage:', err instanceof Error ? err.stack || err.message : String(err));
     process.exit(1);
   }
 };
