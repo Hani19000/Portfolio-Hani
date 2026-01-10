@@ -29,7 +29,7 @@ const NavLink: React.FC = () => {
           <ServerStatus />
         </div>
 
-        <div className="nav__divider" />
+        <div className="nav__divider" id="status-divider-mobile" />
         {NavData.map(({ id, icon }: NavItem) => (
           <a
             key={id}

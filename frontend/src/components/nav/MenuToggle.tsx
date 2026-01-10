@@ -7,7 +7,7 @@ interface MenuToggleProps {
 }
 
 const MenuToggle: React.FC<MenuToggleProps> = ({ isOpen, toggle }) => {
-  // le bouton disparaît totalement
+  // le bouton croix disparaît totalement
   if (isOpen) return null;
   return (
     <button className="menu-toggle" onClick={toggle} aria-label="Toggle Menu">
