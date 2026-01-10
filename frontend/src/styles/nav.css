@@ -101,11 +101,14 @@ nav a.active {
 
   /* Gestion de la disparition du bouton X quand ouvert */
   .menu-toggle.active {
-    display: none;
+    display: none; /* supprime la croix */
   }
 
   nav.nav-sidebar {
-    width: 60px; /* Largeur fixe pour un rend fin sur mobile */
+    right: -100px;
+    opacity: 0;
+    visibility: hidden;
+    width: 60px; /* rendu fin sur mobile */
   }
 
   nav.nav-sidebar.active {
@@ -113,9 +116,11 @@ nav a.active {
     opacity: 1;
     visibility: visible;
   }
-  .server-status-wrapper {
+  .nav__status-container {
     display: none;
   }
+
+  /* Cache le trait de séparation avec l'ID */
   #status-divider-mobile {
     display: none;
   }
