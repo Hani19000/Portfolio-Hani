@@ -4,6 +4,7 @@ import useTheme from "../../hooks/useTheme";
 import NavData, { NavItem } from "../../Data/NavLinkData";
 import MenuToggle from "./MenuToggle";
 import ThemeToggle from "./ThemeToggle";
+import ServerStatus from "../ServerStatus";
 
 const NavLink: React.FC = () => {
   const { activeNav, handleNavClick } = useNavActive();
@@ -23,6 +24,12 @@ const NavLink: React.FC = () => {
       <MenuToggle isOpen={isOpen} toggle={toggleMenu} />
 
       <nav className={`nav-sidebar ${isOpen ? "active" : ""}`}>
+        {/* Indicateur de statut placé en haut de la sidebar */}
+        <div className="nav__status-container">
+          <ServerStatus />
+        </div>
+
+        <div className="nav__divider" />
         {NavData.map(({ id, icon }: NavItem) => (
           <a
             key={id}
