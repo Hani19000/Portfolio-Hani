@@ -1,0 +1,6 @@
+# Autorise tous les robots à indexer le site
+User-agent: *
+Allow: /
+
+# Indique où se trouve le plan du site (à créer ensuite)
+Sitemap: https://portfolio-hani-nine.vercel.app/sitemap.xml

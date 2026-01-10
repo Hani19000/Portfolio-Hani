@@ -40,7 +40,8 @@ const Portfolio: React.FC = () => {
                   alt={title}
                   width="400"
                   height="500"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <h3>{title}</h3>

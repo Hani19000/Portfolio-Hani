@@ -26,8 +26,8 @@ const About: React.FC = () => {
               width={360}
               height={440}
               className="about-img"
-              loading="eager"
-              fetchPriority="high"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -41,7 +41,7 @@ const About: React.FC = () => {
                   <h5>{title}</h5>
                   <small>{description}</small>
                 </article>
-              ),
+              )
             )}
           </div>
 

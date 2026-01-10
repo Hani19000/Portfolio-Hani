@@ -7,7 +7,14 @@ interface HeaderImageProps {
 
 const HeaderImage: React.FC<HeaderImageProps> = ({ src, alt = "Profile" }) => (
   <div className="me">
-    <img src={src} alt={alt} width="400" height="500" loading="eager" />
+    <img
+      src={src}
+      alt={alt}
+      width="400"
+      height="500"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 );
 

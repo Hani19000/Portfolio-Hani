@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useNavActive from "./NavActive";
+import useNavActive from "../../hooks/NavActive";
 import useTheme from "../../hooks/useTheme";
 import NavData, { NavItem } from "../../Data/NavLinkData";
 import MenuToggle from "./MenuToggle";
