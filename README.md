@@ -64,7 +64,7 @@ C'est un projet personnel que j'ai construit dans le cadre de ma formation en d�
 
 ### 👥 À qui s'adresse le projet
 
-Ce portfolio s'adresse principalement aux **recruteurs**, **entreprises** et **clients potentiels** qui veulent découvrir mon profil et mes réalisations. Il est également utile pour d'autres développeurs qui souhaitent voir comment j'organise et structure mes projets.
+Ce portfolio s'adresse principalement aux **recruteurs**, **entreprises** mais aussi des **clients potentiels** qui veulent découvrir mon profil et mes réalisations. Il est également utile pour d'autres développeurs qui souhaitent voir comment j'organise et structure mes projets.
 
 ---
 
