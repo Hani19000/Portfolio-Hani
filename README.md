@@ -5,7 +5,7 @@
 ### Site vitrine moderne développé en React + TypeScript avec backend Express, formulaire de contact sécurisé et pipeline CI/CD automatisé
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=vercel)](https://portfolio-hani-nine.vercel.app)
-[![GitHub](https://img.shields.io/badge/github-repository-181717?style=for-the-badge&logo=github)]((https://github.com/Hani19000/Portfolio-Hani))
+[![GitHub](https://img.shields.io/badge/github-repository-181717?style=for-the-badge&logo=github)](https://github.com/Hani19000/Portfolio-Hani)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
@@ -844,6 +844,6 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 ### Hani Derrouiche
 
 [![Email](https://img.shields.io/badge/Email-hanider27%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hanider27@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Hani_Derrouiche-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)]((https://www.linkedin.com/in/hani-derrouiche-199461372/))
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Hani_Derrouiche-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hani-derrouiche-199461372/)
 [![GitHub](https://img.shields.io/badge/GitHub-@Hani19000-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Hani19000)
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live_Demo-00C7B7?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-hani-nine.vercel.app)
