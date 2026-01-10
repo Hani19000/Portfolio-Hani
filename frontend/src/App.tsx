@@ -13,7 +13,6 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Footer = lazy(() => import("./pages/Footer"));
 /* const testimonials = lazy(() => import('./pages/testimonials')) */
 
-
 // Composant de chargement
 const SectionLoader = () => (
   <div className="section-loader">
