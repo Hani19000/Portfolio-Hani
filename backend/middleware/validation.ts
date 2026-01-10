@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import v from 'validator';
-import { logger } from '../utils/logger.js';
-import { EmailParams } from '../config/email.js';
+import logger  from '../utils/logger.js';
+import EmailParams from '../config/email.js';
 
 
 /* Validation et nettoyage des données de contact */
@@ -35,8 +35,13 @@ export const validateContact = (req: Request, res: Response, next: NextFunction)
   next();
 };
 
+interface AppError extends Error {
+  status?: number;
+  code?: string;
+}
+
 /* Gestionnaire d'erreurs global */
-export const errorHandler = (err: any, _req: Request, res: Response, _next: NextFunction): void => {
+export const errorHandler = (err: AppError, _req: Request, res: Response, _next: NextFunction): void => {
   const isCors = err.message === 'Non autorisé par CORS';
   
   logger.error(err.stack || err.message);

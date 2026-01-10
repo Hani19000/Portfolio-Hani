@@ -2,7 +2,7 @@ import sgMail from "@sendgrid/mail";
 import * as Sentry from "@sentry/node";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-export interface EmailParams {
+interface EmailParams {
   name: string;
   email: string;
   subject: string;
@@ -43,3 +43,5 @@ export const sendEmail = async ({
     throw error;
   }
 };
+
+export default EmailParams
