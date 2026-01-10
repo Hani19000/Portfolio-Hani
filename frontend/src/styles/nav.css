@@ -22,6 +22,26 @@ nav {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/*============== ICONS ==============*/
+
+/* Style appliqué aux liens de navigation contenant les icônes */
+/* Taille par défaut pour tous les SVG dans la nav */
+nav a svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Agrandissement ciblé pour les icônes avec la classe spécifique */
+.nav__icon-large {
+  transform: scale(1.25); /* Augmente la taille de 25% */
+}
+
+/* Optionnel : Ajustement au survol pour garder une cohérence */
+nav a:hover .nav__icon-large {
+  transform: scale(1.35);
+}
+
 /*============== ÉLÉMENTS (LIENS & TOGGLE) ==============*/
 nav a,
 .theme-toggle {
