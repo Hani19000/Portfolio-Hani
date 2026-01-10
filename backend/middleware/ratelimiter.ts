@@ -11,5 +11,5 @@ export const contactLimiter = rateLimit({
     }, 
     standardHeaders: true,
     legacyHeaders: false,
-    message: { error: "Trop de messages. Réessayez dans 15 minutes." },
+    message: { error: "Trop de messages. Réessayez dans 1 heure." },
 });
