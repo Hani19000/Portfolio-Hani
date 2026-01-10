@@ -22,7 +22,7 @@ const SectionLoader = () => (
 
 function App() {
   useEffect(() => {
-    ReveilServer(); // Appelle a l'api
+    ReveilServer(); // Appelle a l'api réveille
   }, []);
   return (
     <>
