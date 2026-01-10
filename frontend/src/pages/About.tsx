@@ -41,7 +41,7 @@ const About: React.FC = () => {
                   <h5>{title}</h5>
                   <small>{description}</small>
                 </article>
-              )
+              ),
             )}
           </div>
 
