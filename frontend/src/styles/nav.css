@@ -26,7 +26,8 @@ nav {
 }
 
 /*============== ÉLÉMENTS INTERACTIFS (LIENS & TOGGLE) ==============*/
-nav a, .theme-toggle {
+nav a,
+.theme-toggle {
   width: 45px;
   height: 45px;
   display: flex;
@@ -51,19 +52,26 @@ nav a {
 }
 
 /* États Hover & Active */
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
   background: var(--color-primary);
   color: var(--color-bg) !important;
   transform: scale(1.1);
 }
 
-.theme-toggle:hover { transform: rotate(30deg) scale(1.2); }
+.theme-toggle:hover {
+  transform: rotate(30deg) scale(1.2);
+}
 
 /* Spécificités Light Mode */
-.light-mode nav a { color: #666666; }
-.light-mode .theme-toggle { color: #000000; }
+.light-mode nav a {
+  color: #666666;
+}
+.light-mode .theme-toggle {
+  color: #000000;
+}
 
-.light-mode nav a:hover, 
+.light-mode nav a:hover,
 .light-mode nav a.active {
   background: #000000;
   color: #ffffff !important;
@@ -86,13 +94,16 @@ nav a:hover, nav a.active {
 }
 
 /* ================= MOBILE (MENU TOGGLE) ================= */
-.menu-toggle { display: none; }
+.menu-toggle {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
   .menu-toggle {
     display: flex;
     position: fixed;
-    top: 2rem; right: 2rem;
+    top: 2rem;
+    right: 2rem;
     z-index: 1000;
     background: var(--color-primary);
     color: var(--color-bg);
@@ -106,7 +117,8 @@ nav a:hover, nav a.active {
     transition: all 0.4s ease;
   }
 
-  .menu-toggle svg, .menu-toggle i {
+  .menu-toggle svg,
+  .menu-toggle i {
     transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   }
 
@@ -115,8 +127,19 @@ nav a:hover, nav a.active {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   }
 
-  .menu-toggle.active svg, .menu-toggle.active i { transform: rotate(180deg) scale(1.1); }
+  .menu-toggle.active svg,
+  .menu-toggle.active i {
+    transform: rotate(180deg) scale(1.1);
+  }
 
-  nav.nav-sidebar { right: -100px; opacity: 0; visibility: hidden; }
-  nav.nav-sidebar.active { right: 1rem; opacity: 1; visibility: visible; }
+  nav.nav-sidebar {
+    right: -100px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  nav.nav-sidebar.active {
+    right: 1rem;
+    opacity: 1;
+    visibility: visible;
+  }
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import { TimelineItem } from '../../Data/AboutCards';
+import React from "react";
+import { TimelineItem } from "../../Data/AboutCards";
 
 interface TimelineProps {
   data: TimelineItem[];

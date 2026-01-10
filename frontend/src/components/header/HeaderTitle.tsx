@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 interface HeaderTitleProps {
   fullText?: string;
 }
 
-const HeaderTitle: React.FC<HeaderTitleProps> = ({ fullText = "Des idées au code..." }) => {
-  const [text, setText] = useState<string>('');
+const HeaderTitle: React.FC<HeaderTitleProps> = ({
+  fullText = "Des idées au code...",
+}) => {
+  const [text, setText] = useState<string>("");
 
   useEffect(() => {
     let index = 0;

@@ -62,8 +62,6 @@
 /*        LIGHT MODE         */
 /* ========================= */
 
-
-
 /* LIGHT MODE : image NOIRE par défaut */
 .light-mode .about__me-image img {
   filter: grayscale(100%);
@@ -75,7 +73,6 @@
   filter: grayscale(0%);
 }
 
-
 /*============== CARTES & TIMELINE (Blocs) ==============*/
 .about__cards {
   display: grid;
@@ -83,7 +80,8 @@
   gap: 1.5rem;
 }
 
-.about__card, .about__timeline {
+.about__card,
+.about__timeline {
   background: var(--color-bg-variant);
   border: 1px solid var(--border-color);
   transition: var(--transition);
@@ -102,8 +100,13 @@
   backdrop-filter: blur(10px);
 }
 
-.light-mode .about__card { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04); }
-.light-mode .about__card:hover { background: var(--color-bg); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); }
+.light-mode .about__card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+}
+.light-mode .about__card:hover {
+  background: var(--color-bg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
 
 /*============== TEXTE ==============*/
 .about__icon {
@@ -119,7 +122,9 @@
 }
 
 .light-mode .about__content p,
-.light-mode .about__timeline-description { color: #444444; }
+.light-mode .about__timeline-description {
+  color: #444444;
+}
 
 /*============== TIMELINE ==============*/
 .about__timeline-wrapper {
@@ -140,8 +145,12 @@
   transform: translateY(-5px);
 }
 
-.light-mode .about__timeline { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); }
-.light-mode .about__timeline:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06); }
+.light-mode .about__timeline {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+.light-mode .about__timeline:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
 
 .about__timeline-title {
   font-size: 1.6rem;
@@ -152,9 +161,12 @@
 }
 
 .about__timeline-title::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: 0; left: 0; width: 50px; height: 3px;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
   background: var(--color-primary);
   border-radius: 2px;
 }
@@ -165,10 +177,17 @@
 }
 
 .about__timeline-container::before {
-  content: '';
+  content: "";
   position: absolute;
-  left: 0; top: 0; bottom: 0; width: 2px;
-  background: linear-gradient(180deg, var(--color-primary) 0%, transparent 100%);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--color-primary) 0%,
+    transparent 100%
+  );
 }
 
 .about__timeline-item {
@@ -179,8 +198,10 @@
 
 .about__timeline-dot {
   position: absolute;
-  left: -2.35rem; top: 0.3rem;
-  width: 12px; height: 12px;
+  left: -2.35rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
   background: var(--color-primary);
   border-radius: 50%;
   border: 3px solid var(--color-bg-variant);
@@ -202,7 +223,10 @@
   display: block;
 }
 
-.about__timeline-content h4 { font-size: 1.1rem; color: var(--color-white); }
+.about__timeline-content h4 {
+  font-size: 1.1rem;
+  color: var(--color-white);
+}
 
 .about__timeline-description {
   display: flex;
@@ -214,17 +238,40 @@
 
 /* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
-  .about__container, .about__timeline-wrapper { grid-template-columns: 1fr; }
-  .about__container { gap: 3rem; }
-  .about__me { width: 60%; margin: 0 auto 3rem; }
-  
+  .about__container,
+  .about__timeline-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .about__container {
+    gap: 3rem;
+  }
+  .about__me {
+    width: 60%;
+    margin: 0 auto 3rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .about__me { width: 85%; padding: 1rem; }
-  .about__me-image { width: calc(100%); height: calc(100%); transform: rotate(8deg);}
-  .about__cards { grid-template-columns: 1fr; gap: 1rem; }
-  .about__timeline { padding: 1.5rem; }
-  .about__timeline-container { padding-left: 1.5rem; }
-  .about__timeline-dot { left: -1.85rem; }
+  .about__me {
+    width: 85%;
+    padding: 1rem;
+  }
+  .about__me-image {
+    width: calc(100%);
+    height: calc(100%);
+    transform: rotate(8deg);
+  }
+  .about__cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .about__timeline {
+    padding: 1.5rem;
+  }
+  .about__timeline-container {
+    padding-left: 1.5rem;
+  }
+  .about__timeline-dot {
+    left: -1.85rem;
+  }
 }

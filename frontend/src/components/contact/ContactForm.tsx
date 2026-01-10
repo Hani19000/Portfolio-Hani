@@ -1,7 +1,7 @@
-import  useEmail  from "../../hooks/ContactEmail";
+import useEmail from "../../hooks/ContactEmail";
 
 const ContactForm: React.FC = () => {
-  const { onSubmit, isLoading, status } = useEmail(); 
+  const { onSubmit, isLoading, status } = useEmail();
 
   return (
     <form onSubmit={onSubmit}>

@@ -1,8 +1,8 @@
-import React from 'react';
-import CTA from './CTA';
-import HeaderSocials from '../../Data/HeaderSocials';
-import HeaderTitle from './HeaderTitle';
-import HeaderImage from './HeaderImage';
+import React from "react";
+import CTA from "./CTA";
+import HeaderSocials from "../../Data/HeaderSocials";
+import HeaderTitle from "./HeaderTitle";
+import HeaderImage from "./HeaderImage";
 
 interface HeaderContentProps {
   name: string;
@@ -12,7 +12,13 @@ interface HeaderContentProps {
   image: string;
 }
 
-const HeaderContent: React.FC<HeaderContentProps> = ({ name, title, role, description, image }) => (
+const HeaderContent: React.FC<HeaderContentProps> = ({
+  name,
+  title,
+  role,
+  description,
+  image,
+}) => (
   <div className="container header__container">
     <h5>{name}</h5>
     <HeaderTitle fullText={title} />
@@ -21,7 +27,9 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ name, title, role, descri
     <CTA />
     <HeaderSocials />
     <HeaderImage src={image} alt={name} />
-    <a href="#contact" className="scroll__down">Scroll Down</a>
+    <a href="#contact" className="scroll__down">
+      Scroll Down
+    </a>
   </div>
 );
 

@@ -7,17 +7,17 @@ import { RiServiceFill } from "react-icons/ri";
 /* Interface pour un lien de navigation */
 export interface NavItem {
   id: string;
-  icon: ReactNode; 
+  icon: ReactNode;
 }
 
 const NavData: NavItem[] = [
-  { id: '#', icon: <IoMdHome /> },
-  { id: '#about', icon: <FaUser /> },
-  { id: '#experience', icon: <FaBookOpen /> },
-  { id: '#services-section', icon: <RiServiceFill /> },
-  { id: '#portfolio', icon: <FaBriefcase /> },
+  { id: "#", icon: <IoMdHome /> },
+  { id: "#about", icon: <FaUser /> },
+  { id: "#experience", icon: <FaBookOpen /> },
+  { id: "#services-section", icon: <RiServiceFill /> },
+  { id: "#portfolio", icon: <FaBriefcase /> },
   // { id: '#testimonials', icon: <FaStarHalfStroke /> },
-  { id: '#contact', icon: <IoMdContact /> },
+  { id: "#contact", icon: <IoMdContact /> },
 ];
 
 export default NavData;

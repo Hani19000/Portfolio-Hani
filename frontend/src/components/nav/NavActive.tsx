@@ -30,7 +30,7 @@ function useNavActive(): NavActiveReturn {
       {
         rootMargin: "-40% 0px -40% 0px", // Déclenche quand la section est au milieu
         threshold: 0,
-      }
+      },
     );
 
     // Observer le header pour le retour en haut (#)

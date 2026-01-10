@@ -4,6 +4,6 @@ import NavLink from "../components/nav/NavLink";
 
 const Nav: React.FC = () => {
   return <NavLink />;
-}
+};
 
 export default Nav;

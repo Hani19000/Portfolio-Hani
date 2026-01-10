@@ -1,9 +1,9 @@
-import React from 'react';
-import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import React from "react";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
 
 interface MenuToggleProps {
   isOpen: boolean;
-  toggle: () => void; 
+  toggle: () => void;
 }
 
 const MenuToggle: React.FC<MenuToggleProps> = ({ isOpen, toggle }) => {

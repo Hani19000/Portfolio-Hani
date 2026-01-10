@@ -3,7 +3,6 @@ import "../styles/portfolio.css";
 import portfolioCards, { PortfolioItem } from "../Data/PortfolioCards";
 import HeaderParticles from "../components/header/HeaderParticles";
 
-
 /* Import Swiper React components & modules */
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";

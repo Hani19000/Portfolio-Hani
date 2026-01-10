@@ -1,7 +1,7 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App";
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
@@ -11,23 +11,23 @@ Sentry.init({
   environment: import.meta.env.MODE, // Ajoute "development" ou "production" automatiquement
 });
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
   </StrictMode>,
-)
+);
 
 if (import.meta.env.PROD) {
   console.log = () => {};
   console.debug = () => {};
   // On ne redirige vers Sentry que les vraies erreurs
   console.error = (...args: unknown[]) => {
-  args.forEach(arg => {
-    if (arg instanceof Error) {
-      Sentry.captureException(arg);
-    } else {
-      Sentry.captureMessage(String(arg));
-    }
-  });
-};
+    args.forEach((arg) => {
+      if (arg instanceof Error) {
+        Sentry.captureException(arg);
+      } else {
+        Sentry.captureMessage(String(arg));
+      }
+    });
+  };
 }

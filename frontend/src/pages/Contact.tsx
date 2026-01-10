@@ -5,7 +5,7 @@ import ContactForm from "../components/contact/ContactForm";
 import HeaderParticles from "../components/header/HeaderParticles";
 
 const Contact: React.FC = () => (
-  <section id="contact" style={{ position: 'relative' }}>
+  <section id="contact" style={{ position: "relative" }}>
     <HeaderParticles count={20} />
     <h5>Une Question ?</h5>
     <h2>Parlons de votre projet</h2>

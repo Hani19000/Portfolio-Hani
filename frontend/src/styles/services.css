@@ -20,16 +20,25 @@
 
 /* EFFET CRÉATIF : Éclat de lumière blanche au survol */
 .service::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.6s ease;
   z-index: 2;
 }
 
-.service:hover::before { left: 100%; }
+.service:hover::before {
+  left: 100%;
+}
 
 .service:hover {
   background: rgba(255, 255, 255, 0.02);
@@ -80,7 +89,9 @@
   align-items: flex-start;
   padding: 0.6rem;
   border-radius: 0.5rem;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .service__list li:hover {
@@ -103,7 +114,9 @@
   font-size: 1.1rem;
   margin-top: 0.2rem;
   min-width: 20px;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .service__list li:hover .service__list-icon {
@@ -124,11 +137,10 @@
   color: #fff;
 }
 
-
 /* ========== Prix ========== */
 .service__footer {
   padding: 1.5rem 2rem;
-  margin-top: auto; 
+  margin-top: auto;
   border-top: 1px solid var(--border-color);
   text-align: center;
   background: var(--color-bg);
@@ -147,7 +159,6 @@
   background: transparent;
 }
 
-
 /* ========== PARTICULES & DÉCO ========== */
 .service__particles {
   position: absolute;
@@ -158,7 +169,8 @@
 
 .particle {
   position: absolute;
-  width: 3px; height: 3px;
+  width: 3px;
+  height: 3px;
   background: var(--color-light);
   border-radius: 50%;
   opacity: 0.3;
@@ -166,21 +178,44 @@
 
 /* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
-  .services__container { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .service { min-height: 350px; }
+  .services__container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .service {
+    min-height: 350px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .services__container { grid-template-columns: 1fr; }
-  .service { min-height: auto; }
-  .service__head { padding: 1.5rem; }
-  .service__list { padding: 2rem 1.5rem; }
+  .services__container {
+    grid-template-columns: 1fr;
+  }
+  .service {
+    min-height: auto;
+  }
+  .service__head {
+    padding: 1.5rem;
+  }
+  .service__list {
+    padding: 2rem 1.5rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  .service__head { padding: 1.2rem; }
-  .service__list { padding: 1.5rem 1rem; }
-  .service__list p { font-size: 0.85rem; }
-  .service__footer {padding: 1rem;}
-  .service__price {font-size: 1.1rem;}
+  .service__head {
+    padding: 1.2rem;
+  }
+  .service__list {
+    padding: 1.5rem 1rem;
+  }
+  .service__list p {
+    font-size: 0.85rem;
+  }
+  .service__footer {
+    padding: 1rem;
+  }
+  .service__price {
+    font-size: 1.1rem;
+  }
 }

@@ -13,7 +13,10 @@ const NavLink: React.FC = () => {
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
 
-  const handleThemeChange = () => {toggleTheme(); closeMenu();};
+  const handleThemeChange = () => {
+    toggleTheme();
+    closeMenu();
+  };
   return (
     <>
       {isOpen && <div className="nav__overlay" onClick={closeMenu} />}

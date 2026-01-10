@@ -4,7 +4,11 @@ interface FooterLinkItemProps {
   isLogo?: boolean;
 }
 
-const FooterLinkItem: React.FC<FooterLinkItemProps> = ({ href, text, isLogo }) => (
+const FooterLinkItem: React.FC<FooterLinkItemProps> = ({
+  href,
+  text,
+  isLogo,
+}) => (
   <li>
     <a href={href} className={isLogo ? "footer__logo" : ""}>
       {text}

@@ -14,7 +14,7 @@ const ServicesCards: ServiceItem[] = [
       "Navigation fluide et logique",
       "Responsive design",
     ],
-    price: "Sur devis"
+    price: "Sur devis",
   },
   {
     title: "WEB DEVELOPMENT",
@@ -26,7 +26,7 @@ const ServicesCards: ServiceItem[] = [
       "Déploiement et mise en ligne",
       "Refonte De Site Internet",
     ],
-    price: "À partir de 800€"
+    price: "À partir de 800€",
   },
   {
     title: "Maintenance & Accompagnement",
@@ -35,7 +35,7 @@ const ServicesCards: ServiceItem[] = [
       "Corrections de bugs",
       "Support technique",
     ],
-    price: "50€ / heure"
+    price: "50€ / heure",
   },
 ];
 

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 const HeaderParticles = ({ count = 20 }) => {
   /* Générer les positions une seule fois avec useMemo */
@@ -8,7 +8,7 @@ const HeaderParticles = ({ count = 20 }) => {
         id: i,
         left: Math.random() * 100,
         delay: Math.random() * 5,
-        duration: 5 + (Math.random() * 10),
+        duration: 5 + Math.random() * 10,
       }));
     return generateParticles();
   }, [count]);
@@ -20,7 +20,7 @@ const HeaderParticles = ({ count = 20 }) => {
           key={id}
           className="particle"
           style={{
-            left: left + '%',
+            left: left + "%",
             animationDelay: `${delay}s`,
             animationDuration: `${duration}s`,
           }}

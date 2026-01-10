@@ -1,5 +1,5 @@
-import React from 'react';
-import { RiMoonClearLine, RiSunLine } from 'react-icons/ri'; // Icônes plus "fines"
+import React from "react";
+import { RiMoonClearLine, RiSunLine } from "react-icons/ri"; // Icônes plus "fines"
 
 interface ThemeToggleProps {
   isDark: boolean;
@@ -7,8 +7,8 @@ interface ThemeToggleProps {
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, onToggle }) => (
-  <button 
-    className="theme-toggle" 
+  <button
+    className="theme-toggle"
     onClick={onToggle}
     aria-label="Changer de thème"
   >

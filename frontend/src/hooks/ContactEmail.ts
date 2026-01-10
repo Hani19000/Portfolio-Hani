@@ -73,7 +73,7 @@ export function useEmail() {
 
       timeoutRef.current = window.setTimeout(
         () => setStatus({ type: "idle", message: "" }),
-        5000
+        5000,
       );
     }
   };

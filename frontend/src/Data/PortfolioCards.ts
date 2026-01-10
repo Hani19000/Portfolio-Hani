@@ -20,43 +20,43 @@ const portfolioCards: PortfolioItem[] = [
     id: 1,
     image: IMG1,
     title: "E-commerce website",
-    github: "https://github.com/Hani19000/E-commerce-website"
+    github: "https://github.com/Hani19000/E-commerce-website",
   },
   {
     id: 2,
     image: IMG2,
     title: "QR code",
-    github: "https://github.com/Hani19000/QR-code"
+    github: "https://github.com/Hani19000/QR-code",
   },
   {
     id: 3,
     image: IMG3,
     title: "Audio_player",
-    github: "https://github.com/Hani19000/Audio_player"
+    github: "https://github.com/Hani19000/Audio_player",
   },
   {
     id: 4,
     image: IMG4,
     title: "Agence de voyage",
-    github: "https://github.com/Hani19000/agence-de-voyage"
+    github: "https://github.com/Hani19000/agence-de-voyage",
   },
   {
     id: 5,
     image: IMG5,
     title: "To Do List",
-    github: "https://github.com/Hani19000/To-Do-List"
+    github: "https://github.com/Hani19000/To-Do-List",
   },
   {
     id: 6,
     image: IMG6,
     title: "API REST Authentication",
-    github: "https://github.com/Hani19000/API_REST_TYPESCRIPT"
+    github: "https://github.com/Hani19000/API_REST_TYPESCRIPT",
   },
-    {
+  {
     id: 7,
     image: IMG7,
     title: "Text-To-voice-converting",
-    github: "https://github.com/Hani19000/Text-To-voice-converting"
+    github: "https://github.com/Hani19000/Text-To-voice-converting",
   },
 ];
 

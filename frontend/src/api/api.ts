@@ -19,4 +19,4 @@ async function post<T>(url: string, body: unknown): Promise<T> {
   return json;
 }
 
-export default post
+export default post;
