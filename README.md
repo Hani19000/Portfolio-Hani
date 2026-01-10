@@ -5,7 +5,7 @@
 ### Site vitrine moderne développé en React + TypeScript avec backend Express, formulaire de contact sécurisé et pipeline CI/CD automatisé
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=vercel)](https://portfolio-hani-nine.vercel.app)
-[![GitHub](https://img.shields.io/badge/github-repository-181717?style=for-the-badge&logo=github)](https://github.com/Hani19000/portfolio)
+[![GitHub](https://img.shields.io/badge/github-repository-181717?style=for-the-badge&logo=github)]((https://github.com/Hani19000/Portfolio-Hani))
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
