@@ -5,7 +5,12 @@ const ContactForm: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="subject" placeholder="Sujet" required />
+      <input
+        type="text"
+        name="subject"
+        placeholder="Sujet de votre message"
+        required
+      />
       <input type="text" name="name" placeholder="Votre nom complet" required />
       <input type="email" name="email" placeholder="Votre email" required />
       <textarea name="message" rows={7} placeholder="Votre message" required />

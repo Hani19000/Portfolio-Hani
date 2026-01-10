@@ -9,7 +9,7 @@ export const validateContact = (req: Request, res: Response, next: NextFunction)
   const { name, email, message, subject } = req.body as EmailParams;
 
   /* Validation immédiate : Si un champ manque ou est invalide, on stop */
-  if (!name || !email || !message || subject) {
+  if (!name || !email || !message || !subject) {
     res.status(400).json({ error: 'Champs requis manquants' });
     return;
   }

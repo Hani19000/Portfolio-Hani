@@ -10,6 +10,7 @@ export interface ContactData {
   name: string;
   email: string;
   message: string;
+  subject: string;
 }
 
 /* ===== UTILS ===== */
@@ -19,6 +20,7 @@ const extractData = (form: HTMLFormElement): ContactData => {
     name: String(fd.get("name") ?? ""),
     email: String(fd.get("email") ?? ""),
     message: String(fd.get("message") ?? ""),
+    subject: String(fd.get("subject") ?? ""),
   };
 };
 
