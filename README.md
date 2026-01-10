@@ -34,7 +34,6 @@
 
 - [🚀 Installation](#-installation--utilisation)
 - [📐 Qualité du code](#-qualité-du-code)
-- [📱 Post LinkedIn](#-post-linkedin)
 - [📧 Contact](#-contact)
 
 </td>
