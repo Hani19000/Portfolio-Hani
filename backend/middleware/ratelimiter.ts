@@ -3,8 +3,8 @@ import logger from "../utils/logger";
 
 /* Restriction des requêtes pour prévenir le spam (5 msg / 15 min) */
 export const contactLimiter = rateLimit({
-     windowMs: 15 * 60 * 1000,
-    max: 5,
+     windowMs: 60 * 60 * 1000,
+    max: 2,
     handler: (req, res, next, options) => {
         logger.warn(`Tentative de spam détectée depuis l'IP : ${req.ip}`); 
         res.status(options.statusCode).send(options.message);
