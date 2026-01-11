@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/contact.css";
 import ContactExt from "../components/contact/ContactExt";
 import ContactForm from "../components/contact/ContactForm";

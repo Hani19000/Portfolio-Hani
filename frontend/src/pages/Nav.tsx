@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/nav.css";
 import NavLink from "../components/nav/NavLink";
 

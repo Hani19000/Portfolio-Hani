@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/experience.css";
 import ExperienceCards from "../components/experience/ExperienceCards";
 import HeaderParticles from "../components/header/HeaderParticles";

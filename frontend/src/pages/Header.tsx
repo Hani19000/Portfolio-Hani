@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/header.css";
 import ME from "../assets/me.webp";
 import HeaderParticles from "../components/header/HeaderParticles";

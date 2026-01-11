@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/footer.css";
 import footerLinks, { FooterLink } from "../Data/FooterLinks";
 import FooterIcons from "../components/footer/FooterIcons";

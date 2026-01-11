@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/about.css";
 import ME from "../assets/me-about.webp";
 import Timeline from "../components/about/Timeline";

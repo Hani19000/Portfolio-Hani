@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/portfolio.css";
 import portfolioCards, { PortfolioItem } from "../Data/PortfolioCards";
 import HeaderParticles from "../components/header/HeaderParticles";
