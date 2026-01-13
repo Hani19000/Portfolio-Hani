@@ -3,7 +3,7 @@ import Header from "./pages/Header"; // Garde Header car visible immédiatement
 import Nav from "./pages/Nav";
 import { ReveilServer } from "./api/api";
 import { useEffect } from "react";
-
+import Loading from "./components/Loading";
 // Composants chargés à la demande
 const About = lazy(() => import("./pages/About"));
 const Experience = lazy(() => import("./pages/Experience"));
@@ -26,32 +26,42 @@ function App() {
   }, []);
   return (
     <>
-      <Header />
-      <Nav />
-
-      <Suspense fallback={<SectionLoader />}>
-        <About />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <Experience />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <Services />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <Portfolio />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <Contact />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <Footer />
-      </Suspense>
+      <Loading>
+        <Suspense fallback={<SectionLoader />}>
+          <Header />
+          <Nav />
+        </Suspense>
+      </Loading>
+      <Loading>
+        <Suspense fallback={<SectionLoader />}>
+          <About />
+        </Suspense>
+      </Loading>
+      <Loading>
+        <Suspense fallback={<SectionLoader />}>
+          <Experience />
+        </Suspense>
+      </Loading>
+      <Loading>
+        <Suspense fallback={<SectionLoader />}>
+          <Services />
+        </Suspense>
+      </Loading>
+      <Loading>
+        <Suspense fallback={<SectionLoader />}>
+          <Portfolio />
+        </Suspense>
+      </Loading>
+      <Loading>
+        <Suspense fallback={<SectionLoader />}>
+          <Contact />
+        </Suspense>
+      </Loading>
+      <Loading>
+        <Suspense fallback={<SectionLoader />}>
+          <Footer />
+        </Suspense>
+      </Loading>
     </>
   );
 }
