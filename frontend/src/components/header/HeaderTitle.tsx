@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Loading from "../Loading";
 interface HeaderTitleProps {
   fullText?: string;
 }
@@ -22,10 +22,12 @@ const HeaderTitle: React.FC<HeaderTitleProps> = ({
   }, [fullText]);
 
   return (
-    <h1 className="header__title">
-      {text}
-      <span className="cursor">|</span>
-    </h1>
+    <Loading>
+      <h1 className="header__title">
+        {text}
+        <span className="cursor">|</span>
+      </h1>
+    </Loading>
   );
 };
 

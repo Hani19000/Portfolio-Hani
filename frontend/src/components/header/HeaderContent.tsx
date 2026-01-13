@@ -3,7 +3,7 @@ import CTA from "./CTA";
 import HeaderSocials from "../../Data/HeaderSocials";
 import HeaderTitle from "./HeaderTitle";
 import HeaderImage from "./HeaderImage";
-
+import Loading from "../Loading";
 interface HeaderContentProps {
   name: string;
   title: string;
@@ -20,11 +20,19 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
   image,
 }) => (
   <div className="container header__container">
-    <h5>{name}</h5>
+    <Loading>
+      <h5>{name}</h5>
+    </Loading>
     <HeaderTitle fullText={title} />
-    <h5 className="text-light">{role}</h5>
-    <h5 className="header__description">{description}</h5>
-    <CTA />
+    <Loading>
+      <h5 className="text-light">{role}</h5>
+    </Loading>
+    <Loading>
+      <h5 className="header__description">{description}</h5>
+    </Loading>
+    <Loading>
+      <CTA />
+    </Loading>
     <HeaderSocials />
     <HeaderImage src={image} alt={name} />
     <a href="#contact" className="scroll__down">
