@@ -23,6 +23,13 @@ const Experience: React.FC = () => {
             <ExperienceCards type="backend" />
           </div>
         </div>
+
+        <div className="experience__devops">
+          <h3>DevOps/Monitoring</h3>
+          <div className="experience__content">
+            <ExperienceCards type="devops" />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import experienceItems, { ExperienceItem } from "../../Data/ExperiencesItems";
 
 interface ExperienceCardsProps {
-  type: "frontend" | "backend";
+  type: "frontend" | "backend" | "devops";
 }
 
 const ExperienceCards: React.FC<ExperienceCardsProps> = ({ type }) => {

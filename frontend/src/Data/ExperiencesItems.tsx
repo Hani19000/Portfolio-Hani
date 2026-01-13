@@ -1,19 +1,27 @@
 import { ReactNode } from "react";
+// Regroupement des imports par bibliothèque pour plus de clarté
 import { IoLogoHtml5, IoLogoJavascript } from "react-icons/io5";
-import { FaCss3Alt, FaPython, FaNode } from "react-icons/fa";
+import { FaCss3Alt, FaPython, FaNode, FaGitAlt } from "react-icons/fa";
+import { FaBootstrap } from "react-icons/fa6"; // Fa6 est correct pour Bootstrap
 import { RiReactjsLine } from "react-icons/ri";
-import { SiTypescript, SiExpress } from "react-icons/si";
+import {
+  SiTypescript,
+  SiExpress,
+  SiMongodb,
+  SiSqlite,
+  SiSentry,
+  SiGithubactions,
+} from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
-import { SiMongodb } from "react-icons/si";
-import { FaBootstrap } from "react-icons/fa6";
-import { SiSqlite } from "react-icons/si";
 import { CgFigma } from "react-icons/cg";
-/* Interface stricte pour une compétence */
+import { MdHealthAndSafety } from "react-icons/md";
+
+type ProjectCategory = "frontend" | "backend" | "devops";
 export interface ExperienceItem {
   icon: ReactNode;
   title: string;
   description: string;
-  type: "frontend" | "backend";
+  type: ProjectCategory;
 }
 
 const experienceItems: ExperienceItem[] = [
@@ -21,81 +29,108 @@ const experienceItems: ExperienceItem[] = [
   {
     icon: <IoLogoHtml5 />,
     title: "HTML",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "frontend",
   },
   {
     icon: <FaCss3Alt />,
     title: "CSS",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "frontend",
   },
   {
     icon: <IoLogoJavascript />,
     title: "JavaScript",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "frontend",
   },
   {
     icon: <RiReactjsLine />,
     title: "React",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "frontend",
   },
   {
     icon: <SiTypescript />,
     title: "TypeScript",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "frontend",
   },
   {
     icon: <FaBootstrap />,
     title: "Bootstrap",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "frontend",
   },
   {
     icon: <CgFigma />,
     title: "Figma",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "frontend",
   },
+
   /* Backend */
   {
     icon: <FaPython />,
     title: "Python/Django",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "backend",
   },
   {
     icon: <FaNode />,
     title: "Node.js",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "backend",
   },
   {
     icon: <SiExpress />,
     title: "Express.js",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "backend",
   },
   {
     icon: <BiLogoPostgresql />,
     title: "PostgreSQL",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "backend",
   },
   {
     icon: <SiMongodb />,
     title: "mongoDB",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "backend",
   },
   {
     icon: <SiSqlite />,
     title: "SQlite",
-    description: "Intermediate",
+    description: "intermédiaire",
     type: "backend",
+  },
+
+  /* DevOps */
+  {
+    icon: <FaGitAlt />,
+    title: "Git",
+    description: "intermédiaire",
+    type: "devops",
+  },
+  {
+    icon: <SiSentry />,
+    title: "Sentry",
+    description: "intermédiaire",
+    type: "devops",
+  },
+  {
+    icon: <MdHealthAndSafety />,
+    title: "Git",
+    description: "intermédiaire",
+    type: "devops",
+  },
+  {
+    icon: <SiGithubactions />,
+    title: "Github Actions",
+    description: "intermédiaire",
+    type: "devops",
   },
 ];
 

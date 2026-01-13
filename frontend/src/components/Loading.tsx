@@ -12,7 +12,7 @@ const Loading = ({ children }: RevealProps) => {
       initial={{ opacity: 0, y: 150 }}
       // État final quand il entre dans le champ de vision
       whileInView={{ opacity: 1, y: 0 }}
-      // Options de déclenchement
+      // Options de
       viewport={{ once: true, margin: "-20px" }}
       // Transition douce : 0.8 seconde
       transition={{ duration: 0.8, ease: "easeOut" }}

@@ -89,7 +89,7 @@ header {
 /*============== IMAGE ADAPTATIVE ==============*/
 .me {
   width: clamp(300px, 30%, 400px);
-  aspect-ratio: 1/1;
+  aspect-ratio: 1/1.7;
   background: linear-gradient(var(--border-color), transparent);
   border-radius: 13rem 13rem 0 0;
   margin-top: 3rem;
@@ -202,10 +202,6 @@ header {
 }
 
 @keyframes float-particle {
-  0% {
-    opacity: 0;
-    transform: translateY(100vh);
-  }
   10%,
   90% {
     opacity: 0.3;
