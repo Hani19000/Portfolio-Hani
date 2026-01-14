@@ -5,7 +5,7 @@ import ServicesCards, { ServiceItem } from "../Data/ServicesCards";
 
 const Services: React.FC = () => {
   return (
-    <section id="services-section" style={{ position: "relative" }}>
+    <section id="services-section">
       <h5>Offre De Services</h5>
       <h2>Expertise & Accompagnement</h2>
 

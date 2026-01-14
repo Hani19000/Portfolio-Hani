@@ -3,7 +3,7 @@ import ContactExt from "../components/contact/ContactExt";
 import ContactForm from "../components/contact/ContactForm";
 
 const Contact: React.FC = () => (
-  <section id="contact" style={{ position: "relative" }}>
+  <section id="contact">
     <h5>Une Question ?</h5>
     <h2>Parlons de votre projet</h2>
 

@@ -3,7 +3,7 @@ import ME from "../assets/me.webp";
 import HeaderContent from "../components/header/HeaderContent";
 
 const Header: React.FC = () => (
-  <header style={{ position: "relative" }}>
+  <header>
     <HeaderContent
       name="Hani Derrouiche"
       title="Des Idées Au Code, Donnons Vie À Vos Projets"

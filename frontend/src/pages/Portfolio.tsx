@@ -14,7 +14,7 @@ const Portfolio: React.FC = () => {
   if (!portfolioCards || portfolioCards.length === 0) return null;
 
   return (
-    <section id="portfolio" style={{ position: "relative" }}>
+    <section id="portfolio">
       <h5>Réalisations</h5>
       <h2>Mes Projets</h2>
 

@@ -27,19 +27,37 @@ function App() {
 
   return (
     <>
-      {/* 1. Particules fixes en arrière-plan pour tout le site */}
-      <Particles count={50} />
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: -1,
+          pointerEvents: "none",
+          background: "transparent",
+        }}
+      >
+        <Particles
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={250}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={true}
+          disableRotation={false}
+        />
+      </div>
 
-      {/* 2. Navigation fixe (généralement hors Loading pour rester visible) */}
       <Nav />
 
-      <main>
-        {/* Header - Visible immédiatement */}
+      {/* MAIN : 
+          On s'assure que le contenu est "transparent" ou n'écrase pas le fond 
+      */}
+      <main style={{ position: "relative", zIndex: 1 }}>
         <Loading>
           <Header />
         </Loading>
 
-        {/* Sections avec Lazy Loading et Animation au scroll */}
         <Suspense fallback={<SectionLoader />}>
           <Loading>
             <About />

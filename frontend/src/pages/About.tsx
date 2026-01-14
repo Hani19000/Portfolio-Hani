@@ -11,7 +11,7 @@ import Loading from "../components/Loading";
 
 const About: React.FC = () => {
   return (
-    <section id="about" style={{ position: "relative" }}>
+    <section id="about">
       <h5>Mon Parcours</h5>
       <h2>À Propos De Moi</h2>
 
