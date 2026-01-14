@@ -164,19 +164,17 @@ const Particles: React.FC<ParticlesProps> = ({
         : defaultColors;
 
     for (let i = 0; i < count; i++) {
-      let x: number, y: number, z: number, len: number;
-      do {
-        x = Math.random() * 2 - 1;
-        y = Math.random() * 2 - 1;
-        z = Math.random() * 2 - 1;
-        len = x * x + y * y + z * z;
-      } while (len > 1 || len === 0);
-      const r = Math.cbrt(Math.random());
-      positions.set([x * r, y * r, z * r], i * 3);
+      const x = Math.random() * 2 - 1;
+      const y = Math.random() * 2 - 1;
+      const z = Math.random() * 2 - 1;
+
+      positions.set([x, y, z], i * 3);
+
       randoms.set(
         [Math.random(), Math.random(), Math.random(), Math.random()],
         i * 4,
       );
+
       const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
       colors.set(col, i * 3);
     }
