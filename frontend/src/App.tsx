@@ -21,7 +21,6 @@ const SectionLoader = () => (
 );
 
 function App() {
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   useEffect(() => {
     ReveilServer();
   }, []);
@@ -34,18 +33,18 @@ function App() {
           inset: 0,
           zIndex: -1,
           pointerEvents: "none",
+          background: "transparent",
         }}
       >
         <Particles
           particleColors={["#ffffff", "#ffffff"]}
-          // OPTIMISATIONS MOBILES
-          particleCount={isMobile ? 50 : 200} // descend à 50 max sur mobile
-          particleBaseSize={isMobile ? 40 : 80} // Points plus petits
-          speed={isMobile ? 0.05 : 0.1} // Moins de vitesse = moins de calculs par frame
-          moveParticlesOnHover={!isMobile} // Désactiver le calcul du mouvement souris
-          disableRotation={isMobile} // TRÈS IMPORTANT : coupe les calculs de rotation matrix
-          particleSpread={isMobile ? 6 : 10}
+          particleCount={250}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
           alphaParticles={true}
+          disableRotation={false}
         />
       </div>
 
