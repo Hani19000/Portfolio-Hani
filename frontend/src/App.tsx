@@ -21,24 +21,26 @@ const SectionLoader = () => (
 );
 
 function App() {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   useEffect(() => {
     ReveilServer();
   }, []);
 
   return (
     <>
-<div style={{ 
-        position: 'fixed', 
-        inset: 0, 
-        zIndex: -1, 
-        pointerEvents: 'none',
-        background: 'transparent' 
-      }}>
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: -1,
+          pointerEvents: "none",
+          background: "transparent",
+        }}
+      >
         <Particles
           particleColors={["#ffffff", "#ffffff"]}
           // VERSION MOBILE : on réduit le compte et la taille
-          particleCount={isMobile ? 80 : 250} 
+          particleCount={isMobile ? 80 : 250}
           particleBaseSize={isMobile ? 40 : 100}
           particleSpread={isMobile ? 6 : 10}
           speed={isMobile ? 0.05 : 0.1} // Plus lent sur mobile pour le CPU
