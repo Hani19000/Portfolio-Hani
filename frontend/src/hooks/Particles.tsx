@@ -17,6 +17,7 @@ interface ParticlesProps {
   disableRotation?: boolean;
   pixelRatio?: number;
   className?: string;
+  isMobile?: boolean;
 }
 
 const defaultColors: string[] = ["#ffffff", "#ffffff", "#ffffff"];
@@ -114,6 +115,7 @@ const Particles: React.FC<ParticlesProps> = ({
   disableRotation = false,
   pixelRatio = 1,
   className,
+  isMobile = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -121,9 +123,8 @@ const Particles: React.FC<ParticlesProps> = ({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-
     const renderer = new Renderer({
-      dpr: pixelRatio,
+      dpr: isMobile ? 1 : pixelRatio || window.devicePixelRatio || 1, // force 1 sur mobile
       depth: false,
       alpha: true,
     });
