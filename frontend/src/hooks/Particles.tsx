@@ -17,7 +17,6 @@ interface ParticlesProps {
   disableRotation?: boolean;
   pixelRatio?: number;
   className?: string;
-  isMobile?: boolean;
 }
 
 const defaultColors: string[] = ["#ffffff", "#ffffff", "#ffffff"];
@@ -115,7 +114,6 @@ const Particles: React.FC<ParticlesProps> = ({
   disableRotation = false,
   pixelRatio = 1,
   className,
-  isMobile = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -123,8 +121,9 @@ const Particles: React.FC<ParticlesProps> = ({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
     const renderer = new Renderer({
-      dpr: isMobile ? 1 : pixelRatio || window.devicePixelRatio || 1, // force 1 sur mobile
+      dpr: pixelRatio,
       depth: false,
       alpha: true,
     });
@@ -165,17 +164,19 @@ const Particles: React.FC<ParticlesProps> = ({
         : defaultColors;
 
     for (let i = 0; i < count; i++) {
-      const x = Math.random() * 2 - 1;
-      const y = Math.random() * 2 - 1;
-      const z = Math.random() * 2 - 1;
-
-      positions.set([x, y, z], i * 3);
-
+      let x: number, y: number, z: number, len: number;
+      do {
+        x = Math.random() * 2 - 1;
+        y = Math.random() * 2 - 1;
+        z = Math.random() * 2 - 1;
+        len = x * x + y * y + z * z;
+      } while (len > 1 || len === 0);
+      const r = Math.cbrt(Math.random());
+      positions.set([x * r, y * r, z * r], i * 3);
       randoms.set(
         [Math.random(), Math.random(), Math.random(), Math.random()],
         i * 4,
       );
-
       const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
       colors.set(col, i * 3);
     }
