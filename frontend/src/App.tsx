@@ -39,12 +39,12 @@ function App() {
       >
         <Particles
           particleColors={["#ffffff", "#ffffff"]}
-          // VERSION MOBILE : on réduit le compte et la taille
           particleCount={isMobile ? 80 : 250}
+          // Augmente le spread si c'est trop centré ou décalé
+          particleSpread={isMobile ? 8 : 12}
+          speed={0.1}
           particleBaseSize={isMobile ? 40 : 100}
-          particleSpread={isMobile ? 6 : 10}
-          speed={isMobile ? 0.05 : 0.1} // Plus lent sur mobile pour le CPU
-          moveParticlesOnHover={!isMobile} // On désactive le hover sur mobile (pas de souris)
+          moveParticlesOnHover={true}
           alphaParticles={true}
           disableRotation={false}
         />
