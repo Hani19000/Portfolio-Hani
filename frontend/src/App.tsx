@@ -49,10 +49,6 @@ function App() {
       </div>
 
       <Nav />
-
-      {/* MAIN : 
-          On s'assure que le contenu est "transparent" ou n'écrase pas le fond 
-      */}
       <main style={{ position: "relative", zIndex: 1 }}>
         <Loading>
           <Header />
