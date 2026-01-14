@@ -1,11 +1,9 @@
 import "../styles/experience.css";
 import ExperienceCards from "../components/experience/ExperienceCards";
-import HeaderParticles from "../components/header/HeaderParticles";
 
 const Experience: React.FC = () => {
   return (
     <section id="experience" style={{ position: "relative" }}>
-      <HeaderParticles count={20} />
       <h5>Technologies</h5>
       <h2>Stack technique</h2>
 

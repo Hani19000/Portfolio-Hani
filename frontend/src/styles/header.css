@@ -36,7 +36,18 @@ header {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
+.header__container p {
+  font-size: clamp(0.5rem, 3vw);
+  color: var(--color-white);
+  background: linear-gradient(
+    to bottom,
+    var(--color-white),
+    var(--color-light)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 /*============== CTA & SOCIALS ==============*/
 .cta {
   display: flex;
@@ -182,34 +193,10 @@ header {
   color: var(--color-light);
 }
 
-/* ========== ANIMATIONS & PARTICULES ========== */
-.header__particles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: var(--color-light);
-  border-radius: 50%;
-  opacity: 0;
-  animation: float-particle 10s infinite;
-}
-
-@keyframes float-particle {
-  10%,
-  90% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-100px);
-  }
+.header__cta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .cursor {
@@ -248,15 +235,15 @@ header {
   }
   header {
     height: auto;
-    padding-top: 8rem;
+    padding-top: 7rem;
+    overflow: visible;
+    position: relative;
   }
-  .header__container {
-    justify-content: flex-start;
-  }
+
   .me {
     order: 1;
   }
-  .cta {
+  .header__cta {
     order: 2;
   }
 }

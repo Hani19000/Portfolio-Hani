@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-interface RevealProps {
+interface LoadingProps {
   children: ReactNode;
+  className?: string;
 }
 
-const Loading = ({ children }: RevealProps) => {
+const Loading = ({ children, className }: LoadingProps) => {
   return (
     <motion.div
+      className={className}
       // État de départ : invisible et légèrement décalé vers le bas
       initial={{ opacity: 0, y: 150 }}
       // État final quand il entre dans le champ de vision

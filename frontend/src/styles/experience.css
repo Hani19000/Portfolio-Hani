@@ -38,7 +38,7 @@
 }
 
 /* ========== PARTICULES ========== */
-.header__particles {
+.particles {
   position: absolute;
   inset: 0;
   overflow: hidden;

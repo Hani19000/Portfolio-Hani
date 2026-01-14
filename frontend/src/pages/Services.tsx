@@ -2,12 +2,10 @@ import "../styles/services.css";
 import { FaCheck } from "react-icons/fa";
 /* Importation des données et du type */
 import ServicesCards, { ServiceItem } from "../Data/ServicesCards";
-import HeaderParticles from "../components/header/HeaderParticles";
 
 const Services: React.FC = () => {
   return (
     <section id="services-section" style={{ position: "relative" }}>
-      <HeaderParticles count={20} />
       <h5>Offre De Services</h5>
       <h2>Expertise & Accompagnement</h2>
 

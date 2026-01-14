@@ -28,9 +28,9 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
       <h5 className="text-light">{role}</h5>
     </Loading>
     <Loading>
-      <h5 className="header__description">{description}</h5>
+      <p className="header__description">{description}</p>
     </Loading>
-    <Loading>
+    <Loading className="header__cta">
       <CTA />
     </Loading>
     <HeaderSocials />

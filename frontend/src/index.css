@@ -58,6 +58,7 @@ body {
   background-size: 200px;
   background-repeat: repeat;
   background-attachment: fixed;
+  position: relative;
 }
 
 /*============== IMAGES & PARTICULES ==============*/
@@ -79,14 +80,6 @@ img:hover {
 }
 .light-mode img:hover {
   filter: grayscale(100%);
-}
-
-.header__particles {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
 }
 
 /*============== BOUTONS ==============*/
@@ -171,7 +164,8 @@ h3 {
 }
 
 section {
-  padding: 8rem 0;
+  position: relative;
+  z-index: 0;
 }
 
 section > h2,
@@ -207,7 +201,21 @@ section > h2::after {
 .text-light {
   color: var(--color-light);
 }
-
+.container,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+.btn,
+.portfolio__items,
+.service,
+.contact__option {
+  position: relative;
+  z-index: 2;
+}
 /* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
   .container {

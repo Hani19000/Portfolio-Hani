@@ -1,6 +1,5 @@
 import "../styles/portfolio.css";
 import portfolioCards, { PortfolioItem } from "../Data/PortfolioCards";
-import HeaderParticles from "../components/header/HeaderParticles";
 
 /* Import Swiper React components & modules */
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,7 +15,6 @@ const Portfolio: React.FC = () => {
 
   return (
     <section id="portfolio" style={{ position: "relative" }}>
-      <HeaderParticles count={20} />
       <h5>Réalisations</h5>
       <h2>Mes Projets</h2>
 

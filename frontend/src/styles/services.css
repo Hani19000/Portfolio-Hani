@@ -159,23 +159,6 @@
   background: transparent;
 }
 
-/* ========== PARTICULES & DÉCO ========== */
-.service__particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: var(--color-light);
-  border-radius: 50%;
-  opacity: 0.3;
-}
-
 /* ======== MEDIA QUERIES ======== */
 @media screen and (max-width: 1024px) {
   .services__container {

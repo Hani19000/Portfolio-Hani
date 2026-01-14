@@ -1,11 +1,9 @@
 import "../styles/header.css";
 import ME from "../assets/me.webp";
-import HeaderParticles from "../components/header/HeaderParticles";
 import HeaderContent from "../components/header/HeaderContent";
 
 const Header: React.FC = () => (
   <header style={{ position: "relative" }}>
-    <HeaderParticles count={20} />
     <HeaderContent
       name="Hani Derrouiche"
       title="Des Idées Au Code, Donnons Vie À Vos Projets"

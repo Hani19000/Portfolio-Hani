@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-const HeaderParticles = ({ count = 20 }) => {
+const Particles = ({ count = 20 }) => {
   /* Générer les positions une seule fois avec useMemo */
   const particles = useMemo(() => {
     const generateParticles = () =>
@@ -14,7 +14,7 @@ const HeaderParticles = ({ count = 20 }) => {
   }, [count]);
 
   return (
-    <div className="header__particles">
+    <div className="Particles">
       {particles.map(({ id, left, delay, duration }) => (
         <span
           key={id}
@@ -30,4 +30,4 @@ const HeaderParticles = ({ count = 20 }) => {
   );
 };
 
-export default HeaderParticles;
+export default Particles;

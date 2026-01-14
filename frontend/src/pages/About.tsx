@@ -1,7 +1,6 @@
 import "../styles/about.css";
 import ME from "../assets/me-about.webp";
 import Timeline from "../components/about/Timeline";
-import HeaderParticles from "../components/header/HeaderParticles";
 import {
   aboutCards,
   educationData,
@@ -13,7 +12,6 @@ import Loading from "../components/Loading";
 const About: React.FC = () => {
   return (
     <section id="about" style={{ position: "relative" }}>
-      <HeaderParticles count={20} />
       <h5>Mon Parcours</h5>
       <h2>À Propos De Moi</h2>
 
