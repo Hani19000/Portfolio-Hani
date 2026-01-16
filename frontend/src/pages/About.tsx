@@ -53,8 +53,6 @@ const About: React.FC = () => {
               que je développe et chercher des solutions propres, adaptées aux
               besoins réels d’un projet..
             </p>
-          </Loading>
-          <Loading>
             <a href="#contact" className="btn btn-primary">
               Me Contacter
             </a>

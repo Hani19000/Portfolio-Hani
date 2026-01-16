@@ -1,9 +1,10 @@
 /* ================= EXPERIENCE ================= */
 .experience__container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes par défaut sur desktop */
   gap: 2rem;
-  justify-content: center; /* Centre les éléments si la ligne n'est pas pleine */
+  width: var(--container-width-lg);
+  margin: 0 auto;
 }
 
 .experience__container > div {
@@ -12,6 +13,8 @@
   border-radius: 2rem;
   border: 1px solid transparent;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .experience__container > div:hover {
@@ -37,32 +40,41 @@
   gap: 1rem;
 }
 
-/* ======== MEDIA QUERIES ======== */
-@media screen and (max-width: 1024px) {
-  .experience__container {
-    grid-template-columns: repeat(2, minmax(260px, 1fr));
-  }
+/* ================= MEDIA QUERIES (COHÉRENCE HEADER) ================= */
 
-  .experience__container > div:nth-child(3) {
-    grid-column: 1 / -1;
-    max-width: 500px;
-    margin: 0 auto;
+/* ---------- Desktop Standard (1280px) ---------- */
+@media screen and (max-width: 1280px) {
+  .experience__container {
+    width: 85%; /* Aligné sur votre header__container */
+    gap: 1.5rem;
   }
 }
 
-@media screen and (max-width: 600px) {
+/* ---------- Tablettes (1024px) ---------- */
+@media screen and (max-width: 1024px) {
   .experience__container {
-    grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
-    width: 100%;
+    grid-template-columns: repeat(2, 1fr); /* Garde 2 colonnes */
     gap: 1.5rem;
   }
 
-  .experience__content {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  /* Si vous avez 3 éléments, le 3ème prend toute la largeur pour l'équilibre */
+  .experience__container > div:nth-child(3) {
+    grid-column: 1 / -1; /* Prend toute la largeur de la grille pour pouvoir se centrer */
+    justify-self: center; /* Centre la carte horizontalement dans sa ligne */
+    width: 100%; /* Par défaut elle prend tout */
+    max-width: 500px; /* On limite sa largeur pour qu'elle ressemble aux autres */
+    margin: 0 auto; /* Sécurité supplémentaire pour le centrage */
+  }
+}
+
+/* ---------- Mobiles (600px et moins) ---------- */
+@media screen and (max-width: 600px) {
+  .experience__container {
+    grid-template-columns: 1fr; /* Repasse en une seule colonne pile l'une sur l'autre */
+    width: 100%;
   }
 
-  .experience__container > div {
-    padding: 1.5rem; /* Réduction du padding mobile */
+  .experience__container > div:nth-child(3) {
+    max-width: 100%; /* Reprend toute la largeur sur petit téléphone */
   }
 }

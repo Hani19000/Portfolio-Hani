@@ -159,60 +159,54 @@
   background: transparent;
 }
 
-/* ======== MEDIA QUERIES ======== */
-@media screen and (max-width: 1024px) {
+/* ================= MEDIA QUERIES (COHÉRENCE HEADER) ================= */
+
+/* ---------- Desktop Standard (1280px) ---------- */
+@media screen and (max-width: 1280px) {
   .services__container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* On force 2 colonnes */
+    width: 90%;
     gap: 1.5rem;
   }
-  .service {
-    min-height: 350px;
+
+  /* La 3ème carte (DevOps/Monitoring ou équivalent) se centre en dessous */
+  .services__container > .service:nth-child(3) {
+    grid-column: 1 / -1; /* Elle s'étale sur toute la largeur de la grille */
+    justify-self: center; /* Elle se centre horizontalement */
+    width: 100%;
+    max-width: 500px; /* On limite sa largeur pour qu'elle soit identique aux autres */
+    margin: 0 auto;
   }
 }
 
+/* ---------- Tablettes (1024px) ---------- */
+@media screen and (max-width: 1024px) {
+  .services__container {
+    grid-template-columns: repeat(2, 1fr); /* On force 2 colonnes */
+    width: 90%;
+    gap: 1.5rem;
+  }
+
+  /* La 3ème carte (DevOps/Monitoring ou équivalent) se centre en dessous */
+  .services__container > .service:nth-child(3) {
+    grid-column: 1 / -1; /* Elle s'étale sur toute la largeur de la grille */
+    justify-self: center; /* Elle se centre horizontalement */
+    width: 100%;
+    max-width: 500px; /* On limite sa largeur pour qu'elle soit identique aux autres */
+    margin: 0 auto;
+  }
+}
+
+/* ---------- Mobiles (768px et moins) ---------- */
 @media screen and (max-width: 768px) {
   .services__container {
-    grid-template-columns: 1fr;
-    max-width: 380px;
+    grid-template-columns: 1fr; /* On repasse en une seule colonne */
+    width: 92%;
+    max-width: 400px; /* Optionnel : pour garder des cartes élégantes sur mobile */
     margin: 0 auto;
   }
 
-  .service {
-    min-height: unset;
-  }
-
-  .service__head {
-    padding: 1.4rem;
-  }
-
-  .service__list {
-    padding: 1.5rem 1.3rem;
-    gap: 0.8rem;
-  }
-
-  .service__list p {
-    font-size: 0.9rem;
-  }
-
-  .service__footer {
-    padding: 1rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .service__head {
-    padding: 1.2rem;
-  }
-  .service__list {
-    padding: 1.5rem 1rem;
-  }
-  .service__list p {
-    font-size: 0.85rem;
-  }
-  .service__footer {
-    padding: 1rem;
-  }
-  .service__price {
-    font-size: 1.1rem;
+  .services__container > .service:nth-child(3) {
+    max-width: 100%; /* Elle reprend toute la largeur disponible sur mobile */
   }
 }

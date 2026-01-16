@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - EMAIL_TO=${EMAIL_TO}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - PORT=${PORT}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY} 
+      - FRONTEND_URL=${FRONTEND_URL}
+      - SENTRY_DSN=${SENTRY_DSN}
+
+  frontend:
+    build: 
+      context: ./frontend
+      args:
+        - VITE_API_URL=${VITE_API_URL}
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

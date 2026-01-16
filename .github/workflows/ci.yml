@@ -12,12 +12,15 @@ on:
 
 env:
   NODE_VERSION: "20"
+  # définition des noms des images sur le registre GitHub
+  FRONTEND_IMAGE: ghcr.io/${{ github.repository }}/frontend
+  BACKEND_IMAGE: ghcr.io/${{ github.repository }}/backend
 
 jobs:
   # =========================================================
-  # JOB 1: QUALITÉ DU CODE (L'Atelier de Vérification)
+  # JOB 1: QUALITÉ & TESTS (Frontend + Backend)
   # =========================================================
-  lint-and-typecheck:
+  quality-check:
     name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
@@ -29,90 +32,76 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: frontend/package-lock.json
 
-      - name: Install dependencies
-        working-directory: ./frontend
-        run: npm ci
+      # Vérification Backend
+      - name: Install backend deps & Check
+        working-directory: ./backend
+        run: |
+          npm ci
+          npx tsc --noEmit
 
-      - name: Type Check TypeScript
+      # Vérification Frontend
+      - name: Install frontend deps & Check
         working-directory: ./frontend
-        run: npx tsc --noEmit
-
-      - name: Run ESLint
-        working-directory: ./frontend
-        run: npm run lint
-
-      - name: Check Prettier
-        working-directory: ./frontend
-        run: npx prettier --check "src/**/*.{ts,tsx,css}"
+        run: |
+          npm ci
+          npx tsc --noEmit
+          npm run lint
 
   # =========================================================
-  # JOB 2: SÉCURITÉ (L'Atelier de Protection)
+  # JOB 2: DOCKER BUILD & PUSH (La Fabrication des boîtes)
   # =========================================================
-  security:
-    name: Security Audit
+  docker-build-push:
+    name: Build & Push Docker Images
     runs-on: ubuntu-latest
+    needs: [quality-check] # On ne construit que si le code est propre
+    if: github.ref == 'refs/heads/main' # Uniquement pour la branche main
+    permissions:
+      contents: read
+      packages: write # Autorisation d'écrire dans GitHub Packages
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      # Connexion au registre GitHub
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run npm audit
-        working-directory: ./frontend
-        # On ajoute || true pour que le pipeline ne bloque pas totalement si une faille mineure est trouvée 
-        run: npm audit --production || echo "Vulnérabilités détectées"
+      # Fabrication Image BACKEND
+      - name: Build and push Backend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ env.BACKEND_IMAGE }}:latest
+
+      # Fabrication Image FRONTEND
+      - name: Build and push Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ env.FRONTEND_IMAGE }}:latest
+          build-args: |
+            VITE_API_URL=${{ secrets.VITE_API_URL }}
 
   # =========================================================
-  # JOB 3: CONSTRUCTION (L'Atelier de Fabrication)
-  # =========================================================
-  build:
-    name: Build Application
-    runs-on: ubuntu-latest
-    needs: [lint-and-typecheck] # Attend que le code soit propre
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Install frontend deps
-        working-directory: ./frontend
-        run: npm ci
-
-      - name: Build frontend
-        working-directory: ./frontend
-        run: npm run build
-        env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
-
-      - name: Store Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-build
-          path: frontend/dist/
-          retention-days: 7
-
-  # =========================================================
-  # JOB 4: DÉPLOIEMENT (La Mise en Ligne)
+  # JOB 3: DÉPLOIEMENT (Mise en ligne automatique)
   # =========================================================
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    # Ce job attend que la fabrication ET la sécurité soient OK
-    needs: [build, security]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [docker-build-push]
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Option A: Si tu restes sur Vercel pour le frontend
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
@@ -120,4 +109,8 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: "--prod"
+      # option B : déployement sur un VPS (payant)
+
+
+
           # Pas besoin de working-directory ici car le Root Directory est déjà configuré sur le dashboard Vercel

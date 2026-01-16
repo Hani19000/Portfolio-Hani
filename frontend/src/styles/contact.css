@@ -237,35 +237,68 @@ form .btn-primary:hover {
   }
 }
 
-/* ======== MEDIA QUERIES ======== */
-@media screen and (max-width: 1024px) {
+/* ================= MEDIA QUERIES (COHÉRENCE) ================= */
+
+/* ---------- Desktop Standard (1280px) ---------- */
+@media screen and (max-width: 1280px) {
   .contact__container {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    width: 80%;
-  }
-  .contact__options {
-    flex-direction: row;
-    gap: 1.2rem;
+    width: 85%; /* Aligné sur le header, expérience et services */
+    grid-template-columns: 30% 60%;
+    gap: 10%;
+    margin: 0 auto;
   }
 }
 
-@media screen and (max-width: 768px) {
+/* ---------- Tablettes (1024px) ---------- */
+@media screen and (max-width: 1024px) {
   .contact__container {
+    grid-template-columns: 1fr; /* On empile les options au-dessus du formulaire */
+    gap: 3rem;
     width: 90%;
   }
+
   .contact__options {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes pour les options */
+    gap: 1.5rem;
   }
-  form .btn-primary {
+
+  /* LA MÊME LOGIQUE : On centre la 3ème option de contact au milieu */
+  .contact__options > .contact__option:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: 350px; /* On limite pour garder la cohérence visuelle */
+  }
+}
+
+/* ---------- Tablettes & Mobiles (768px et moins) ---------- */
+@media screen and (max-width: 768px) {
+  .contact__container {
+    width: 92%;
+  }
+
+  .contact__options {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 0 auto;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .contact__option {
+    padding: 1rem 1rem; /* Padding plus généreux comme sur About */
     width: 100%;
   }
 }
 
+/* ---------- Mobiles Small (480px) ---------- */
 @media screen and (max-width: 480px) {
-  input,
-  textarea {
-    padding: 1rem;
-    margin-bottom: -0.5rem;
+  .contact__options {
+    max-width: 100%; /* Utilise tout l'espace disponible sur petit écran */
+  }
+
+  .contact__option {
+    padding: 1.8rem 1rem;
   }
 }

@@ -109,30 +109,68 @@
   background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3));
 }
 
-/* ======== MEDIA QUERIES ======== */
+/* ================= MEDIA QUERIES (COHÉRENCE) ================= */
 
-@media screen and (max-width: 1024px) {
+/* ---------- Desktop Standard (1280px) ---------- */
+@media screen and (max-width: 1280px) {
   .container.portfolio__container {
-    width: var(--container-width-md);
+    width: 85%; /* Aligné sur le header, expérience et services */
   }
 }
 
-@media screen and (max-width: 600px) {
+/* ---------- Tablettes (1024px) ---------- */
+@media screen and (max-width: 1024px) {
   .container.portfolio__container {
     width: 90%;
   }
+
   .portfolio__items {
-    padding: 1rem;
+    padding: 1.1rem; /* On réduit légèrement pour les tablettes */
   }
+
   .portfolio__items h3 {
     font-size: 1rem;
   }
+}
 
+/* ---------- Tablettes Portrait / Mobiles Large (768px) ---------- */
+@media screen and (max-width: 768px) {
+  /* Si vous affichez plusieurs slides par vue, ici on s'assure que c'est lisible */
   .portfolio__items-cta {
-    flex-direction: column;
     gap: 0.5rem;
   }
+}
+
+/* ---------- Mobiles (480px) ---------- */
+@media screen and (max-width: 480px) {
+  .container.portfolio__container {
+    width: 92%;
+  }
+
+  .portfolio__items {
+    padding: 1rem;
+    border-radius: 1.5rem; /* Coins un peu plus doux sur petit écran */
+  }
+
+  /* Transformation des boutons en colonne pour éviter qu'ils ne débordent */
+  .portfolio__items-cta {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
   .portfolio__items-cta .btn {
     width: 100%;
+    padding: 0.8rem 0; /* Boutons plus faciles à cliquer au doigt */
+  }
+}
+
+/* ---------- Mobiles Small (375px) ---------- */
+@media screen and (max-width: 375px) {
+  .portfolio__items h3 {
+    font-size: 0.95rem;
+  }
+
+  .portfolio__items-image {
+    aspect-ratio: 1/1; /* Image carrée pour gagner de la place verticale */
   }
 }

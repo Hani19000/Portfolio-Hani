@@ -124,21 +124,85 @@ footer > * {
 }
 
 /* ======== MEDIA QUERIES ======== */
-@media screen and (max-width: 1024px) {
-  .permalinks {
-    gap: 1.5rem;
+/* ================= MEDIA QUERIES (COHÉRENCE) ================= */
+
+/* ---------- Desktop Standard (1280px) ---------- */
+@media screen and (max-width: 1280px) {
+  footer {
+    padding: 4rem 2rem; /* On ajoute un peu de marge sur les côtés */
   }
 }
 
+/* ---------- Tablettes (1024px) ---------- */
+@media screen and (max-width: 1024px) {
+  .permalinks {
+    gap: 1.8rem; /* Espacement légèrement réduit */
+  }
+
+  .footer__logo {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Tablettes Portrait / Mobiles Large (768px) ---------- */
+@media screen and (max-width: 768px) {
+  footer {
+    margin-top: 5rem; /* On réduit l'espace avec la section contact */
+    padding: 3.5rem 0;
+  }
+
+  .permalinks {
+    gap: 1.2rem;
+    width: 85%; /* Aligné sur les conteneurs des autres pages */
+    margin: 0 auto 3rem;
+  }
+}
+
+/* ---------- Mobiles (600px et moins) ---------- */
 @media screen and (max-width: 600px) {
   footer {
-    padding: 3rem 0;
+    padding: 3rem 1.5rem; /* */
   }
+
+  .footer__logo {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
   .permalinks {
-    flex-direction: column;
-    gap: 1.2rem;
+    flex-direction: column; /* Passage en liste verticale pour la lisibilité */
+    gap: 1.5rem;
   }
+
+  /* On simule la largeur de 80% pour les liens comme pour les cartes About/Contact */
+  .permalinks a {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Séparateur subtil */
+  }
+
+  .permalinks a:last-child {
+    border-bottom: none;
+  }
+
   .footer__socials {
     margin-bottom: 2.5rem;
+    gap: 1.2rem;
+  }
+
+  .footer__socials a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}
+
+/* ---------- Mobiles Small (375px) ---------- */
+@media screen and (max-width: 375px) {
+  .footer__copyright {
+    font-size: 0.75rem;
+    padding: 0 1rem;
   }
 }

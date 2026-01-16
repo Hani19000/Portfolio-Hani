@@ -127,6 +127,14 @@ header {
   filter: grayscale(100%);
   transform: scale(1.05);
 }
+/* Inversion Grayscale Light Mode */
+.light-mode .me img {
+  filter: grayscale(100%);
+}
+.light-mode .me:hover img,
+.light-mode .me:active img {
+  filter: grayscale(0%);
+}
 
 /*============== SCROLL & STATS ==============*/
 .scroll__down {
@@ -159,6 +167,24 @@ header {
 .stat h3 {
   font-size: clamp(1.5rem, 3vw, 2rem);
   color: var(--color-white);
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  background-color: var(--color-primary); /* ou votre couleur */
+  margin-left: 5px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ================= MEDIA QUERIES (RESPONSIVE) ================= */
@@ -222,7 +248,6 @@ header {
 
   .header__cta {
     margin-top: 0.5rem;
-    order: 2;
   }
 }
 

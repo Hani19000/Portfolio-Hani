@@ -239,49 +239,92 @@
   line-height: 1.6;
 }
 
-/* ======== MEDIA QUERIES ======== */
-@media screen and (max-width: 1024px) {
-  .about__container,
-  .about__timeline-wrapper {
-    grid-template-columns: 1fr;
-  }
+/* ================= MEDIA QUERIES (COHÉRENCE) ================= */
+
+/* ---------- Desktop Standard (1280px) ---------- */
+@media screen and (max-width: 1280px) {
   .about__container {
-    gap: 3rem;
+    width: 85%; /* Aligné sur le header, expérience et services */
+    margin: 0 auto;
+    grid-template-columns: 35% 55%; /* On ajuste légèrement les proportions */
+    gap: 10%;
   }
-  .about__me {
-    width: 60%;
-    margin: 0 auto 3rem;
+  .about__cards > .about__card:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+    max-width: auto; /* Taille cohérente avec les cartes du dessus */
   }
 }
 
+/* ---------- Tablettes (1024px) ---------- */
+@media screen and (max-width: 1024px) {
+  .about__container,
+  .about__timeline-wrapper {
+    grid-template-columns: 1fr; /* Passage en une colonne */
+  }
+
+  .about__container {
+    gap: 2rem;
+  }
+
+  .about__me {
+    width: 65%; /* Image plus petite pour ne pas manger tout l'écran */
+    margin: 0 auto 2rem;
+  }
+
+  .about__cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes pour les cartes */
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+
+  /* LA MÊME LOGIQUE : On centre la 3ème carte "About" au milieu en dessous */
+  .about__cards > .about__card:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: 400px; /* Taille cohérente avec les cartes du dessus */
+  }
+}
+
+/* ---------- Mobiles (600px et moins) ---------- */
 @media screen and (max-width: 600px) {
   .about__me {
     width: 100%;
     margin-bottom: 2rem;
   }
   .about__me-image {
-    width: calc(100%);
-    height: calc(100%);
-    transform: rotate(8deg);
+    /* On réduit le retrait de 4rem à 1.5rem pour que l'image 
+       prenne presque toute la place du cadre dégradé */
+    width: calc(100% - 1.5rem);
+    height: calc(100% - 1.5rem);
+    transform: rotate(5deg); /* Rotation plus légère pour plus de clarté */
+    border-radius: 1.5rem;
   }
   .about__cards {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr; /* 1 seule colonne sur petit mobile */
     max-width: 360px;
     margin: 0 auto;
   }
 
-  .about__card {
-    padding: 1.3rem 1rem;
+  .about__cards > .about__card:nth-child(3) {
+    max-width: 100%; /* Reprend toute la largeur sur mobile */
   }
 
-  .about__content p {
-    font-size: 0.9rem;
-    margin: 1.5rem 0 2rem;
+  .about__timeline-wrapper {
+    gap: 2rem; /* On réduit l'espace entre Expérience et Éducation */
   }
 
   .about__timeline {
     padding: 1.5rem;
-    max-width: 100%;
+  }
+}
+
+/* ---------- Mobiles Small (375px) ---------- */
+@media screen and (max-width: 375px) {
+  .about__content p {
+    text-align: left;
+    font-size: 0.85rem;
   }
 }
