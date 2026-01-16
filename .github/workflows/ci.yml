@@ -111,6 +111,4 @@ jobs:
           vercel-args: "--prod"
       # option B : déployement sur un VPS (payant)
 
-
-
-          # Pas besoin de working-directory ici car le Root Directory est déjà configuré sur le dashboard Vercel
+      # Pas besoin de working-directory ici car le Root Directory est déjà configuré sur le dashboard Vercel
