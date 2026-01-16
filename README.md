@@ -705,8 +705,36 @@ Le projet reflète ma connaissance des standards actuels :
 - 📦 Code splitting et lazy loading
 
 ---
+## 📦 Installation via docker (recommandé)
+Le projet est entièrement conteneurisé pour garantir un environnement identique en développement et en production.
 
-## 🚀 Installation & Utilisation
+Isolation : Utilisation d'images légères Node:20-alpine pour le backend et le frontend.
+
+Orchestration : Docker Compose gère la communication entre le frontend et l'API.
+
+Optimisation : Multi-stage builds pour réduire la taille des images finales.
+
+#### 1️⃣ Cloner le repository
+
+```bash
+git clone https://github.com/Hani19000/portfolio.git
+cd portfolio
+```
+## Configurer l'environnement 
+
+Créez un fichier .env à la racine avec les variables nécessaires (VITE_API_URL, PORT, etc.).
+
+## Lancer avec Docker Compose 
+
+```bash
+docker-compose up --build
+```
+## Accès 
+- Frontend : http://localhost:5173
+- Backend API : http://localhost:5000
+
+
+## 🚀 Installation sans docker 
 
 ### 📋 Prérequis
 
@@ -823,7 +851,18 @@ npm start
 
 ---
 
+## 🤖 Pipeline CI/CD
+À chaque modification du code (git push), une suite automatisée se déclenche sur GitHub Actions :
 
+## Qualité
+ Vérification du Linting et du typage TypeScript.
+
+## Build Docker 
+ Construction des images Docker et publication sur le GitHub Container Registry (GHCR).
+
+## Déploiement 
+- Mise à jour automatique du frontend sur Vercel.
+- Redémarrage du service backend sur Render avec la nouvelle image Docker.
 ## 📄 Licence
 
 <div align="center">
