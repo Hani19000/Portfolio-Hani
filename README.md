@@ -72,6 +72,7 @@ Ce portfolio s'adresse principalement aux **recruteurs**, **entreprises** mais a
 <div align="center">
 
 ### 🏷️ Portfolio Hani Derrouiche
+
 #### Site vitrine personnel et professionnel
 
 </div>
@@ -285,32 +286,32 @@ Pour protéger mon API contre le spam et les abus. C'est une bonne pratique que 
 
 ### Frontend
 
-| Optimisation | Description |
-|:-------------|:------------|
-| ⚡ **Lazy Loading** | Sections chargées avec `React.lazy()` |
+| Optimisation             | Description                              |
+| :----------------------- | :--------------------------------------- |
+| ⚡ **Lazy Loading**      | Sections chargées avec `React.lazy()`    |
 | 🖼️ **Images optimisées** | Format WebP pour des chargements rapides |
-| 📦 **Code Splitting** | Automatique avec Vite |
-| 🔧 **Vendor Chunks** | Séparés (React, Swiper, Icons, Sentry) |
-| 🔤 **Fonts** | Préchargement des polices Google Fonts |
-| 🗜️ **Minification** | Terser en production |
-| 🚫 **Console.log** | Suppression en production |
+| 📦 **Code Splitting**    | Automatique avec Vite                    |
+| 🔧 **Vendor Chunks**     | Séparés (React, Swiper, Icons, Sentry)   |
+| 🔤 **Fonts**             | Préchargement des polices Google Fonts   |
+| 🗜️ **Minification**      | Terser en production                     |
+| 🚫 **Console.log**       | Suppression en production                |
 
 ### Backend
 
-| Optimisation | Description |
-|:-------------|:------------|
-| 🗜️ **Compression** | Gzip des réponses |
-| 🔌 **Trust Proxy** | Configuré pour Vercel/Render |
-| 📊 **JSON léger** | Réponses optimisées |
-| 💚 **Health Check** | Évite le cold start |
+| Optimisation        | Description                  |
+| :------------------ | :--------------------------- |
+| 🗜️ **Compression**  | Gzip des réponses            |
+| 🔌 **Trust Proxy**  | Configuré pour Vercel/Render |
+| 📊 **JSON léger**   | Réponses optimisées          |
+| 💚 **Health Check** | Évite le cold start          |
 
 ### Infrastructure
 
-| Optimisation | Description |
-|:-------------|:------------|
-| 💾 **Cache-Control** | Headers pour les assets statiques |
-| 🌐 **CDN** | Via Vercel |
-| 🔄 **CI/CD** | Workflow optimisé (lint → build → deploy) |
+| Optimisation         | Description                               |
+| :------------------- | :---------------------------------------- |
+| 💾 **Cache-Control** | Headers pour les assets statiques         |
+| 🌐 **CDN**           | Via Vercel                                |
+| 🔄 **CI/CD**         | Workflow optimisé (lint → build → deploy) |
 
 </div>
 
@@ -390,16 +391,16 @@ Pour protéger mon API contre le spam et les abus. C'est une bonne pratique que 
 
 <div align="center">
 
-| 🎯 Aspect | 📝 Description |
-|:----------|:---------------|
-| 🏗️ **Architecture propre** | Séparation claire frontend/backend avec API REST |
-| 🔷 **TypeScript full-stack** | Typage strict partout pour plus de robustesse |
-| 🔒 **Sécurité dès la conception** | Validation, sanitisation, rate limiting, CORS |
-| ⚡ **Performance optimisée** | Lazy loading, code splitting, images WebP |
-| 🔄 **CI/CD fonctionnel** | Pipeline automatisé avec GitHub Actions |
-| 📊 **Monitoring production** | Sentry configuré pour détecter les problèmes rapidement |
-| 🎨 **UX soignée** | Dark/light mode, animations fluides, design responsive |
-| 🧩 **Code maintenable** | Composants réutilisables, hooks personnalisés, structure modulaire |
+| 🎯 Aspect                         | 📝 Description                                                     |
+| :-------------------------------- | :----------------------------------------------------------------- |
+| 🏗️ **Architecture propre**        | Séparation claire frontend/backend avec API REST                   |
+| 🔷 **TypeScript full-stack**      | Typage strict partout pour plus de robustesse                      |
+| 🔒 **Sécurité dès la conception** | Validation, sanitisation, rate limiting, CORS                      |
+| ⚡ **Performance optimisée**      | Lazy loading, code splitting, images WebP                          |
+| 🔄 **CI/CD fonctionnel**          | Pipeline automatisé avec GitHub Actions                            |
+| 📊 **Monitoring production**      | Sentry configuré pour détecter les problèmes rapidement            |
+| 🎨 **UX soignée**                 | Dark/light mode, animations fluides, design responsive             |
+| 🧩 **Code maintenable**           | Composants réutilisables, hooks personnalisés, structure modulaire |
 
 </div>
 
@@ -705,7 +706,9 @@ Le projet reflète ma connaissance des standards actuels :
 - 📦 Code splitting et lazy loading
 
 ---
+
 ## 📦 Installation via docker (recommandé)
+
 Le projet est entièrement conteneurisé pour garantir un environnement identique en développement et en production.
 
 Isolation : Utilisation d'images légères Node:20-alpine pour le backend et le frontend.
@@ -720,21 +723,23 @@ Optimisation : Multi-stage builds pour réduire la taille des images finales.
 git clone https://github.com/Hani19000/portfolio.git
 cd portfolio
 ```
-## Configurer l'environnement 
+
+## Configurer l'environnement
 
 Créez un fichier .env à la racine avec les variables nécessaires (VITE_API_URL, PORT, etc.).
 
-## Lancer avec Docker Compose 
+## Lancer avec Docker Compose
 
 ```bash
 docker-compose up --build
 ```
-## Accès 
+
+## Accès
+
 - Frontend : http://localhost:5173
 - Backend API : http://localhost:5000
 
-
-## 🚀 Installation sans docker 
+## 🚀 Installation sans docker
 
 ### 📋 Prérequis
 
@@ -852,17 +857,22 @@ npm start
 ---
 
 ## 🤖 Pipeline CI/CD
+
 À chaque modification du code (git push), une suite automatisée se déclenche sur GitHub Actions :
 
 ## Qualité
- Vérification du Linting et du typage TypeScript.
 
-## Build Docker 
- Construction des images Docker et publication sur le GitHub Container Registry (GHCR).
+Vérification du Linting et du typage TypeScript.
 
-## Déploiement 
+## Build Docker
+
+Construction des images Docker et publication sur le GitHub Container Registry (GHCR).
+
+## Déploiement
+
 - Mise à jour automatique du frontend sur Vercel.
 - Redémarrage du service backend sur Render avec la nouvelle image Docker.
+
 ## 📄 Licence
 
 <div align="center">
