@@ -1,17 +1,25 @@
 /* ================= ABOUT ================= */
+
 .about__container {
   display: grid;
   grid-template-columns: 35% 50%;
   gap: 15%;
   align-items: flex-start;
 }
-
+.about__content {
+  max-width: 900px;
+}
 /*============== IMAGE PROFIL ==============*/
 .about__me {
   width: 100%;
   aspect-ratio: 1/1;
   border-radius: 2rem;
-  background: transparent;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    var(--color-primary-variant),
+    transparent
+  );
   display: grid;
   place-items: center;
   transition: var(--transition);
@@ -70,8 +78,9 @@
 /*============== CARTES & TIMELINE (Blocs) ==============*/
 .about__cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
+  max-width: 800px;
 }
 
 .about__card,
@@ -82,7 +91,7 @@
 }
 
 .about__card {
-  padding: 2rem 1rem;
+  padding: 1.6rem 1.2rem;
   border-radius: 1rem;
   text-align: center;
 }
@@ -247,8 +256,8 @@
 
 @media screen and (max-width: 600px) {
   .about__me {
-    width: 85%;
-    padding: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
   }
   .about__me-image {
     width: calc(100%);
@@ -258,14 +267,21 @@
   .about__cards {
     grid-template-columns: 1fr;
     gap: 1rem;
+    max-width: 360px;
+    margin: 0 auto;
   }
+
+  .about__card {
+    padding: 1.3rem 1rem;
+  }
+
+  .about__content p {
+    font-size: 0.9rem;
+    margin: 1.5rem 0 2rem;
+  }
+
   .about__timeline {
     padding: 1.5rem;
-  }
-  .about__timeline-container {
-    padding-left: 1.5rem;
-  }
-  .about__timeline-dot {
-    left: -1.85rem;
+    max-width: 100%;
   }
 }

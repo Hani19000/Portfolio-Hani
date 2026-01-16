@@ -12,7 +12,7 @@ const HeaderImage: React.FC<HeaderImageProps> = ({ src, alt = "Profile" }) => (
       alt={alt}
       width="400"
       height="500"
-      loading="lazy"
+      loading="eager"
       decoding="async"
     />
   </div>
