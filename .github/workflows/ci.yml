@@ -12,13 +12,13 @@ on:
 
 env:
   NODE_VERSION: "20"
-  # définition des noms des images sur le registre GitHub
-  FRONTEND_IMAGE: ghcr.io/${{ github.repository }}/frontend
-  BACKEND_IMAGE: ghcr.io/${{ github.repository }}/backend
+  # CORRECTION : Noms en MINUSCULES obligatoires pour Docker
+  FRONTEND_IMAGE: ghcr.io/hani19000/portfolio-hani/frontend
+  BACKEND_IMAGE: ghcr.io/hani19000/portfolio-hani/backend
 
 jobs:
   # =========================================================
-  # JOB 1: QUALITÉ & TESTS (Frontend + Backend)
+  # JOB 1: QUALITÉ & TESTS (Atelier de Vérification)
   # =========================================================
   quality-check:
     name: Lint & Type Check
@@ -33,15 +33,13 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
 
-      # Vérification Backend
-      - name: Install backend deps & Check
+      - name: Install & Check Backend
         working-directory: ./backend
         run: |
           npm ci
           npx tsc --noEmit
 
-      # Vérification Frontend
-      - name: Install frontend deps & Check
+      - name: Install & Check Frontend
         working-directory: ./frontend
         run: |
           npm ci
@@ -49,21 +47,20 @@ jobs:
           npm run lint
 
   # =========================================================
-  # JOB 2: DOCKER BUILD & PUSH (La Fabrication des boîtes)
+  # JOB 2: DOCKER BUILD & PUSH (Atelier de Fabrication)
   # =========================================================
   docker-build-push:
     name: Build & Push Docker Images
     runs-on: ubuntu-latest
-    needs: [quality-check] # On ne construit que si le code est propre
-    if: github.ref == 'refs/heads/main' # Uniquement pour la branche main
+    needs: [quality-check] # On ne fabrique que si le code est sain
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     permissions:
       contents: read
-      packages: write # Autorisation d'écrire dans GitHub Packages
+      packages: write # Autorisation d'écrire dans le GitHub Container Registry
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Connexion au registre GitHub
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
@@ -71,7 +68,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Fabrication Image BACKEND
       - name: Build and push Backend
         uses: docker/build-push-action@v5
         with:
@@ -79,7 +75,6 @@ jobs:
           push: true
           tags: ${{ env.BACKEND_IMAGE }}:latest
 
-      # Fabrication Image FRONTEND
       - name: Build and push Frontend
         uses: docker/build-push-action@v5
         with:
@@ -90,18 +85,17 @@ jobs:
             VITE_API_URL=${{ secrets.VITE_API_URL }}
 
   # =========================================================
-  # JOB 3: DÉPLOIEMENT (Mise en ligne automatique)
+  # JOB 3: DÉPLOIEMENT VERCEL (Mise en ligne du Frontend)
   # =========================================================
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
     needs: [docker-build-push]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Option A: Si tu restes sur Vercel pour le frontend
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
