@@ -62,7 +62,7 @@
     grid-column: 1 / -1; /* Prend toute la largeur de la grille pour pouvoir se centrer */
     justify-self: center; /* Centre la carte horizontalement dans sa ligne */
     width: 100%; /* Par défaut elle prend tout */
-    max-width: 500px; /* On limite sa largeur pour qu'elle ressemble aux autres */
+    max-width: 500px; /*  limite sa largeur pour qu'elle ressemble aux autres */
     margin: 0 auto; /* Sécurité supplémentaire pour le centrage */
   }
 }

@@ -147,7 +147,7 @@ footer > * {
 /* ---------- Tablettes Portrait / Mobiles Large (768px) ---------- */
 @media screen and (max-width: 768px) {
   footer {
-    margin-top: 5rem; /* On réduit l'espace avec la section contact */
+    margin-top: 5rem; /* réduit l'espace avec la section contact */
     padding: 3.5rem 0;
   }
 
@@ -174,7 +174,7 @@ footer > * {
     gap: 1.5rem;
   }
 
-  /* On simule la largeur de 80% pour les liens comme pour les cartes About/Contact */
+  /* simule la largeur de 80% pour les liens comme pour les cartes About/Contact */
   .permalinks a {
     width: 80%;
     margin: 0 auto;

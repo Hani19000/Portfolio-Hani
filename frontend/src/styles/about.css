@@ -295,8 +295,7 @@
     margin-bottom: 2rem;
   }
   .about__me-image {
-    /* On réduit le retrait de 4rem à 1.5rem pour que l'image 
-       prenne presque toute la place du cadre dégradé */
+    /* On réduit le retrait de 4rem à 1.5rem pour que l'image prenne presque toute la place du cadre dégradé */
     width: calc(100% - 1.5rem);
     height: calc(100% - 1.5rem);
     transform: rotate(5deg); /* Rotation plus légère pour plus de clarté */

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react"; // Ajout de useState
+import { lazy, Suspense, useEffect, useState } from "react";
 import Header from "./pages/Header";
 import Nav from "./pages/Nav";
 import { ReveilServer } from "./api/api";

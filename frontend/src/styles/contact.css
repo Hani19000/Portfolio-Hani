@@ -252,7 +252,7 @@ form .btn-primary:hover {
 /* ---------- Tablettes (1024px) ---------- */
 @media screen and (max-width: 1024px) {
   .contact__container {
-    grid-template-columns: 1fr; /* On empile les options au-dessus du formulaire */
+    grid-template-columns: 1fr; /*  empile les options au-dessus du formulaire */
     gap: 3rem;
     width: 90%;
   }

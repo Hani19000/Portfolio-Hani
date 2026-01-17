@@ -39,10 +39,7 @@ function useNavActive(): NavActiveReturn {
         threshold: 0.1,
       },
     );
-    /**
-     * Initialise l'observation des éléments du DOM.
-     * Cette fonction cible le header et les sections préalablement identifiées.
-     */
+    /* Initialise l'observation des éléments du DOM. Cette fonction cible le header et les sections préalablement identifiées. */
     const initObserver = () => {
       // Observer le Header (déjà présent)
       const header = document.querySelector("header");
@@ -57,26 +54,21 @@ function useNavActive(): NavActiveReturn {
       });
     };
 
-    // On tente une première fois
+    // tenter une première fois
     initObserver();
 
-    /**
-     * Temporisation nécessaire pour pallier le chargement asynchrone (React.lazy).
-     * Garantit l'attachement de l'observateur une fois les composants injectés dans le DOM.
-     */
+    /* Temporisation nécessaire pour pallier le chargement asynchrone (React.lazy). Garantit l'attachement de l'observateur une fois les composants injectés dans le DOM. */
     const timeoutId = setTimeout(initObserver, 1000);
     // Nettoyage des processus asynchrones et des observateurs au démontage du composant.
     return () => {
       observer.disconnect();
       clearTimeout(timeoutId);
     };
-  }, []); // [] car on veut que l'observer soit configuré au montage
+  }, []);
 
-  /**
-   * Gère le défilement fluide lors d'un clic sur un élément de navigation.
+  /** Gère le défilement fluide lors d'un clic sur un élément de navigation.
    * @param e Événement de clic.
-   * @param id Identifiant de la section cible.
-   */
+   * @param id Identifiant de la section cible. */
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
     // Neutralisation du comportement par défaut pour éviter l'altération de l'URL. (monportfolio.fr/) au lieu de (monportfolio.fr/#portfolio)
     e.preventDefault();

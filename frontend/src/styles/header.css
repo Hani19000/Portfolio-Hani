@@ -259,8 +259,8 @@ header {
   }
 
   .header__container {
-    gap: 0.8rem; /* On resserre tout le monde */
-    justify-content: center; /* On recentre verticalement mais avec moins d'espace mort */
+    gap: 0.8rem; /* resserre tout le monde */
+    justify-content: center; /* recentre verticalement mais avec moins d'espace mort */
   }
 
   .header__container h1 {

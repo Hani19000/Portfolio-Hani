@@ -20,7 +20,7 @@ createRoot(document.getElementById("root")!).render(
 if (import.meta.env.PROD) {
   console.log = () => {};
   console.debug = () => {};
-  // On ne redirige vers Sentry que les vraies erreurs
+  // ne redirige vers Sentry que les vraies erreurs
   console.error = (...args: unknown[]) => {
     args.forEach((arg) => {
       if (arg instanceof Error) {

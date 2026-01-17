@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
-// Regroupement des imports par bibliothèque pour plus de clarté
 import { IoLogoHtml5, IoLogoJavascript } from "react-icons/io5";
 import { FaCss3Alt, FaPython, FaNode, FaGitAlt } from "react-icons/fa";
-import { FaBootstrap } from "react-icons/fa6"; // Fa6 est correct pour Bootstrap
+import { FaBootstrap } from "react-icons/fa6";
 import { RiReactjsLine } from "react-icons/ri";
 import {
   SiTypescript,

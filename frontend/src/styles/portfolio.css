@@ -125,7 +125,7 @@
   }
 
   .portfolio__items {
-    padding: 1.1rem; /* On réduit légèrement pour les tablettes */
+    padding: 1.1rem; /* réduit légèrement pour les tablettes */
   }
 
   .portfolio__items h3 {
@@ -135,7 +135,7 @@
 
 /* ---------- Tablettes Portrait / Mobiles Large (768px) ---------- */
 @media screen and (max-width: 768px) {
-  /* Si vous affichez plusieurs slides par vue, ici on s'assure que c'est lisible */
+  /* Si vous affichez plusieurs slides par vue, ici s'assure que c'est lisible */
   .portfolio__items-cta {
     gap: 0.5rem;
   }

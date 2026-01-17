@@ -2,7 +2,7 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Optimisation du cache Docker : on installe les dépendances d'abord
+# Optimisation du cache Docker : installer les dépendances d'abord
 COPY package*.json ./
 RUN npm install
 
