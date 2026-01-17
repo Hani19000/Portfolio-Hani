@@ -1,5 +1,4 @@
 import express, { Application } from 'express';
-import sgMail from '@sendgrid/mail';
 import * as Sentry from "@sentry/node";
 
 import securityMiddleware from './config/security.js';
