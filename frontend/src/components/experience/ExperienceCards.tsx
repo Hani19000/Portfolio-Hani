@@ -13,10 +13,7 @@ const ExperienceCards: React.FC<ExperienceCardsProps> = ({ type }) => {
         .map((item: ExperienceItem, index: number) => (
           <article className="experience__details" key={index}>
             <span className="experience__details-icon">{item.icon}</span>
-            <div>
-              <h5>{item.title}</h5>
-              <small className="text-light">{item.description}</small>
-            </div>
+            <h5>{item.title}</h5>
           </article>
         ))}
     </>
