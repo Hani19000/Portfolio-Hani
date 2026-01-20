@@ -1,0 +1,74 @@
+/* frontend/src/styles/scrollzoom.css */
+.scroll-zoom-section {
+  min-height: 200vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    var(--color-bg-variant) 100%
+  );
+}
+
+.scroll-zoom-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scroll-zoom-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.1s ease-out,
+    opacity 0.1s ease-out;
+  will-change: transform, opacity;
+}
+
+.blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 2rem;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.block {
+  width: 150px;
+  height: 150px;
+  border-radius: 1rem;
+  transition:
+    transform 0.1s ease-out,
+    opacity 0.1s ease-out;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  will-change: transform, opacity;
+}
+
+.block.blue {
+  background: linear-gradient(135deg, #4169e1 0%, #1e90ff 100%);
+}
+
+.block.gray {
+  background: linear-gradient(135deg, #c0c0c0 0%, #808080 100%);
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+  .blocks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .block {
+    width: 100px;
+    height: 100px;
+  }
+}

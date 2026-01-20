@@ -1,7 +1,7 @@
 import "../styles/header.css";
 import ME from "../assets/me.webp";
 import HeaderContent from "../components/header/HeaderContent";
-
+import ScrollZoom from "../hooks/ScrollZoom";
 const Header: React.FC = () => (
   <header>
     <HeaderContent

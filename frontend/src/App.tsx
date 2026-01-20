@@ -5,7 +5,7 @@ import { ReveilServer } from "./api/api";
 import Loading from "./components/Loading";
 import Particles from "./hooks/Particles";
 import "./styles/particales.css";
-
+import Defilement from "./hooks/Defilement";
 const About = lazy(() => import("./pages/About"));
 const Experience = lazy(() => import("./pages/Experience"));
 const Services = lazy(() => import("./pages/Services"));
@@ -68,6 +68,7 @@ function App() {
           </Loading>
 
           <Loading>
+            <Defilement text="DEPLOYEMENT • TECHNOLOGIES • DESIGN • CODE •" />
             <Experience />
           </Loading>
 
@@ -80,6 +81,7 @@ function App() {
           </Loading>
 
           <Loading>
+            <Defilement text="DEPLOYEMENT • TECHNOLOGIES • DESIGN • CODE •" />
             <Contact />
           </Loading>
 

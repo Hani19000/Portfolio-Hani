@@ -1,6 +1,5 @@
 import "../styles/experience.css";
 import ExperienceCards from "../components/experience/ExperienceCards";
-
 const Experience: React.FC = () => {
   return (
     <section id="experience">
