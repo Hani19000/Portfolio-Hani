@@ -1,6 +1,13 @@
 import { ReactNode } from "react";
 import { IoLogoHtml5, IoLogoJavascript } from "react-icons/io5";
-import { FaCss3Alt, FaPython, FaNode, FaGitAlt } from "react-icons/fa";
+import {
+  FaCss3Alt,
+  FaPython,
+  FaNode,
+  FaGitAlt,
+  FaGithub,
+  FaDocker,
+} from "react-icons/fa";
 import { FaBootstrap } from "react-icons/fa6";
 import { RiReactjsLine } from "react-icons/ri";
 import {
@@ -13,7 +20,6 @@ import {
 } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { CgFigma } from "react-icons/cg";
-import { MdHealthAndSafety } from "react-icons/md";
 
 type ProjectCategory = "frontend" | "backend" | "devops" | "bdd";
 export interface ExperienceItem {
@@ -94,6 +100,11 @@ const experienceItems: ExperienceItem[] = [
     type: "devops",
   },
   {
+    icon: <FaGithub />,
+    title: "Github",
+    type: "devops",
+  },
+  {
     icon: <SiSentry />,
     title: "Sentry",
     type: "devops",
@@ -101,6 +112,11 @@ const experienceItems: ExperienceItem[] = [
   {
     icon: <SiGithubactions />,
     title: "Github Actions",
+    type: "devops",
+  },
+  {
+    icon: <FaDocker />,
+    title: "Docker",
     type: "devops",
   },
 ];

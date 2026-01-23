@@ -1,5 +1,6 @@
 import "../styles/portfolio.css";
 import portfolioCards, { PortfolioItem } from "../Data/PortfolioCards";
+import { FaGithub, FaBehanceSquare } from "react-icons/fa";
 
 /* Import Swiper React components & modules */
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,7 +11,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const Portfolio: React.FC = () => {
-  // Sécurité : Ne pas rendre le Swiper si les données sont vides
   if (!portfolioCards || portfolioCards.length === 0) return null;
 
   return (
@@ -34,27 +34,44 @@ const Portfolio: React.FC = () => {
           1024: { slidesPerView: 3, spaceBetween: 30 },
         }}
       >
-        {portfolioCards.map(({ id, image, title, github }: PortfolioItem) => (
-          <SwiperSlide key={id} className="portfolio__items">
-            <div className="portfolio__items-image">
-              <img
-                src={image}
-                alt={title}
-                width="400"
-                height="500"
-                loading="lazy"
-                /* Optimisation du rendu */
-                decoding="async"
-              />
-            </div>
-            <h3>{title}</h3>
-            <div className="protfolio__item-cta">
-              <a href={github} className="btn" target="_blank" rel="noreferrer">
-                Github
-              </a>
-            </div>
-          </SwiperSlide>
-        ))}
+        {portfolioCards.map(
+          ({ id, image, title, Plateform, Link }: PortfolioItem) => (
+            <SwiperSlide key={id} className="portfolio__items">
+              <div className="portfolio__items-image">
+                <img
+                  src={image}
+                  alt={title}
+                  width="400"
+                  height="500"
+                  loading="lazy"
+                  /* Optimisation du rendu */
+                  decoding="async"
+                />
+              </div>
+              <h3>{title}</h3>
+              <div className="protfolio__item-cta">
+                <a
+                  href={Link}
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    justifyContent: "center",
+                  }}
+                >
+                  {/* Icône dynamique + Texte dynamique */}
+                  {Plateform === "Behance" ? <FaBehanceSquare /> : <FaGithub />}
+                  {Plateform === "Behance"
+                    ? "Voir sur Behance"
+                    : "Voir sur Github"}
+                </a>
+              </div>
+            </SwiperSlide>
+          ),
+        )}
       </Swiper>
     </section>
   );
