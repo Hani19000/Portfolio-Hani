@@ -21,7 +21,7 @@ const Defilement: React.FC<DefilementProps> = ({
         transition={{ repeat: Infinity, duration: velocity, ease: "linear" }}
         className="marquee-content"
       >
-        {/* On répète 10 fois pour combler le vide si tu as peu d'items */}
+        {/* répète 10 fois pour combler le vide si tu as peu d'items */}
         {[...Array(10)].map((_, i) => (
           <div key={i} className="marquee-item-wrapper">
             {children}

@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/react";
 import post from "../api/api";
 import isValid from "../utils/validation";
 
-/* ===== TYPES ===== */
+
 type Status = "idle" | "success" | "error";
 
 export interface ContactData {
@@ -13,7 +13,7 @@ export interface ContactData {
   subject: string;
 }
 
-/* ===== UTILS ===== */
+
 const extractData = (form: HTMLFormElement): ContactData => {
   const fd = new FormData(form);
   return {
@@ -24,7 +24,7 @@ const extractData = (form: HTMLFormElement): ContactData => {
   };
 };
 
-/* ===== HOOK ===== */
+
 export function useEmail() {
   const timeoutRef = useRef<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +71,7 @@ export function useEmail() {
         window.clearTimeout(timeoutRef.current);
       }
 
-      // ou bien mais peut envoyer error si elle est null : clearTimeout(timeoutRef.current!);
+      // ou mais peut envoyer error si elle est null : clearTimeout(timeoutRef.current!);
 
       timeoutRef.current = window.setTimeout(
         () => setStatus({ type: "idle", message: "" }),
