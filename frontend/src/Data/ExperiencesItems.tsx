@@ -15,7 +15,7 @@ import { BiLogoPostgresql } from "react-icons/bi";
 import { CgFigma } from "react-icons/cg";
 import { MdHealthAndSafety } from "react-icons/md";
 
-type ProjectCategory = "frontend" | "backend" | "devops";
+type ProjectCategory = "frontend" | "backend" | "devops" | "bdd";
 export interface ExperienceItem {
   icon: ReactNode;
   title: string;
@@ -23,7 +23,6 @@ export interface ExperienceItem {
 }
 
 const experienceItems: ExperienceItem[] = [
-  /* Frontend */
   {
     icon: <IoLogoHtml5 />,
     title: "HTML",
@@ -59,8 +58,6 @@ const experienceItems: ExperienceItem[] = [
     title: "Figma",
     type: "frontend",
   },
-
-  /* Backend */
   {
     icon: <FaPython />,
     title: "Python/Django",
@@ -79,20 +76,18 @@ const experienceItems: ExperienceItem[] = [
   {
     icon: <BiLogoPostgresql />,
     title: "PostgreSQL",
-    type: "backend",
+    type: "bdd",
   },
   {
     icon: <SiMongodb />,
     title: "mongoDB",
-    type: "backend",
+    type: "bdd",
   },
   {
     icon: <SiSqlite />,
     title: "SQlite",
-    type: "backend",
+    type: "bdd",
   },
-
-  /* DevOps */
   {
     icon: <FaGitAlt />,
     title: "Git",
@@ -101,11 +96,6 @@ const experienceItems: ExperienceItem[] = [
   {
     icon: <SiSentry />,
     title: "Sentry",
-    type: "devops",
-  },
-  {
-    icon: <MdHealthAndSafety />,
-    title: "Git",
     type: "devops",
   },
   {

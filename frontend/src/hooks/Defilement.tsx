@@ -1,49 +1,31 @@
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-interface MarqueeProps {
-  text: string;
-  velocity?: number; // Pour contrôler la vitesse
+interface DefilementProps {
+  children: ReactNode;
+  velocity?: number;
+  direction?: "left" | "right";
 }
 
-const Defilement: React.FC<MarqueeProps> = ({ text, velocity = 30 }) => {
+const Defilement: React.FC<DefilementProps> = ({
+  children,
+  velocity = 20,
+  direction = "left",
+}) => {
+  const xTranslation = direction === "left" ? ["0%", "-20%"] : ["-20%", "0%"];
+
   return (
-    <div
-      className="marquee-wrapper"
-      style={{
-        overflow: "hidden",
-        width: "100vw",
-        userSelect: "none",
-        padding: "2rem 0",
-      }}
-    >
+    <div className="marquee-container">
       <motion.div
-        animate={{ x: ["0%", "-50%"] }} // défile de la moitié pour une boucle infinie
-        transition={{
-          repeat: Infinity,
-          duration: velocity,
-          ease: "linear",
-        }}
-        style={{
-          display: "flex",
-          whiteSpace: "nowrap",
-          width: "fit-content",
-        }}
+        animate={{ x: xTranslation }}
+        transition={{ repeat: Infinity, duration: velocity, ease: "linear" }}
+        className="marquee-content"
       >
-        {/* répète le texte plusieurs fois pour remplir l'écran */}
-        {[...Array(4)].map((_, i) => (
-          <span
-            key={i}
-            style={{
-              fontSize: "clamp(4rem, 10vw, 8rem)",
-              fontWeight: "900",
-              textTransform: "uppercase",
-              paddingRight: "4rem",
-              color: "var(--color-primary)",
-              opacity: 0.05, // Très léger comme sur Ribban
-            }}
-          >
-            {text}
-          </span>
+        {/* On répète 10 fois pour combler le vide si tu as peu d'items */}
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="marquee-item-wrapper">
+            {children}
+          </div>
         ))}
       </motion.div>
     </div>
