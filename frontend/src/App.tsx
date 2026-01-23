@@ -68,7 +68,6 @@ function App() {
           </Loading>
 
           <Loading>
-            <Defilement text="DEPLOYEMENT • TECHNOLOGIES • DESIGN • CODE •" />
             <Experience />
           </Loading>
 
@@ -81,7 +80,6 @@ function App() {
           </Loading>
 
           <Loading>
-            <Defilement text="DEPLOYEMENT • TECHNOLOGIES • DESIGN • CODE •" />
             <Contact />
           </Loading>
 
