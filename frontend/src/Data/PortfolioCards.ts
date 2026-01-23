@@ -7,12 +7,13 @@ import IMG6 from "../assets/portfolio6.webp";
 import IMG7 from "../assets/portfolio7.webp";
 import IMG8 from "../assets/FBurger.webp";
 
+
 /* Définition de l'interface */
 export interface PortfolioItem {
   id: number;
   image: string;
   title: string;
-  Plateform: "Github" | "Behance";
+Plateform: "Github" | "Behance";
   Link: string;
 }
 
@@ -22,56 +23,56 @@ const portfolioCards: PortfolioItem[] = [
     image: IMG1,
     title: "E-commerce website",
     Plateform: "Github",
-    Link: "https://github.com/Hani19000/E-commerce-website",
+    Link : "https://github.com/Hani19000/E-commerce-website",
   },
   {
     id: 2,
     image: IMG8,
     title: "FBurger (UI/UX)",
     Plateform: "Behance",
-    Link: "https://www.behance.net/gallery/242794027/Design-restaurant-fictif?",
+    Link :"https://www.behance.net/gallery/242794027/Design-restaurant-fictif?",
   },
   {
     id: 3,
     image: IMG2,
     title: "QR code",
     Plateform: "Github",
-    Link: "https://github.com/Hani19000/QR-code",
+    Link :"https://github.com/Hani19000/QR-code",
   },
   {
     id: 4,
     image: IMG3,
     title: "Agence de voyage",
     Plateform: "Github",
-    Link: "https://github.com/Hani19000/Audio_player",
+    Link :"https://github.com/Hani19000/Audio_player",
   },
   {
     id: 5,
     image: IMG4,
     title: "Audio_player",
     Plateform: "Github",
-    Link: "https://github.com/Hani19000/agence-de-voyage",
+    Link :"https://github.com/Hani19000/agence-de-voyage",
   },
   {
     id: 6,
     image: IMG5,
     title: "To Do List",
-    Plateform: "Github",
-    Link: "https://github.com/Hani19000/To-Do-List",
+    Plateform:"Github",
+    Link : "https://github.com/Hani19000/To-Do-List",
   },
   {
     id: 7,
     image: IMG6,
     title: "API REST Authentication",
-    Plateform: "Github",
-    Link: "https://github.com/Hani19000/API_REST_TYPESCRIPT",
+    Plateform:"Github",
+    Link : "https://github.com/Hani19000/API_REST_TYPESCRIPT",
   },
   {
     id: 8,
     image: IMG7,
     title: "Text-To-voice-converting",
-    Plateform: "Github",
-    Link: "https://github.com/Hani19000/Text-To-voice-converting",
+    Plateform:"Github",
+    Link : "https://github.com/Hani19000/Text-To-voice-converting",
   },
 ];
 
