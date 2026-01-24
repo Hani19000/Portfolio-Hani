@@ -112,7 +112,7 @@
   align-items: center;
 }
 
-/* On stylise les badges pour qu'ils ne soient pas collés */
+/* stylise les badges pour qu'ils ne soient pas collés */
 .tech-item {
   display: flex;
   align-items: center;
@@ -123,12 +123,11 @@
   border-radius: 12px;
   white-space: nowrap;
 }
-/* ================= MEDIA QUERIES ================= */
 
 /* ---------- Desktop Standard (1280px) ---------- */
 @media screen and (max-width: 1280px) {
   .experience__container {
-    width: 85%; /* Aligné sur votre header__container */
+    width: 85%;
     gap: 1.5rem;
   }
 }
@@ -140,24 +139,65 @@
     gap: 1.5rem;
   }
 
-  /* Si vous avez 3 éléments, le 3ème prend toute la largeur pour l'équilibre */
   .experience__container > div:nth-child(3) {
-    grid-column: 1 / -1; /* Prend toute la largeur de la grille pour pouvoir se centrer */
-    justify-self: center; /* Centre la carte horizontalement dans sa ligne */
-    width: 100%; /* Par défaut elle prend tout */
-    max-width: 500px; /*  limite sa largeur pour qu'elle ressemble aux autres */
-    margin: 0 auto; /* Sécurité supplémentaire pour le centrage */
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .tech-item {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
   }
 }
 
 /* ---------- Mobiles (600px et moins) ---------- */
 @media screen and (max-width: 600px) {
   .experience__container {
-    grid-template-columns: 1fr; /* Repasse en une seule colonne pile l'une sur l'autre */
+    grid-template-columns: 1fr;
     width: 100%;
   }
 
   .experience__container > div:nth-child(3) {
-    max-width: 100%; /* Reprend toute la largeur sur petit téléphone */
+    max-width: 100%;
+  }
+
+  .experience__marquee-stack {
+    gap: 2rem; /* On réduit l'espace entre Frontend/Backend/DevOps */
+  }
+
+  .marquee-container {
+    /* Sur mobile, on réduit le fondu sur les côtés pour laisser plus de place au contenu */
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(0, 0, 0, 1) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .tech-item {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    gap: 8px;
+  }
+
+  .tech-item svg {
+    font-size: 1.4rem;
+  }
+
+  .marquee-content {
+    gap: 1rem;
+  }
+
+  .marquee-item-wrapper {
+    gap: 1rem;
+  }
+
+  .marquee-group h4 {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 }
