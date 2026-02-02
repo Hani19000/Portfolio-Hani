@@ -30,7 +30,7 @@ export const sendEmail = async ({
   try {
     // 2. Envoi via Resend
     const { data, error } = await resend.emails.send({
-      from: "hanider27@gmail.com",
+      from: "onboarding@resend.dev",
       to: "hanider27@gmail.com",
       subject: `Nouveau message Portfolio — ${name}`,
       html: content,
