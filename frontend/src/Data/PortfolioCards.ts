@@ -13,7 +13,7 @@ export interface PortfolioItem {
   image: string;
   title: string;
   links: {
-    github?: string;
+    github?: string | { frontend: string; backend: string };
     demo?: string;
   };
 }
@@ -32,8 +32,11 @@ const portfolioCards: PortfolioItem[] = [
     image: IMG8,
     title: "FBurger restaurant full stack platform",
     links: {
-      github: "https://github.com/Hani19000/FBurger",
-      demo: "https://www.behance.net/gallery/242794027/Design-restaurant-fictif",
+      github: {
+        frontend: "https://github.com/Hani19000/FBurger-Frontend",
+        backend: "https://github.com/Hani19000/FBurger-Backend",
+      },
+      demo: "https://fburger.vercel.app",
     },
   },
   {

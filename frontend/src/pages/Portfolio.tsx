@@ -56,37 +56,65 @@ const Portfolio: React.FC = () => {
                 flexWrap: "wrap",
               }}
             >
-              {/* Bouton GitHub - S'affiche uniquement si github existe dans links */}
               {links.github && (
-                <a
-                  href={links.github}
-                  className="btn"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    justifyContent: "center",
-                  }}
-                >
-                  <FaGithub /> GitHub
-                </a>
+                <>
+                  {typeof links.github === "string" ? (
+                    // Cas classique : un seul lien GitHub
+                    <a
+                      href={links.github}
+                      className="btn"
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
+                    >
+                      <FaGithub /> GitHub
+                    </a>
+                  ) : (
+                    // Cas FBurger : Deux liens séparés
+                    <>
+                      <a
+                        href={links.github.frontend}
+                        className="btn"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "10px",
+                        }}
+                      >
+                        <FaGithub /> Frontend
+                      </a>
+                      <a
+                        href={links.github.backend}
+                        className="btn"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "10px",
+                        }}
+                      >
+                        <FaGithub /> Backend
+                      </a>
+                    </>
+                  )}
+                </>
               )}
 
-              {/* Bouton Demo/Behance - S'affiche uniquement si demo existe dans links */}
+              {/* Lien Demo */}
               {links.demo && (
                 <a
                   href={links.demo}
                   className="btn btn-primary"
                   target="_blank"
                   rel="noreferrer"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    justifyContent: "center",
-                  }}
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
                 >
                   <FaEarthAfrica /> Demo
                 </a>
