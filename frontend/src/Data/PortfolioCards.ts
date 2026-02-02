@@ -7,14 +7,15 @@ import IMG6 from "../assets/portfolio6.webp";
 import IMG7 from "../assets/portfolio7.webp";
 import IMG8 from "../assets/FBurger.webp";
 
-
-/* Définition de l'interface */
+/* Définition de l'interface structurée */
 export interface PortfolioItem {
   id: number;
   image: string;
   title: string;
-Plateform: "Github" | "Behance";
-  Link: string;
+  links: {
+    github?: string;
+    demo?: string;
+  };
 }
 
 const portfolioCards: PortfolioItem[] = [
@@ -22,57 +23,66 @@ const portfolioCards: PortfolioItem[] = [
     id: 1,
     image: IMG1,
     title: "E-commerce website",
-    Plateform: "Github",
-    Link : "https://github.com/Hani19000/E-commerce-website",
+    links: {
+      github: "https://github.com/Hani19000/E-commerce-website",
+    },
   },
   {
     id: 2,
     image: IMG8,
-    title: "FBurger (UI/UX)",
-    Plateform: "Behance",
-    Link :"https://www.behance.net/gallery/242794027/Design-restaurant-fictif?",
+    title: "FBurger restaurant full stack platform",
+    links: {
+      github: "https://github.com/Hani19000/FBurger",
+      demo: "https://www.behance.net/gallery/242794027/Design-restaurant-fictif",
+    },
   },
   {
     id: 3,
     image: IMG2,
     title: "QR code",
-    Plateform: "Github",
-    Link :"https://github.com/Hani19000/QR-code",
+    links: {
+      github: "https://github.com/Hani19000/QR-code",
+    },
   },
   {
     id: 4,
     image: IMG3,
     title: "Agence de voyage",
-    Plateform: "Github",
-    Link :"https://github.com/Hani19000/Audio_player",
+    links: {
+      github: "https://github.com/Hani19000/agence-de-voyage",
+    },
   },
   {
     id: 5,
     image: IMG4,
-    title: "Audio_player",
-    Plateform: "Github",
-    Link :"https://github.com/Hani19000/agence-de-voyage",
+    title: "Audio player",
+    links: {
+      github: "https://github.com/Hani19000/Audio_player",
+    },
   },
   {
     id: 6,
     image: IMG5,
     title: "To Do List",
-    Plateform:"Github",
-    Link : "https://github.com/Hani19000/To-Do-List",
+    links: {
+      github: "https://github.com/Hani19000/To-Do-List",
+    },
   },
   {
     id: 7,
     image: IMG6,
     title: "API REST Authentication",
-    Plateform:"Github",
-    Link : "https://github.com/Hani19000/API_REST_TYPESCRIPT",
+    links: {
+      github: "https://github.com/Hani19000/API_REST_TYPESCRIPT",
+    },
   },
   {
     id: 8,
     image: IMG7,
     title: "Text-To-voice-converting",
-    Plateform:"Github",
-    Link : "https://github.com/Hani19000/Text-To-voice-converting",
+    links: {
+      github: "https://github.com/Hani19000/Text-To-voice-converting",
+    },
   },
 ];
 
