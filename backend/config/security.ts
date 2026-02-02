@@ -1,25 +1,42 @@
-import helmet from 'helmet';
-import compression from 'compression';
-import cors from 'cors';
-import express, { Application } from 'express';
+import helmet from "helmet";
+import compression from "compression";
+import cors from "cors";
+import express, { Application } from "express";
 
-const origins = ['https://hani-derrouiche.vercel.app',, 'http://localhost:5173', /\.vercel\.app$/];
+const origins = [
+  "https://hani-derrouiche.vercel.app",
+  "http://localhost:5174",
+  /\.vercel\.app$/,
+];
 
 /* Middlewares de sécurité et optimisation réseau */
 const securityMiddleware = (app: Application): void => {
   app.use(helmet());
   app.use(compression());
-  
-  app.use(cors({
-    origin: (origin, cb) => 
-      !origin || origins.some(o => o instanceof RegExp ? o.test(origin) : o === origin)
-        ? cb(null, true) 
-        : cb(new Error('Non autorisé par CORS')),
-    methods: ['GET', 'POST'],
-    credentials: true // utile pour plus tard pour une eventuelle page admin et connexion
-  }));
 
-  app.use(express.json({ limit: '10kb' }));
+  app.use(
+    cors({
+      origin: (origin, cb) => {
+        // LOG DE DEBUG : À supprimer après correction
+        console.log("Origine reçue par CORS :", origin);
+
+        if (
+          !origin ||
+          origins.some((o) =>
+            o instanceof RegExp ? o.test(origin) : o === origin,
+          )
+        ) {
+          cb(null, true);
+        } else {
+          cb(new Error("Non autorisé par CORS"));
+        }
+      },
+      methods: ["GET", "POST"],
+      credentials: true,
+    }),
+  );
+
+  app.use(express.json({ limit: "10kb" }));
 };
 
-export default securityMiddleware
+export default securityMiddleware;

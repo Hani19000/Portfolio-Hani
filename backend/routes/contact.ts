@@ -6,13 +6,18 @@ import { contactLimiter } from "../middleware/ratelimiter.js";
 const router = Router();
 
 /* Traitement du formulaire de contact */
+// routes/contact.js
 router.post("/", contactLimiter, validateContact, async (req, res, next) => {
   try {
-    const { name, email, message, subject } = req.body;
-    await Promise.all([sendEmail({ name, email, message, subject })]);
+    // On délègue la logique au service
+    await sendEmail(req.body);
 
-    res.status(201).json({ success: true, message: "Message envoyé !" });
+    res.status(201).json({
+      success: true,
+      message: "Message envoyé avec succès !",
+    });
   } catch (err) {
+    // Si sendEmail jette une erreur, elle est capturée ici
     next(err);
   }
 });

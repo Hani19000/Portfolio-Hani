@@ -1,6 +1,5 @@
-import sgMail from "@sendgrid/mail";
+import { Resend } from "resend";
 import * as Sentry from "@sentry/node";
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
 interface EmailParams {
   name: string;
@@ -9,39 +8,44 @@ interface EmailParams {
   message: string;
 }
 
-/*Envoie un email via SendGrid avec un template structuré */
-
 export const sendEmail = async ({
   name,
   email,
   subject,
   message,
 }: EmailParams) => {
-  const from = process.env.EMAIL_USER!;
-  const to = process.env.EMAIL_TO!;
+  // 1. Initialisation de Resend
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   const content = `
-    <strong>Nom:</strong> ${name}<br>
-    <strong>Email:</strong> ${email}<br>
-    <strong>Sujet:</strong> ${subject}<br><br>
-    <strong>Message:</strong><br>
-    ${message.replace(/\n/g, "<br>")}
+    <div style="font-family: sans-serif; border: 1px solid #eee; padding: 20px;">
+      <strong>Nom:</strong> ${name}<br>
+      <strong>Email:</strong> ${email}<br>
+      <strong>Sujet:</strong> ${subject}<br><br>
+      <strong>Message:</strong><br>
+      ${message.replace(/\n/g, "<br>")}
+    </div>
   `;
 
   try {
-    return await sgMail.send({
-      to,
-      from,
-      replyTo: email,
+    // 2. Envoi via Resend
+    const { data, error } = await resend.emails.send({
+      from: "hanider27@gmail.com",
+      to: "hanider27@gmail.com",
       subject: `Nouveau message Portfolio — ${name}`,
-      text: `Nom: ${name}\nEmail: ${email}\nSujet: ${subject}\n\nMessage:\n${message}`,
-      html: `<div style="font-family: sans-serif; border: 1px solid #eee; padding: 20px;">${content}</div>`,
+      html: content,
     });
-  } catch (error) {
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
+  } catch (error: any) {
+    console.error("Erreur lors de l'envoi via Resend:", error);
     Sentry.captureException(error);
-    console.error("Erreur SendGrid capturée par Sentry");
     throw error;
   }
 };
 
-export default EmailParams
+export default EmailParams;
