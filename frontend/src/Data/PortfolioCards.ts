@@ -22,9 +22,13 @@ const portfolioCards: PortfolioItem[] = [
   {
     id: 1,
     image: IMG1,
-    title: "E-commerce website",
+    title: "ECOM-WATCH || E-commerce website",
     links: {
-      github: "https://github.com/Hani19000/E-commerce-website",
+      github: {
+        frontend: "https://github.com/Hani19000/ECOM-WATCH-Frontend",
+        backend: "https://github.com/Hani19000/ECOM-WATCH-Bakcend",
+      },
+      demo: "https://ecomwatch.vercel.app",
     },
   },
   {
